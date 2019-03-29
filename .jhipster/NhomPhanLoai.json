@@ -1,0 +1,83 @@
+{
+    "name": "NhomPhanLoai",
+    "fields": [
+        {
+            "fieldName": "nhomPhanLoaiCode",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "userName",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "createTime",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "updateTime",
+            "fieldType": "ZonedDateTime",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Status",
+            "fieldValues": "PUBLISH,UNPUBLISH,DELETED",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "program",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "relationshipName": "doituong",
+            "otherEntityName": "doiTuong",
+            "otherEntityRelationshipName": "nhomphanloai"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "relationshipName": "donvi",
+            "otherEntityName": "donVi",
+            "otherEntityField": "id",
+            "otherEntityRelationshipName": "nhomphanloai"
+        }
+    ],
+    "changelogDate": "20190329044950",
+    "entityTableName": "nhom_phan_loai",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceImpl",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "gateway",
+        "common"
+    ],
+    "microserviceName": "common"
+}
