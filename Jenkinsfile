@@ -2,7 +2,7 @@ pipeline {
   agent {
     docker {
       image 'maven:3.6-jdk-8-alpine'
-      args '-v /root/.m2:/root/.m2'
+      args '-v /home/vunt/maven/.m2:/root/.m2'
     }
 
   }
@@ -35,11 +35,6 @@ pipeline {
         sh './jenkins/scripts/deploy-for-production.sh'
         input 'Finished using the web site? (Click "Proceed" to continue)'
         sh './jenkins/scripts/kill.sh'
-      }
-    }
-    stage('End') {
-      steps {
-        echo 'ok'
       }
     }
   }
