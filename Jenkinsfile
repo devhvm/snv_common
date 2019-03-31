@@ -1,37 +1,46 @@
-pipeline {
-  agent {
-    docker {
-      image 'maven:3.6-jdk-8-alpine'
-      args '-v /home/vunt/maven/.m2:/root/.m2'
+#!/usr/bin/env groovy
+
+node {
+    stage('Checkout') {
+        git url: 'https://github.com/devhvm/snv_common.git', branch: 'development'
     }
 
-  }
-  stages {
-    stage('Package') {
-      steps {
-        sh './mvnw -Pprod clean package'
-      }
+    docker.image('jhipster/jhipster:v5.8.2').inside('-u jhipster -e MAVEN_OPTS="-Duser.home=./"') {
+        stage('check java') {
+            sh "java -version"
+        }
+
+        stage('clean') {
+            sh "chmod +x mvnw"
+            sh "./mvnw clean"
+        }
+
+        stage('backend tests') {
+            try {
+                sh "./mvnw test"
+            } catch(err) {
+                throw err
+            } finally {
+                junit '**/target/surefire-reports/TEST-*.xml'
+            }
+        }
+
+        stage('packaging') {
+            sh "./mvnw verify -Pprod -DskipTests"
+            archiveArtifacts artifacts: '**/target/*.war', fingerprint: true
+        }
     }
-    
-    stage('Deliver for development') {
-      when {
-        branch 'development'
-      }
-      steps {
-        sh './jenkins/scripts/deliver-for-development.sh'
-        input 'Finished using the web site? (Click "Proceed" to continue)'
-        sh './jenkins/scripts/kill.sh'
-      }
+
+    def dockerImage
+    stage('build docker') {
+        sh "cp -R src/main/docker target/"
+        sh "cp target/*.war target/docker/"
+        dockerImage = docker.build('snv/common', 'target/docker')
     }
-    stage('Deploy for production') {
-      when {
-        branch 'production'
-      }
-      steps {
-        sh './jenkins/scripts/deploy-for-production.sh'
-        input 'Finished using the web site? (Click "Proceed" to continue)'
-        sh './jenkins/scripts/kill.sh'
-      }
+
+    stage('publish docker') {
+        docker.withRegistry('http://vtools.xyz:5050', 'snv') {
+            dockerImage.push 'latest'
+        }
     }
-  }
 }
