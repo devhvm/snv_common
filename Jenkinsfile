@@ -8,6 +8,7 @@ node {
     docker.image('jhipster/jhipster:v5.8.2').inside('-u jhipster -e MAVEN_OPTS="-Duser.home=./"') {
         stage('check java') {
             sh "java -version"
+            sh "mvn -version"
         }
 
         stage('clean') {
