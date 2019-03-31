@@ -7,22 +7,12 @@ pipeline {
 
   }
   stages {
-    stage('Build') {
+    stage('Package') {
       steps {
-        sh './mvnw clean install'
-      }
-    }
-    stage('Test') {
-      steps {
-        sh './mvnw clean test'
+        sh './mvnw -Pprod clean package'
       }
     }
     
-    stage('Package') {
-      steps {
-        sh './mvnw -Pprod -DskipTests clean package'
-      }
-    }
     stage('Deliver for development') {
       when {
         branch 'development'
