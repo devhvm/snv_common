@@ -9,12 +9,18 @@ pipeline {
   stages {
     stage('Build') {
       steps {
-        sh './mvnw -Pprod -DskipTests clean package'
+        sh './mvnw clean install'
       }
     }
     stage('Test') {
       steps {
         sh './mvnw clean test'
+      }
+    }
+    
+    stage('Package') {
+      steps {
+        sh './mvnw -Pprod -DskipTests clean package'
       }
     }
     stage('Deliver for development') {
