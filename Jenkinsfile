@@ -1,4 +1,5 @@
 node {
+
     stage("build") {
         docker.image("jhipster/jhipster:latest").inside("-v /home/vunt/maven/.m2:/root/.m2") { c ->
             stage('check java') {
