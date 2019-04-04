@@ -102,6 +102,7 @@ public class PhamViServiceImpl implements PhamViService {
      */
     @Override
     public void delete(Long id) {
-        log.debug("Request to delete PhamVi : {}", id);        phamViRepository.deleteById(id);
+        log.debug("Request to delete PhamVi : {}", id);
+        phamViRepository.deleteById(id);
     }
 }

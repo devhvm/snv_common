@@ -10,7 +10,6 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
-import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -40,32 +39,16 @@ public class NhomPhanLoai implements Serializable {
     private String name;
 
     @NotNull
-    @Column(name = "user_name", nullable = false)
-    private String userName;
-
-    @NotNull
-    @Column(name = "create_time", nullable = false)
-    private ZonedDateTime createTime;
-
-    @NotNull
-    @Column(name = "update_time", nullable = false)
-    private ZonedDateTime updateTime;
-
-    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private Status status;
-
-    @NotNull
-    @Column(name = "program", nullable = false)
-    private String program;
 
     @OneToMany(mappedBy = "nhomphanloai")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<DoiTuong> doituongs = new HashSet<>();
     @ManyToOne
     @JsonIgnoreProperties("nhomphanloais")
-    private DonVi donvi;
+    private DonViTinh donvitinh;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -102,45 +85,6 @@ public class NhomPhanLoai implements Serializable {
         this.name = name;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public NhomPhanLoai userName(String userName) {
-        this.userName = userName;
-        return this;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public ZonedDateTime getCreateTime() {
-        return createTime;
-    }
-
-    public NhomPhanLoai createTime(ZonedDateTime createTime) {
-        this.createTime = createTime;
-        return this;
-    }
-
-    public void setCreateTime(ZonedDateTime createTime) {
-        this.createTime = createTime;
-    }
-
-    public ZonedDateTime getUpdateTime() {
-        return updateTime;
-    }
-
-    public NhomPhanLoai updateTime(ZonedDateTime updateTime) {
-        this.updateTime = updateTime;
-        return this;
-    }
-
-    public void setUpdateTime(ZonedDateTime updateTime) {
-        this.updateTime = updateTime;
-    }
-
     public Status getStatus() {
         return status;
     }
@@ -152,19 +96,6 @@ public class NhomPhanLoai implements Serializable {
 
     public void setStatus(Status status) {
         this.status = status;
-    }
-
-    public String getProgram() {
-        return program;
-    }
-
-    public NhomPhanLoai program(String program) {
-        this.program = program;
-        return this;
-    }
-
-    public void setProgram(String program) {
-        this.program = program;
     }
 
     public Set<DoiTuong> getDoituongs() {
@@ -192,17 +123,17 @@ public class NhomPhanLoai implements Serializable {
         this.doituongs = doiTuongs;
     }
 
-    public DonVi getDonvi() {
-        return donvi;
+    public DonViTinh getDonvitinh() {
+        return donvitinh;
     }
 
-    public NhomPhanLoai donvi(DonVi donVi) {
-        this.donvi = donVi;
+    public NhomPhanLoai donvitinh(DonViTinh donViTinh) {
+        this.donvitinh = donViTinh;
         return this;
     }
 
-    public void setDonvi(DonVi donVi) {
-        this.donvi = donVi;
+    public void setDonvitinh(DonViTinh donViTinh) {
+        this.donvitinh = donViTinh;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -232,11 +163,7 @@ public class NhomPhanLoai implements Serializable {
             "id=" + getId() +
             ", nhomPhanLoaiCode='" + getNhomPhanLoaiCode() + "'" +
             ", name='" + getName() + "'" +
-            ", userName='" + getUserName() + "'" +
-            ", createTime='" + getCreateTime() + "'" +
-            ", updateTime='" + getUpdateTime() + "'" +
             ", status='" + getStatus() + "'" +
-            ", program='" + getProgram() + "'" +
             "}";
     }
 }

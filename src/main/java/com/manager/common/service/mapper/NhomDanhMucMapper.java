@@ -12,6 +12,8 @@ import org.mapstruct.*;
 public interface NhomDanhMucMapper extends EntityMapper<NhomDanhMucDTO, NhomDanhMuc> {
 
 
+    @Mapping(target = "danhmucs", ignore = true)
+    NhomDanhMuc toEntity(NhomDanhMucDTO nhomDanhMucDTO);
 
     default NhomDanhMuc fromId(Long id) {
         if (id == null) {

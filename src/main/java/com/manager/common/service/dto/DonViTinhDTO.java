@@ -5,14 +5,14 @@ import java.util.Objects;
 import com.manager.common.domain.enumeration.Status;
 
 /**
- * A DTO for the NhomDanhMuc entity.
+ * A DTO for the DonViTinh entity.
  */
-public class NhomDanhMucDTO implements Serializable {
+public class DonViTinhDTO implements Serializable {
 
     private Long id;
 
     @NotNull
-    private String nhomDanhMucCode;
+    private String donViTinhCode;
 
     @NotNull
     private String name;
@@ -29,12 +29,12 @@ public class NhomDanhMucDTO implements Serializable {
         this.id = id;
     }
 
-    public String getNhomDanhMucCode() {
-        return nhomDanhMucCode;
+    public String getDonViTinhCode() {
+        return donViTinhCode;
     }
 
-    public void setNhomDanhMucCode(String nhomDanhMucCode) {
-        this.nhomDanhMucCode = nhomDanhMucCode;
+    public void setDonViTinhCode(String donViTinhCode) {
+        this.donViTinhCode = donViTinhCode;
     }
 
     public String getName() {
@@ -62,11 +62,11 @@ public class NhomDanhMucDTO implements Serializable {
             return false;
         }
 
-        NhomDanhMucDTO nhomDanhMucDTO = (NhomDanhMucDTO) o;
-        if (nhomDanhMucDTO.getId() == null || getId() == null) {
+        DonViTinhDTO donViTinhDTO = (DonViTinhDTO) o;
+        if (donViTinhDTO.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(getId(), nhomDanhMucDTO.getId());
+        return Objects.equals(getId(), donViTinhDTO.getId());
     }
 
     @Override
@@ -76,9 +76,9 @@ public class NhomDanhMucDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "NhomDanhMucDTO{" +
+        return "DonViTinhDTO{" +
             "id=" + getId() +
-            ", nhomDanhMucCode='" + getNhomDanhMucCode() + "'" +
+            ", donViTinhCode='" + getDonViTinhCode() + "'" +
             ", name='" + getName() + "'" +
             ", status='" + getStatus() + "'" +
             "}";

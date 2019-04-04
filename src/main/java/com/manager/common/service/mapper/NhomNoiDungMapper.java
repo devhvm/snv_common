@@ -12,7 +12,7 @@ import org.mapstruct.*;
 public interface NhomNoiDungMapper extends EntityMapper<NhomNoiDungDTO, NhomNoiDung> {
 
 
-    @Mapping(target = "noiDungs", ignore = true)
+    @Mapping(target = "noidungs", ignore = true)
     NhomNoiDung toEntity(NhomNoiDungDTO nhomNoiDungDTO);
 
     default NhomNoiDung fromId(Long id) {

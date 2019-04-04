@@ -9,7 +9,6 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
-import java.time.ZonedDateTime;
 import java.util.Objects;
 
 import com.manager.common.domain.enumeration.Status;
@@ -33,28 +32,12 @@ public class NoiDung implements Serializable {
     private String noiDungCode;
 
     @NotNull
-    @Column(name = "user_name", nullable = false)
-    private String userName;
-
-    @NotNull
-    @Column(name = "create_time", nullable = false)
-    private ZonedDateTime createTime;
-
-    @NotNull
-    @Column(name = "update_time", nullable = false)
-    private ZonedDateTime updateTime;
-
-    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private Status status;
 
-    @NotNull
-    @Column(name = "program", nullable = false)
-    private String program;
-
     @ManyToOne
-    @JsonIgnoreProperties("noiDungs")
+    @JsonIgnoreProperties("noidungs")
     private NhomNoiDung nhomnoidung;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
@@ -79,45 +62,6 @@ public class NoiDung implements Serializable {
         this.noiDungCode = noiDungCode;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public NoiDung userName(String userName) {
-        this.userName = userName;
-        return this;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public ZonedDateTime getCreateTime() {
-        return createTime;
-    }
-
-    public NoiDung createTime(ZonedDateTime createTime) {
-        this.createTime = createTime;
-        return this;
-    }
-
-    public void setCreateTime(ZonedDateTime createTime) {
-        this.createTime = createTime;
-    }
-
-    public ZonedDateTime getUpdateTime() {
-        return updateTime;
-    }
-
-    public NoiDung updateTime(ZonedDateTime updateTime) {
-        this.updateTime = updateTime;
-        return this;
-    }
-
-    public void setUpdateTime(ZonedDateTime updateTime) {
-        this.updateTime = updateTime;
-    }
-
     public Status getStatus() {
         return status;
     }
@@ -129,19 +73,6 @@ public class NoiDung implements Serializable {
 
     public void setStatus(Status status) {
         this.status = status;
-    }
-
-    public String getProgram() {
-        return program;
-    }
-
-    public NoiDung program(String program) {
-        this.program = program;
-        return this;
-    }
-
-    public void setProgram(String program) {
-        this.program = program;
     }
 
     public NhomNoiDung getNhomnoidung() {
@@ -183,11 +114,7 @@ public class NoiDung implements Serializable {
         return "NoiDung{" +
             "id=" + getId() +
             ", noiDungCode='" + getNoiDungCode() + "'" +
-            ", userName='" + getUserName() + "'" +
-            ", createTime='" + getCreateTime() + "'" +
-            ", updateTime='" + getUpdateTime() + "'" +
             ", status='" + getStatus() + "'" +
-            ", program='" + getProgram() + "'" +
             "}";
     }
 }

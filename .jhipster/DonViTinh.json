@@ -1,8 +1,8 @@
 {
-    "name": "NhomChiTieu",
+    "name": "DonViTinh",
     "fields": [
         {
-            "fieldName": "nhomChiTieuCode",
+            "fieldName": "donViTinhCode",
             "fieldType": "String",
             "fieldValidateRules": [
                 "required"
@@ -27,13 +27,13 @@
     "relationships": [
         {
             "relationshipType": "one-to-many",
-            "otherEntityName": "chiTieu",
-            "otherEntityRelationshipName": "nhomchitieu",
-            "relationshipName": "chitieu"
+            "otherEntityName": "nhomPhanLoai",
+            "otherEntityRelationshipName": "donvitinh",
+            "relationshipName": "nhomphanloai"
         }
     ],
-    "changelogDate": "20190329044946",
-    "entityTableName": "nhom_chi_tieu",
+    "changelogDate": "20190404015125",
+    "entityTableName": "don_vi_tinh",
     "dto": "mapstruct",
     "pagination": "pagination",
     "service": "serviceClass",

@@ -25,14 +25,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
-import java.time.Instant;
-import java.time.ZonedDateTime;
-import java.time.ZoneOffset;
-import java.time.ZoneId;
 import java.util.List;
 
 
-import static com.manager.common.web.rest.TestUtil.sameInstant;
 import static com.manager.common.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
@@ -55,20 +50,8 @@ public class ChiTieuResourceIntTest {
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
-    private static final String DEFAULT_USER_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_USER_NAME = "BBBBBBBBBB";
-
-    private static final ZonedDateTime DEFAULT_CREATE_TIME = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
-    private static final ZonedDateTime UPDATED_CREATE_TIME = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
-
-    private static final ZonedDateTime DEFAULT_UPDATE_TIME = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
-    private static final ZonedDateTime UPDATED_UPDATE_TIME = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
-
     private static final Status DEFAULT_STATUS = Status.PUBLISH;
     private static final Status UPDATED_STATUS = Status.UNPUBLISH;
-
-    private static final String DEFAULT_PROGRAM = "AAAAAAAAAA";
-    private static final String UPDATED_PROGRAM = "BBBBBBBBBB";
 
     @Autowired
     private ChiTieuRepository chiTieuRepository;
@@ -120,11 +103,7 @@ public class ChiTieuResourceIntTest {
         ChiTieu chiTieu = new ChiTieu()
             .chiTieuCode(DEFAULT_CHI_TIEU_CODE)
             .name(DEFAULT_NAME)
-            .userName(DEFAULT_USER_NAME)
-            .createTime(DEFAULT_CREATE_TIME)
-            .updateTime(DEFAULT_UPDATE_TIME)
-            .status(DEFAULT_STATUS)
-            .program(DEFAULT_PROGRAM);
+            .status(DEFAULT_STATUS);
         return chiTieu;
     }
 
@@ -151,11 +130,7 @@ public class ChiTieuResourceIntTest {
         ChiTieu testChiTieu = chiTieuList.get(chiTieuList.size() - 1);
         assertThat(testChiTieu.getChiTieuCode()).isEqualTo(DEFAULT_CHI_TIEU_CODE);
         assertThat(testChiTieu.getName()).isEqualTo(DEFAULT_NAME);
-        assertThat(testChiTieu.getUserName()).isEqualTo(DEFAULT_USER_NAME);
-        assertThat(testChiTieu.getCreateTime()).isEqualTo(DEFAULT_CREATE_TIME);
-        assertThat(testChiTieu.getUpdateTime()).isEqualTo(DEFAULT_UPDATE_TIME);
         assertThat(testChiTieu.getStatus()).isEqualTo(DEFAULT_STATUS);
-        assertThat(testChiTieu.getProgram()).isEqualTo(DEFAULT_PROGRAM);
     }
 
     @Test
@@ -218,86 +193,10 @@ public class ChiTieuResourceIntTest {
 
     @Test
     @Transactional
-    public void checkUserNameIsRequired() throws Exception {
-        int databaseSizeBeforeTest = chiTieuRepository.findAll().size();
-        // set the field null
-        chiTieu.setUserName(null);
-
-        // Create the ChiTieu, which fails.
-        ChiTieuDTO chiTieuDTO = chiTieuMapper.toDto(chiTieu);
-
-        restChiTieuMockMvc.perform(post("/api/chi-tieus")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(chiTieuDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<ChiTieu> chiTieuList = chiTieuRepository.findAll();
-        assertThat(chiTieuList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkCreateTimeIsRequired() throws Exception {
-        int databaseSizeBeforeTest = chiTieuRepository.findAll().size();
-        // set the field null
-        chiTieu.setCreateTime(null);
-
-        // Create the ChiTieu, which fails.
-        ChiTieuDTO chiTieuDTO = chiTieuMapper.toDto(chiTieu);
-
-        restChiTieuMockMvc.perform(post("/api/chi-tieus")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(chiTieuDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<ChiTieu> chiTieuList = chiTieuRepository.findAll();
-        assertThat(chiTieuList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkUpdateTimeIsRequired() throws Exception {
-        int databaseSizeBeforeTest = chiTieuRepository.findAll().size();
-        // set the field null
-        chiTieu.setUpdateTime(null);
-
-        // Create the ChiTieu, which fails.
-        ChiTieuDTO chiTieuDTO = chiTieuMapper.toDto(chiTieu);
-
-        restChiTieuMockMvc.perform(post("/api/chi-tieus")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(chiTieuDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<ChiTieu> chiTieuList = chiTieuRepository.findAll();
-        assertThat(chiTieuList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void checkStatusIsRequired() throws Exception {
         int databaseSizeBeforeTest = chiTieuRepository.findAll().size();
         // set the field null
         chiTieu.setStatus(null);
-
-        // Create the ChiTieu, which fails.
-        ChiTieuDTO chiTieuDTO = chiTieuMapper.toDto(chiTieu);
-
-        restChiTieuMockMvc.perform(post("/api/chi-tieus")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(chiTieuDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<ChiTieu> chiTieuList = chiTieuRepository.findAll();
-        assertThat(chiTieuList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkProgramIsRequired() throws Exception {
-        int databaseSizeBeforeTest = chiTieuRepository.findAll().size();
-        // set the field null
-        chiTieu.setProgram(null);
 
         // Create the ChiTieu, which fails.
         ChiTieuDTO chiTieuDTO = chiTieuMapper.toDto(chiTieu);
@@ -324,11 +223,7 @@ public class ChiTieuResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(chiTieu.getId().intValue())))
             .andExpect(jsonPath("$.[*].chiTieuCode").value(hasItem(DEFAULT_CHI_TIEU_CODE.toString())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-            .andExpect(jsonPath("$.[*].userName").value(hasItem(DEFAULT_USER_NAME.toString())))
-            .andExpect(jsonPath("$.[*].createTime").value(hasItem(sameInstant(DEFAULT_CREATE_TIME))))
-            .andExpect(jsonPath("$.[*].updateTime").value(hasItem(sameInstant(DEFAULT_UPDATE_TIME))))
-            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
-            .andExpect(jsonPath("$.[*].program").value(hasItem(DEFAULT_PROGRAM.toString())));
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
     }
     
     @Test
@@ -344,11 +239,7 @@ public class ChiTieuResourceIntTest {
             .andExpect(jsonPath("$.id").value(chiTieu.getId().intValue()))
             .andExpect(jsonPath("$.chiTieuCode").value(DEFAULT_CHI_TIEU_CODE.toString()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
-            .andExpect(jsonPath("$.userName").value(DEFAULT_USER_NAME.toString()))
-            .andExpect(jsonPath("$.createTime").value(sameInstant(DEFAULT_CREATE_TIME)))
-            .andExpect(jsonPath("$.updateTime").value(sameInstant(DEFAULT_UPDATE_TIME)))
-            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
-            .andExpect(jsonPath("$.program").value(DEFAULT_PROGRAM.toString()));
+            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()));
     }
 
     @Test
@@ -374,11 +265,7 @@ public class ChiTieuResourceIntTest {
         updatedChiTieu
             .chiTieuCode(UPDATED_CHI_TIEU_CODE)
             .name(UPDATED_NAME)
-            .userName(UPDATED_USER_NAME)
-            .createTime(UPDATED_CREATE_TIME)
-            .updateTime(UPDATED_UPDATE_TIME)
-            .status(UPDATED_STATUS)
-            .program(UPDATED_PROGRAM);
+            .status(UPDATED_STATUS);
         ChiTieuDTO chiTieuDTO = chiTieuMapper.toDto(updatedChiTieu);
 
         restChiTieuMockMvc.perform(put("/api/chi-tieus")
@@ -392,11 +279,7 @@ public class ChiTieuResourceIntTest {
         ChiTieu testChiTieu = chiTieuList.get(chiTieuList.size() - 1);
         assertThat(testChiTieu.getChiTieuCode()).isEqualTo(UPDATED_CHI_TIEU_CODE);
         assertThat(testChiTieu.getName()).isEqualTo(UPDATED_NAME);
-        assertThat(testChiTieu.getUserName()).isEqualTo(UPDATED_USER_NAME);
-        assertThat(testChiTieu.getCreateTime()).isEqualTo(UPDATED_CREATE_TIME);
-        assertThat(testChiTieu.getUpdateTime()).isEqualTo(UPDATED_UPDATE_TIME);
         assertThat(testChiTieu.getStatus()).isEqualTo(UPDATED_STATUS);
-        assertThat(testChiTieu.getProgram()).isEqualTo(UPDATED_PROGRAM);
     }
 
     @Test

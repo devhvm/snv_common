@@ -26,23 +26,7 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="user_name" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
-
-            <column name="create_time" type="datetime">
-                <constraints nullable="false" />
-            </column>
-
-            <column name="update_time" type="datetime">
-                <constraints nullable="false" />
-            </column>
-
             <column name="status" type="varchar(255)">
-                <constraints nullable="false" />
-            </column>
-
-            <column name="program" type="varchar(255)">
                 <constraints nullable="false" />
             </column>
 
@@ -52,8 +36,6 @@
 
             <!-- jhipster-needle-liquibase-add-column - JHipster will add columns here, do not remove-->
         </createTable>
-        <dropDefaultValue tableName="noi_dung" columnName="create_time" columnDataType="datetime"/>
-        <dropDefaultValue tableName="noi_dung" columnName="update_time" columnDataType="datetime"/>
         
     </changeSet>
     <!-- jhipster-needle-liquibase-add-changeset - JHipster will add changesets here, do not remove-->

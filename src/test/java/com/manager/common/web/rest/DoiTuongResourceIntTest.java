@@ -25,14 +25,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
-import java.time.Instant;
-import java.time.ZonedDateTime;
-import java.time.ZoneOffset;
-import java.time.ZoneId;
 import java.util.List;
 
 
-import static com.manager.common.web.rest.TestUtil.sameInstant;
 import static com.manager.common.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
@@ -55,20 +50,8 @@ public class DoiTuongResourceIntTest {
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
-    private static final String DEFAULT_USER_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_USER_NAME = "BBBBBBBBBB";
-
-    private static final ZonedDateTime DEFAULT_CREATE_TIME = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
-    private static final ZonedDateTime UPDATED_CREATE_TIME = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
-
-    private static final ZonedDateTime DEFAULT_UPDATE_TIME = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
-    private static final ZonedDateTime UPDATED_UPDATE_TIME = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
-
     private static final Status DEFAULT_STATUS = Status.PUBLISH;
     private static final Status UPDATED_STATUS = Status.UNPUBLISH;
-
-    private static final String DEFAULT_PROGRAM = "AAAAAAAAAA";
-    private static final String UPDATED_PROGRAM = "BBBBBBBBBB";
 
     @Autowired
     private DoiTuongRepository doiTuongRepository;
@@ -120,11 +103,7 @@ public class DoiTuongResourceIntTest {
         DoiTuong doiTuong = new DoiTuong()
             .doiTuongCode(DEFAULT_DOI_TUONG_CODE)
             .name(DEFAULT_NAME)
-            .userName(DEFAULT_USER_NAME)
-            .createTime(DEFAULT_CREATE_TIME)
-            .updateTime(DEFAULT_UPDATE_TIME)
-            .status(DEFAULT_STATUS)
-            .program(DEFAULT_PROGRAM);
+            .status(DEFAULT_STATUS);
         return doiTuong;
     }
 
@@ -151,11 +130,7 @@ public class DoiTuongResourceIntTest {
         DoiTuong testDoiTuong = doiTuongList.get(doiTuongList.size() - 1);
         assertThat(testDoiTuong.getDoiTuongCode()).isEqualTo(DEFAULT_DOI_TUONG_CODE);
         assertThat(testDoiTuong.getName()).isEqualTo(DEFAULT_NAME);
-        assertThat(testDoiTuong.getUserName()).isEqualTo(DEFAULT_USER_NAME);
-        assertThat(testDoiTuong.getCreateTime()).isEqualTo(DEFAULT_CREATE_TIME);
-        assertThat(testDoiTuong.getUpdateTime()).isEqualTo(DEFAULT_UPDATE_TIME);
         assertThat(testDoiTuong.getStatus()).isEqualTo(DEFAULT_STATUS);
-        assertThat(testDoiTuong.getProgram()).isEqualTo(DEFAULT_PROGRAM);
     }
 
     @Test
@@ -218,86 +193,10 @@ public class DoiTuongResourceIntTest {
 
     @Test
     @Transactional
-    public void checkUserNameIsRequired() throws Exception {
-        int databaseSizeBeforeTest = doiTuongRepository.findAll().size();
-        // set the field null
-        doiTuong.setUserName(null);
-
-        // Create the DoiTuong, which fails.
-        DoiTuongDTO doiTuongDTO = doiTuongMapper.toDto(doiTuong);
-
-        restDoiTuongMockMvc.perform(post("/api/doi-tuongs")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(doiTuongDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<DoiTuong> doiTuongList = doiTuongRepository.findAll();
-        assertThat(doiTuongList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkCreateTimeIsRequired() throws Exception {
-        int databaseSizeBeforeTest = doiTuongRepository.findAll().size();
-        // set the field null
-        doiTuong.setCreateTime(null);
-
-        // Create the DoiTuong, which fails.
-        DoiTuongDTO doiTuongDTO = doiTuongMapper.toDto(doiTuong);
-
-        restDoiTuongMockMvc.perform(post("/api/doi-tuongs")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(doiTuongDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<DoiTuong> doiTuongList = doiTuongRepository.findAll();
-        assertThat(doiTuongList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkUpdateTimeIsRequired() throws Exception {
-        int databaseSizeBeforeTest = doiTuongRepository.findAll().size();
-        // set the field null
-        doiTuong.setUpdateTime(null);
-
-        // Create the DoiTuong, which fails.
-        DoiTuongDTO doiTuongDTO = doiTuongMapper.toDto(doiTuong);
-
-        restDoiTuongMockMvc.perform(post("/api/doi-tuongs")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(doiTuongDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<DoiTuong> doiTuongList = doiTuongRepository.findAll();
-        assertThat(doiTuongList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void checkStatusIsRequired() throws Exception {
         int databaseSizeBeforeTest = doiTuongRepository.findAll().size();
         // set the field null
         doiTuong.setStatus(null);
-
-        // Create the DoiTuong, which fails.
-        DoiTuongDTO doiTuongDTO = doiTuongMapper.toDto(doiTuong);
-
-        restDoiTuongMockMvc.perform(post("/api/doi-tuongs")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(doiTuongDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<DoiTuong> doiTuongList = doiTuongRepository.findAll();
-        assertThat(doiTuongList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkProgramIsRequired() throws Exception {
-        int databaseSizeBeforeTest = doiTuongRepository.findAll().size();
-        // set the field null
-        doiTuong.setProgram(null);
 
         // Create the DoiTuong, which fails.
         DoiTuongDTO doiTuongDTO = doiTuongMapper.toDto(doiTuong);
@@ -324,11 +223,7 @@ public class DoiTuongResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(doiTuong.getId().intValue())))
             .andExpect(jsonPath("$.[*].doiTuongCode").value(hasItem(DEFAULT_DOI_TUONG_CODE.toString())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-            .andExpect(jsonPath("$.[*].userName").value(hasItem(DEFAULT_USER_NAME.toString())))
-            .andExpect(jsonPath("$.[*].createTime").value(hasItem(sameInstant(DEFAULT_CREATE_TIME))))
-            .andExpect(jsonPath("$.[*].updateTime").value(hasItem(sameInstant(DEFAULT_UPDATE_TIME))))
-            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
-            .andExpect(jsonPath("$.[*].program").value(hasItem(DEFAULT_PROGRAM.toString())));
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
     }
     
     @Test
@@ -344,11 +239,7 @@ public class DoiTuongResourceIntTest {
             .andExpect(jsonPath("$.id").value(doiTuong.getId().intValue()))
             .andExpect(jsonPath("$.doiTuongCode").value(DEFAULT_DOI_TUONG_CODE.toString()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
-            .andExpect(jsonPath("$.userName").value(DEFAULT_USER_NAME.toString()))
-            .andExpect(jsonPath("$.createTime").value(sameInstant(DEFAULT_CREATE_TIME)))
-            .andExpect(jsonPath("$.updateTime").value(sameInstant(DEFAULT_UPDATE_TIME)))
-            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
-            .andExpect(jsonPath("$.program").value(DEFAULT_PROGRAM.toString()));
+            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()));
     }
 
     @Test
@@ -374,11 +265,7 @@ public class DoiTuongResourceIntTest {
         updatedDoiTuong
             .doiTuongCode(UPDATED_DOI_TUONG_CODE)
             .name(UPDATED_NAME)
-            .userName(UPDATED_USER_NAME)
-            .createTime(UPDATED_CREATE_TIME)
-            .updateTime(UPDATED_UPDATE_TIME)
-            .status(UPDATED_STATUS)
-            .program(UPDATED_PROGRAM);
+            .status(UPDATED_STATUS);
         DoiTuongDTO doiTuongDTO = doiTuongMapper.toDto(updatedDoiTuong);
 
         restDoiTuongMockMvc.perform(put("/api/doi-tuongs")
@@ -392,11 +279,7 @@ public class DoiTuongResourceIntTest {
         DoiTuong testDoiTuong = doiTuongList.get(doiTuongList.size() - 1);
         assertThat(testDoiTuong.getDoiTuongCode()).isEqualTo(UPDATED_DOI_TUONG_CODE);
         assertThat(testDoiTuong.getName()).isEqualTo(UPDATED_NAME);
-        assertThat(testDoiTuong.getUserName()).isEqualTo(UPDATED_USER_NAME);
-        assertThat(testDoiTuong.getCreateTime()).isEqualTo(UPDATED_CREATE_TIME);
-        assertThat(testDoiTuong.getUpdateTime()).isEqualTo(UPDATED_UPDATE_TIME);
         assertThat(testDoiTuong.getStatus()).isEqualTo(UPDATED_STATUS);
-        assertThat(testDoiTuong.getProgram()).isEqualTo(UPDATED_PROGRAM);
     }
 
     @Test

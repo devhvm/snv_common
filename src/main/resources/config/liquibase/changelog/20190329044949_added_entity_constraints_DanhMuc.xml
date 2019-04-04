@@ -4,15 +4,15 @@
     xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
     xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.5.xsd">
     <!--
-        Added the constraints for entity NhomPhanLoai.
+        Added the constraints for entity DanhMuc.
     -->
-    <changeSet id="20190329044950-2" author="jhipster">
+    <changeSet id="20190329044949-2" author="jhipster">
         
-        <addForeignKeyConstraint baseColumnNames="donvitinh_id"
-                                 baseTableName="nhom_phan_loai"
-                                 constraintName="fk_nhom_phan_loai_donvitinh_id"
+        <addForeignKeyConstraint baseColumnNames="nhomdanhmuc_id"
+                                 baseTableName="danh_muc"
+                                 constraintName="fk_danh_muc_nhomdanhmuc_id"
                                  referencedColumnNames="id"
-                                 referencedTableName="don_vi_tinh"/>
+                                 referencedTableName="nhom_danh_muc"/>
 
     </changeSet>
 </databaseChangeLog>

@@ -1,7 +1,7 @@
 package com.manager.common.domain;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -9,17 +9,19 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 import com.manager.common.domain.enumeration.Status;
 
 /**
- * A DanhMuc.
+ * A DonViTinh.
  */
 @Entity
-@Table(name = "danh_muc")
+@Table(name = "don_vi_tinh")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class DanhMuc implements Serializable {
+public class DonViTinh implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
@@ -28,8 +30,8 @@ public class DanhMuc implements Serializable {
     private Long id;
 
     @NotNull
-    @Column(name = "danh_muc_code", nullable = false)
-    private String danhMucCode;
+    @Column(name = "don_vi_tinh_code", nullable = false)
+    private String donViTinhCode;
 
     @NotNull
     @Column(name = "name", nullable = false)
@@ -40,10 +42,9 @@ public class DanhMuc implements Serializable {
     @Column(name = "status", nullable = false)
     private Status status;
 
-    @ManyToOne
-    @JsonIgnoreProperties("danhmucs")
-    private NhomDanhMuc nhomdanhmuc;
-
+    @OneToMany(mappedBy = "donvitinh")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<NhomPhanLoai> nhomphanloais = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -53,24 +54,24 @@ public class DanhMuc implements Serializable {
         this.id = id;
     }
 
-    public String getDanhMucCode() {
-        return danhMucCode;
+    public String getDonViTinhCode() {
+        return donViTinhCode;
     }
 
-    public DanhMuc danhMucCode(String danhMucCode) {
-        this.danhMucCode = danhMucCode;
+    public DonViTinh donViTinhCode(String donViTinhCode) {
+        this.donViTinhCode = donViTinhCode;
         return this;
     }
 
-    public void setDanhMucCode(String danhMucCode) {
-        this.danhMucCode = danhMucCode;
+    public void setDonViTinhCode(String donViTinhCode) {
+        this.donViTinhCode = donViTinhCode;
     }
 
     public String getName() {
         return name;
     }
 
-    public DanhMuc name(String name) {
+    public DonViTinh name(String name) {
         this.name = name;
         return this;
     }
@@ -83,7 +84,7 @@ public class DanhMuc implements Serializable {
         return status;
     }
 
-    public DanhMuc status(Status status) {
+    public DonViTinh status(Status status) {
         this.status = status;
         return this;
     }
@@ -92,17 +93,29 @@ public class DanhMuc implements Serializable {
         this.status = status;
     }
 
-    public NhomDanhMuc getNhomdanhmuc() {
-        return nhomdanhmuc;
+    public Set<NhomPhanLoai> getNhomphanloais() {
+        return nhomphanloais;
     }
 
-    public DanhMuc nhomdanhmuc(NhomDanhMuc nhomDanhMuc) {
-        this.nhomdanhmuc = nhomDanhMuc;
+    public DonViTinh nhomphanloais(Set<NhomPhanLoai> nhomPhanLoais) {
+        this.nhomphanloais = nhomPhanLoais;
         return this;
     }
 
-    public void setNhomdanhmuc(NhomDanhMuc nhomDanhMuc) {
-        this.nhomdanhmuc = nhomDanhMuc;
+    public DonViTinh addNhomphanloai(NhomPhanLoai nhomPhanLoai) {
+        this.nhomphanloais.add(nhomPhanLoai);
+        nhomPhanLoai.setDonvitinh(this);
+        return this;
+    }
+
+    public DonViTinh removeNhomphanloai(NhomPhanLoai nhomPhanLoai) {
+        this.nhomphanloais.remove(nhomPhanLoai);
+        nhomPhanLoai.setDonvitinh(null);
+        return this;
+    }
+
+    public void setNhomphanloais(Set<NhomPhanLoai> nhomPhanLoais) {
+        this.nhomphanloais = nhomPhanLoais;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -114,11 +127,11 @@ public class DanhMuc implements Serializable {
         if (o == null || getClass() != o.getClass()) {
             return false;
         }
-        DanhMuc danhMuc = (DanhMuc) o;
-        if (danhMuc.getId() == null || getId() == null) {
+        DonViTinh donViTinh = (DonViTinh) o;
+        if (donViTinh.getId() == null || getId() == null) {
             return false;
         }
-        return Objects.equals(getId(), danhMuc.getId());
+        return Objects.equals(getId(), donViTinh.getId());
     }
 
     @Override
@@ -128,9 +141,9 @@ public class DanhMuc implements Serializable {
 
     @Override
     public String toString() {
-        return "DanhMuc{" +
+        return "DonViTinh{" +
             "id=" + getId() +
-            ", danhMucCode='" + getDanhMucCode() + "'" +
+            ", donViTinhCode='" + getDonViTinhCode() + "'" +
             ", name='" + getName() + "'" +
             ", status='" + getStatus() + "'" +
             "}";

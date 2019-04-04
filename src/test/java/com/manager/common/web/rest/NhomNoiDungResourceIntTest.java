@@ -25,14 +25,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
-import java.time.Instant;
-import java.time.ZonedDateTime;
-import java.time.ZoneOffset;
-import java.time.ZoneId;
 import java.util.List;
 
 
-import static com.manager.common.web.rest.TestUtil.sameInstant;
 import static com.manager.common.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
@@ -55,20 +50,8 @@ public class NhomNoiDungResourceIntTest {
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
-    private static final String DEFAULT_USER_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_USER_NAME = "BBBBBBBBBB";
-
-    private static final ZonedDateTime DEFAULT_CREATE_TIME = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
-    private static final ZonedDateTime UPDATED_CREATE_TIME = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
-
-    private static final ZonedDateTime DEFAULT_UPDATE_TIME = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
-    private static final ZonedDateTime UPDATED_UPDATE_TIME = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
-
     private static final Status DEFAULT_STATUS = Status.PUBLISH;
     private static final Status UPDATED_STATUS = Status.UNPUBLISH;
-
-    private static final String DEFAULT_PROGRAM = "AAAAAAAAAA";
-    private static final String UPDATED_PROGRAM = "BBBBBBBBBB";
 
     @Autowired
     private NhomNoiDungRepository nhomNoiDungRepository;
@@ -120,11 +103,7 @@ public class NhomNoiDungResourceIntTest {
         NhomNoiDung nhomNoiDung = new NhomNoiDung()
             .nhomNoiDungCode(DEFAULT_NHOM_NOI_DUNG_CODE)
             .name(DEFAULT_NAME)
-            .userName(DEFAULT_USER_NAME)
-            .createTime(DEFAULT_CREATE_TIME)
-            .updateTime(DEFAULT_UPDATE_TIME)
-            .status(DEFAULT_STATUS)
-            .program(DEFAULT_PROGRAM);
+            .status(DEFAULT_STATUS);
         return nhomNoiDung;
     }
 
@@ -151,11 +130,7 @@ public class NhomNoiDungResourceIntTest {
         NhomNoiDung testNhomNoiDung = nhomNoiDungList.get(nhomNoiDungList.size() - 1);
         assertThat(testNhomNoiDung.getNhomNoiDungCode()).isEqualTo(DEFAULT_NHOM_NOI_DUNG_CODE);
         assertThat(testNhomNoiDung.getName()).isEqualTo(DEFAULT_NAME);
-        assertThat(testNhomNoiDung.getUserName()).isEqualTo(DEFAULT_USER_NAME);
-        assertThat(testNhomNoiDung.getCreateTime()).isEqualTo(DEFAULT_CREATE_TIME);
-        assertThat(testNhomNoiDung.getUpdateTime()).isEqualTo(DEFAULT_UPDATE_TIME);
         assertThat(testNhomNoiDung.getStatus()).isEqualTo(DEFAULT_STATUS);
-        assertThat(testNhomNoiDung.getProgram()).isEqualTo(DEFAULT_PROGRAM);
     }
 
     @Test
@@ -218,86 +193,10 @@ public class NhomNoiDungResourceIntTest {
 
     @Test
     @Transactional
-    public void checkUserNameIsRequired() throws Exception {
-        int databaseSizeBeforeTest = nhomNoiDungRepository.findAll().size();
-        // set the field null
-        nhomNoiDung.setUserName(null);
-
-        // Create the NhomNoiDung, which fails.
-        NhomNoiDungDTO nhomNoiDungDTO = nhomNoiDungMapper.toDto(nhomNoiDung);
-
-        restNhomNoiDungMockMvc.perform(post("/api/nhom-noi-dungs")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(nhomNoiDungDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<NhomNoiDung> nhomNoiDungList = nhomNoiDungRepository.findAll();
-        assertThat(nhomNoiDungList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkCreateTimeIsRequired() throws Exception {
-        int databaseSizeBeforeTest = nhomNoiDungRepository.findAll().size();
-        // set the field null
-        nhomNoiDung.setCreateTime(null);
-
-        // Create the NhomNoiDung, which fails.
-        NhomNoiDungDTO nhomNoiDungDTO = nhomNoiDungMapper.toDto(nhomNoiDung);
-
-        restNhomNoiDungMockMvc.perform(post("/api/nhom-noi-dungs")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(nhomNoiDungDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<NhomNoiDung> nhomNoiDungList = nhomNoiDungRepository.findAll();
-        assertThat(nhomNoiDungList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkUpdateTimeIsRequired() throws Exception {
-        int databaseSizeBeforeTest = nhomNoiDungRepository.findAll().size();
-        // set the field null
-        nhomNoiDung.setUpdateTime(null);
-
-        // Create the NhomNoiDung, which fails.
-        NhomNoiDungDTO nhomNoiDungDTO = nhomNoiDungMapper.toDto(nhomNoiDung);
-
-        restNhomNoiDungMockMvc.perform(post("/api/nhom-noi-dungs")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(nhomNoiDungDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<NhomNoiDung> nhomNoiDungList = nhomNoiDungRepository.findAll();
-        assertThat(nhomNoiDungList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void checkStatusIsRequired() throws Exception {
         int databaseSizeBeforeTest = nhomNoiDungRepository.findAll().size();
         // set the field null
         nhomNoiDung.setStatus(null);
-
-        // Create the NhomNoiDung, which fails.
-        NhomNoiDungDTO nhomNoiDungDTO = nhomNoiDungMapper.toDto(nhomNoiDung);
-
-        restNhomNoiDungMockMvc.perform(post("/api/nhom-noi-dungs")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(nhomNoiDungDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<NhomNoiDung> nhomNoiDungList = nhomNoiDungRepository.findAll();
-        assertThat(nhomNoiDungList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkProgramIsRequired() throws Exception {
-        int databaseSizeBeforeTest = nhomNoiDungRepository.findAll().size();
-        // set the field null
-        nhomNoiDung.setProgram(null);
 
         // Create the NhomNoiDung, which fails.
         NhomNoiDungDTO nhomNoiDungDTO = nhomNoiDungMapper.toDto(nhomNoiDung);
@@ -324,11 +223,7 @@ public class NhomNoiDungResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(nhomNoiDung.getId().intValue())))
             .andExpect(jsonPath("$.[*].nhomNoiDungCode").value(hasItem(DEFAULT_NHOM_NOI_DUNG_CODE.toString())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-            .andExpect(jsonPath("$.[*].userName").value(hasItem(DEFAULT_USER_NAME.toString())))
-            .andExpect(jsonPath("$.[*].createTime").value(hasItem(sameInstant(DEFAULT_CREATE_TIME))))
-            .andExpect(jsonPath("$.[*].updateTime").value(hasItem(sameInstant(DEFAULT_UPDATE_TIME))))
-            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
-            .andExpect(jsonPath("$.[*].program").value(hasItem(DEFAULT_PROGRAM.toString())));
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
     }
     
     @Test
@@ -344,11 +239,7 @@ public class NhomNoiDungResourceIntTest {
             .andExpect(jsonPath("$.id").value(nhomNoiDung.getId().intValue()))
             .andExpect(jsonPath("$.nhomNoiDungCode").value(DEFAULT_NHOM_NOI_DUNG_CODE.toString()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
-            .andExpect(jsonPath("$.userName").value(DEFAULT_USER_NAME.toString()))
-            .andExpect(jsonPath("$.createTime").value(sameInstant(DEFAULT_CREATE_TIME)))
-            .andExpect(jsonPath("$.updateTime").value(sameInstant(DEFAULT_UPDATE_TIME)))
-            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
-            .andExpect(jsonPath("$.program").value(DEFAULT_PROGRAM.toString()));
+            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()));
     }
 
     @Test
@@ -374,11 +265,7 @@ public class NhomNoiDungResourceIntTest {
         updatedNhomNoiDung
             .nhomNoiDungCode(UPDATED_NHOM_NOI_DUNG_CODE)
             .name(UPDATED_NAME)
-            .userName(UPDATED_USER_NAME)
-            .createTime(UPDATED_CREATE_TIME)
-            .updateTime(UPDATED_UPDATE_TIME)
-            .status(UPDATED_STATUS)
-            .program(UPDATED_PROGRAM);
+            .status(UPDATED_STATUS);
         NhomNoiDungDTO nhomNoiDungDTO = nhomNoiDungMapper.toDto(updatedNhomNoiDung);
 
         restNhomNoiDungMockMvc.perform(put("/api/nhom-noi-dungs")
@@ -392,11 +279,7 @@ public class NhomNoiDungResourceIntTest {
         NhomNoiDung testNhomNoiDung = nhomNoiDungList.get(nhomNoiDungList.size() - 1);
         assertThat(testNhomNoiDung.getNhomNoiDungCode()).isEqualTo(UPDATED_NHOM_NOI_DUNG_CODE);
         assertThat(testNhomNoiDung.getName()).isEqualTo(UPDATED_NAME);
-        assertThat(testNhomNoiDung.getUserName()).isEqualTo(UPDATED_USER_NAME);
-        assertThat(testNhomNoiDung.getCreateTime()).isEqualTo(UPDATED_CREATE_TIME);
-        assertThat(testNhomNoiDung.getUpdateTime()).isEqualTo(UPDATED_UPDATE_TIME);
         assertThat(testNhomNoiDung.getStatus()).isEqualTo(UPDATED_STATUS);
-        assertThat(testNhomNoiDung.getProgram()).isEqualTo(UPDATED_PROGRAM);
     }
 
     @Test

@@ -9,37 +9,9 @@
             ]
         },
         {
-            "fieldName": "userName",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "createTime",
-            "fieldType": "ZonedDateTime",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "updateTime",
-            "fieldType": "ZonedDateTime",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
             "fieldName": "status",
             "fieldType": "Status",
             "fieldValues": "PUBLISH,UNPUBLISH,DELETED",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "program",
-            "fieldType": "String",
             "fieldValidateRules": [
                 "required"
             ]
@@ -48,17 +20,17 @@
     "relationships": [
         {
             "relationshipType": "many-to-one",
-            "relationshipName": "nhomnoidung",
             "otherEntityName": "nhomNoiDung",
-            "otherEntityField": "id",
-            "otherEntityRelationshipName": "noiDung"
+            "otherEntityRelationshipName": "noidung",
+            "relationshipName": "nhomnoidung",
+            "otherEntityField": "id"
         }
     ],
     "changelogDate": "20190329044955",
     "entityTableName": "noi_dung",
     "dto": "mapstruct",
     "pagination": "pagination",
-    "service": "serviceImpl",
+    "service": "serviceClass",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
     "clientRootFolder": "",

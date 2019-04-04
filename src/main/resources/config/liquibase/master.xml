@@ -15,8 +15,10 @@
     <include file="config/liquibase/changelog/20190329044953_added_entity_PhamVi.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190329044954_added_entity_NhomNoiDung.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190329044955_added_entity_NoiDung.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190404015125_added_entity_DonViTinh.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20190329044947_added_entity_constraints_ChiTieu.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190329044949_added_entity_constraints_DanhMuc.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190329044950_added_entity_constraints_NhomPhanLoai.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190329044951_added_entity_constraints_DoiTuong.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190329044952_added_entity_constraints_DonVi.xml" relativeToChangelogFile="false"/>

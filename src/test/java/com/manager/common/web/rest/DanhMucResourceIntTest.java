@@ -25,14 +25,9 @@ import org.springframework.transaction.annotation.Transactional;
 import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
-import java.time.Instant;
-import java.time.ZonedDateTime;
-import java.time.ZoneOffset;
-import java.time.ZoneId;
 import java.util.List;
 
 
-import static com.manager.common.web.rest.TestUtil.sameInstant;
 import static com.manager.common.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
@@ -55,20 +50,8 @@ public class DanhMucResourceIntTest {
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
 
-    private static final String DEFAULT_USER_NAME = "AAAAAAAAAA";
-    private static final String UPDATED_USER_NAME = "BBBBBBBBBB";
-
-    private static final ZonedDateTime DEFAULT_CREATE_TIME = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
-    private static final ZonedDateTime UPDATED_CREATE_TIME = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
-
-    private static final ZonedDateTime DEFAULT_UPDATE_TIME = ZonedDateTime.ofInstant(Instant.ofEpochMilli(0L), ZoneOffset.UTC);
-    private static final ZonedDateTime UPDATED_UPDATE_TIME = ZonedDateTime.now(ZoneId.systemDefault()).withNano(0);
-
     private static final Status DEFAULT_STATUS = Status.PUBLISH;
     private static final Status UPDATED_STATUS = Status.UNPUBLISH;
-
-    private static final String DEFAULT_PROGRAM = "AAAAAAAAAA";
-    private static final String UPDATED_PROGRAM = "BBBBBBBBBB";
 
     @Autowired
     private DanhMucRepository danhMucRepository;
@@ -120,11 +103,7 @@ public class DanhMucResourceIntTest {
         DanhMuc danhMuc = new DanhMuc()
             .danhMucCode(DEFAULT_DANH_MUC_CODE)
             .name(DEFAULT_NAME)
-            .userName(DEFAULT_USER_NAME)
-            .createTime(DEFAULT_CREATE_TIME)
-            .updateTime(DEFAULT_UPDATE_TIME)
-            .status(DEFAULT_STATUS)
-            .program(DEFAULT_PROGRAM);
+            .status(DEFAULT_STATUS);
         return danhMuc;
     }
 
@@ -151,11 +130,7 @@ public class DanhMucResourceIntTest {
         DanhMuc testDanhMuc = danhMucList.get(danhMucList.size() - 1);
         assertThat(testDanhMuc.getDanhMucCode()).isEqualTo(DEFAULT_DANH_MUC_CODE);
         assertThat(testDanhMuc.getName()).isEqualTo(DEFAULT_NAME);
-        assertThat(testDanhMuc.getUserName()).isEqualTo(DEFAULT_USER_NAME);
-        assertThat(testDanhMuc.getCreateTime()).isEqualTo(DEFAULT_CREATE_TIME);
-        assertThat(testDanhMuc.getUpdateTime()).isEqualTo(DEFAULT_UPDATE_TIME);
         assertThat(testDanhMuc.getStatus()).isEqualTo(DEFAULT_STATUS);
-        assertThat(testDanhMuc.getProgram()).isEqualTo(DEFAULT_PROGRAM);
     }
 
     @Test
@@ -218,86 +193,10 @@ public class DanhMucResourceIntTest {
 
     @Test
     @Transactional
-    public void checkUserNameIsRequired() throws Exception {
-        int databaseSizeBeforeTest = danhMucRepository.findAll().size();
-        // set the field null
-        danhMuc.setUserName(null);
-
-        // Create the DanhMuc, which fails.
-        DanhMucDTO danhMucDTO = danhMucMapper.toDto(danhMuc);
-
-        restDanhMucMockMvc.perform(post("/api/danh-mucs")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(danhMucDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<DanhMuc> danhMucList = danhMucRepository.findAll();
-        assertThat(danhMucList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkCreateTimeIsRequired() throws Exception {
-        int databaseSizeBeforeTest = danhMucRepository.findAll().size();
-        // set the field null
-        danhMuc.setCreateTime(null);
-
-        // Create the DanhMuc, which fails.
-        DanhMucDTO danhMucDTO = danhMucMapper.toDto(danhMuc);
-
-        restDanhMucMockMvc.perform(post("/api/danh-mucs")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(danhMucDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<DanhMuc> danhMucList = danhMucRepository.findAll();
-        assertThat(danhMucList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkUpdateTimeIsRequired() throws Exception {
-        int databaseSizeBeforeTest = danhMucRepository.findAll().size();
-        // set the field null
-        danhMuc.setUpdateTime(null);
-
-        // Create the DanhMuc, which fails.
-        DanhMucDTO danhMucDTO = danhMucMapper.toDto(danhMuc);
-
-        restDanhMucMockMvc.perform(post("/api/danh-mucs")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(danhMucDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<DanhMuc> danhMucList = danhMucRepository.findAll();
-        assertThat(danhMucList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
     public void checkStatusIsRequired() throws Exception {
         int databaseSizeBeforeTest = danhMucRepository.findAll().size();
         // set the field null
         danhMuc.setStatus(null);
-
-        // Create the DanhMuc, which fails.
-        DanhMucDTO danhMucDTO = danhMucMapper.toDto(danhMuc);
-
-        restDanhMucMockMvc.perform(post("/api/danh-mucs")
-            .contentType(TestUtil.APPLICATION_JSON_UTF8)
-            .content(TestUtil.convertObjectToJsonBytes(danhMucDTO)))
-            .andExpect(status().isBadRequest());
-
-        List<DanhMuc> danhMucList = danhMucRepository.findAll();
-        assertThat(danhMucList).hasSize(databaseSizeBeforeTest);
-    }
-
-    @Test
-    @Transactional
-    public void checkProgramIsRequired() throws Exception {
-        int databaseSizeBeforeTest = danhMucRepository.findAll().size();
-        // set the field null
-        danhMuc.setProgram(null);
 
         // Create the DanhMuc, which fails.
         DanhMucDTO danhMucDTO = danhMucMapper.toDto(danhMuc);
@@ -324,11 +223,7 @@ public class DanhMucResourceIntTest {
             .andExpect(jsonPath("$.[*].id").value(hasItem(danhMuc.getId().intValue())))
             .andExpect(jsonPath("$.[*].danhMucCode").value(hasItem(DEFAULT_DANH_MUC_CODE.toString())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
-            .andExpect(jsonPath("$.[*].userName").value(hasItem(DEFAULT_USER_NAME.toString())))
-            .andExpect(jsonPath("$.[*].createTime").value(hasItem(sameInstant(DEFAULT_CREATE_TIME))))
-            .andExpect(jsonPath("$.[*].updateTime").value(hasItem(sameInstant(DEFAULT_UPDATE_TIME))))
-            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
-            .andExpect(jsonPath("$.[*].program").value(hasItem(DEFAULT_PROGRAM.toString())));
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
     }
     
     @Test
@@ -344,11 +239,7 @@ public class DanhMucResourceIntTest {
             .andExpect(jsonPath("$.id").value(danhMuc.getId().intValue()))
             .andExpect(jsonPath("$.danhMucCode").value(DEFAULT_DANH_MUC_CODE.toString()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
-            .andExpect(jsonPath("$.userName").value(DEFAULT_USER_NAME.toString()))
-            .andExpect(jsonPath("$.createTime").value(sameInstant(DEFAULT_CREATE_TIME)))
-            .andExpect(jsonPath("$.updateTime").value(sameInstant(DEFAULT_UPDATE_TIME)))
-            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
-            .andExpect(jsonPath("$.program").value(DEFAULT_PROGRAM.toString()));
+            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()));
     }
 
     @Test
@@ -374,11 +265,7 @@ public class DanhMucResourceIntTest {
         updatedDanhMuc
             .danhMucCode(UPDATED_DANH_MUC_CODE)
             .name(UPDATED_NAME)
-            .userName(UPDATED_USER_NAME)
-            .createTime(UPDATED_CREATE_TIME)
-            .updateTime(UPDATED_UPDATE_TIME)
-            .status(UPDATED_STATUS)
-            .program(UPDATED_PROGRAM);
+            .status(UPDATED_STATUS);
         DanhMucDTO danhMucDTO = danhMucMapper.toDto(updatedDanhMuc);
 
         restDanhMucMockMvc.perform(put("/api/danh-mucs")
@@ -392,11 +279,7 @@ public class DanhMucResourceIntTest {
         DanhMuc testDanhMuc = danhMucList.get(danhMucList.size() - 1);
         assertThat(testDanhMuc.getDanhMucCode()).isEqualTo(UPDATED_DANH_MUC_CODE);
         assertThat(testDanhMuc.getName()).isEqualTo(UPDATED_NAME);
-        assertThat(testDanhMuc.getUserName()).isEqualTo(UPDATED_USER_NAME);
-        assertThat(testDanhMuc.getCreateTime()).isEqualTo(UPDATED_CREATE_TIME);
-        assertThat(testDanhMuc.getUpdateTime()).isEqualTo(UPDATED_UPDATE_TIME);
         assertThat(testDanhMuc.getStatus()).isEqualTo(UPDATED_STATUS);
-        assertThat(testDanhMuc.getProgram()).isEqualTo(UPDATED_PROGRAM);
     }
 
     @Test

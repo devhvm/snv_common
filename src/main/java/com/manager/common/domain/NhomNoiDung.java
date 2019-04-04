@@ -9,7 +9,6 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
-import java.time.ZonedDateTime;
 import java.util.HashSet;
 import java.util.Set;
 import java.util.Objects;
@@ -39,29 +38,13 @@ public class NhomNoiDung implements Serializable {
     private String name;
 
     @NotNull
-    @Column(name = "user_name", nullable = false)
-    private String userName;
-
-    @NotNull
-    @Column(name = "create_time", nullable = false)
-    private ZonedDateTime createTime;
-
-    @NotNull
-    @Column(name = "update_time", nullable = false)
-    private ZonedDateTime updateTime;
-
-    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private Status status;
 
-    @NotNull
-    @Column(name = "program", nullable = false)
-    private String program;
-
     @OneToMany(mappedBy = "nhomnoidung")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<NoiDung> noiDungs = new HashSet<>();
+    private Set<NoiDung> noidungs = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -97,45 +80,6 @@ public class NhomNoiDung implements Serializable {
         this.name = name;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public NhomNoiDung userName(String userName) {
-        this.userName = userName;
-        return this;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public ZonedDateTime getCreateTime() {
-        return createTime;
-    }
-
-    public NhomNoiDung createTime(ZonedDateTime createTime) {
-        this.createTime = createTime;
-        return this;
-    }
-
-    public void setCreateTime(ZonedDateTime createTime) {
-        this.createTime = createTime;
-    }
-
-    public ZonedDateTime getUpdateTime() {
-        return updateTime;
-    }
-
-    public NhomNoiDung updateTime(ZonedDateTime updateTime) {
-        this.updateTime = updateTime;
-        return this;
-    }
-
-    public void setUpdateTime(ZonedDateTime updateTime) {
-        this.updateTime = updateTime;
-    }
-
     public Status getStatus() {
         return status;
     }
@@ -149,42 +93,29 @@ public class NhomNoiDung implements Serializable {
         this.status = status;
     }
 
-    public String getProgram() {
-        return program;
+    public Set<NoiDung> getNoidungs() {
+        return noidungs;
     }
 
-    public NhomNoiDung program(String program) {
-        this.program = program;
+    public NhomNoiDung noidungs(Set<NoiDung> noiDungs) {
+        this.noidungs = noiDungs;
         return this;
     }
 
-    public void setProgram(String program) {
-        this.program = program;
-    }
-
-    public Set<NoiDung> getNoiDungs() {
-        return noiDungs;
-    }
-
-    public NhomNoiDung noiDungs(Set<NoiDung> noiDungs) {
-        this.noiDungs = noiDungs;
-        return this;
-    }
-
-    public NhomNoiDung addNoiDung(NoiDung noiDung) {
-        this.noiDungs.add(noiDung);
+    public NhomNoiDung addNoidung(NoiDung noiDung) {
+        this.noidungs.add(noiDung);
         noiDung.setNhomnoidung(this);
         return this;
     }
 
-    public NhomNoiDung removeNoiDung(NoiDung noiDung) {
-        this.noiDungs.remove(noiDung);
+    public NhomNoiDung removeNoidung(NoiDung noiDung) {
+        this.noidungs.remove(noiDung);
         noiDung.setNhomnoidung(null);
         return this;
     }
 
-    public void setNoiDungs(Set<NoiDung> noiDungs) {
-        this.noiDungs = noiDungs;
+    public void setNoidungs(Set<NoiDung> noiDungs) {
+        this.noidungs = noiDungs;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -214,11 +145,7 @@ public class NhomNoiDung implements Serializable {
             "id=" + getId() +
             ", nhomNoiDungCode='" + getNhomNoiDungCode() + "'" +
             ", name='" + getName() + "'" +
-            ", userName='" + getUserName() + "'" +
-            ", createTime='" + getCreateTime() + "'" +
-            ", updateTime='" + getUpdateTime() + "'" +
             ", status='" + getStatus() + "'" +
-            ", program='" + getProgram() + "'" +
             "}";
     }
 }

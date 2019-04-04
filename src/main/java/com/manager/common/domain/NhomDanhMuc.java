@@ -1,6 +1,7 @@
 package com.manager.common.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -8,7 +9,8 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
-import java.time.ZonedDateTime;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 import com.manager.common.domain.enumeration.Status;
@@ -36,26 +38,13 @@ public class NhomDanhMuc implements Serializable {
     private String name;
 
     @NotNull
-    @Column(name = "user_name", nullable = false)
-    private String userName;
-
-    @NotNull
-    @Column(name = "create_time", nullable = false)
-    private ZonedDateTime createTime;
-
-    @NotNull
-    @Column(name = "update_time", nullable = false)
-    private ZonedDateTime updateTime;
-
-    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private Status status;
 
-    @NotNull
-    @Column(name = "program", nullable = false)
-    private String program;
-
+    @OneToMany(mappedBy = "nhomdanhmuc")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<DanhMuc> danhmucs = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -91,45 +80,6 @@ public class NhomDanhMuc implements Serializable {
         this.name = name;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public NhomDanhMuc userName(String userName) {
-        this.userName = userName;
-        return this;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public ZonedDateTime getCreateTime() {
-        return createTime;
-    }
-
-    public NhomDanhMuc createTime(ZonedDateTime createTime) {
-        this.createTime = createTime;
-        return this;
-    }
-
-    public void setCreateTime(ZonedDateTime createTime) {
-        this.createTime = createTime;
-    }
-
-    public ZonedDateTime getUpdateTime() {
-        return updateTime;
-    }
-
-    public NhomDanhMuc updateTime(ZonedDateTime updateTime) {
-        this.updateTime = updateTime;
-        return this;
-    }
-
-    public void setUpdateTime(ZonedDateTime updateTime) {
-        this.updateTime = updateTime;
-    }
-
     public Status getStatus() {
         return status;
     }
@@ -143,17 +93,29 @@ public class NhomDanhMuc implements Serializable {
         this.status = status;
     }
 
-    public String getProgram() {
-        return program;
+    public Set<DanhMuc> getDanhmucs() {
+        return danhmucs;
     }
 
-    public NhomDanhMuc program(String program) {
-        this.program = program;
+    public NhomDanhMuc danhmucs(Set<DanhMuc> danhMucs) {
+        this.danhmucs = danhMucs;
         return this;
     }
 
-    public void setProgram(String program) {
-        this.program = program;
+    public NhomDanhMuc addDanhmuc(DanhMuc danhMuc) {
+        this.danhmucs.add(danhMuc);
+        danhMuc.setNhomdanhmuc(this);
+        return this;
+    }
+
+    public NhomDanhMuc removeDanhmuc(DanhMuc danhMuc) {
+        this.danhmucs.remove(danhMuc);
+        danhMuc.setNhomdanhmuc(null);
+        return this;
+    }
+
+    public void setDanhmucs(Set<DanhMuc> danhMucs) {
+        this.danhmucs = danhMucs;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -183,11 +145,7 @@ public class NhomDanhMuc implements Serializable {
             "id=" + getId() +
             ", nhomDanhMucCode='" + getNhomDanhMucCode() + "'" +
             ", name='" + getName() + "'" +
-            ", userName='" + getUserName() + "'" +
-            ", createTime='" + getCreateTime() + "'" +
-            ", updateTime='" + getUpdateTime() + "'" +
             ", status='" + getStatus() + "'" +
-            ", program='" + getProgram() + "'" +
             "}";
     }
 }

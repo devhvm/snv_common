@@ -9,7 +9,6 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
-import java.time.ZonedDateTime;
 import java.util.Objects;
 
 import com.manager.common.domain.enumeration.Status;
@@ -37,25 +36,9 @@ public class ChiTieu implements Serializable {
     private String name;
 
     @NotNull
-    @Column(name = "user_name", nullable = false)
-    private String userName;
-
-    @NotNull
-    @Column(name = "create_time", nullable = false)
-    private ZonedDateTime createTime;
-
-    @NotNull
-    @Column(name = "update_time", nullable = false)
-    private ZonedDateTime updateTime;
-
-    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private Status status;
-
-    @NotNull
-    @Column(name = "program", nullable = false)
-    private String program;
 
     @ManyToOne
     @JsonIgnoreProperties("chitieus")
@@ -96,45 +79,6 @@ public class ChiTieu implements Serializable {
         this.name = name;
     }
 
-    public String getUserName() {
-        return userName;
-    }
-
-    public ChiTieu userName(String userName) {
-        this.userName = userName;
-        return this;
-    }
-
-    public void setUserName(String userName) {
-        this.userName = userName;
-    }
-
-    public ZonedDateTime getCreateTime() {
-        return createTime;
-    }
-
-    public ChiTieu createTime(ZonedDateTime createTime) {
-        this.createTime = createTime;
-        return this;
-    }
-
-    public void setCreateTime(ZonedDateTime createTime) {
-        this.createTime = createTime;
-    }
-
-    public ZonedDateTime getUpdateTime() {
-        return updateTime;
-    }
-
-    public ChiTieu updateTime(ZonedDateTime updateTime) {
-        this.updateTime = updateTime;
-        return this;
-    }
-
-    public void setUpdateTime(ZonedDateTime updateTime) {
-        this.updateTime = updateTime;
-    }
-
     public Status getStatus() {
         return status;
     }
@@ -146,19 +90,6 @@ public class ChiTieu implements Serializable {
 
     public void setStatus(Status status) {
         this.status = status;
-    }
-
-    public String getProgram() {
-        return program;
-    }
-
-    public ChiTieu program(String program) {
-        this.program = program;
-        return this;
-    }
-
-    public void setProgram(String program) {
-        this.program = program;
     }
 
     public NhomChiTieu getNhomchitieu() {
@@ -201,11 +132,7 @@ public class ChiTieu implements Serializable {
             "id=" + getId() +
             ", chiTieuCode='" + getChiTieuCode() + "'" +
             ", name='" + getName() + "'" +
-            ", userName='" + getUserName() + "'" +
-            ", createTime='" + getCreateTime() + "'" +
-            ", updateTime='" + getUpdateTime() + "'" +
             ", status='" + getStatus() + "'" +
-            ", program='" + getProgram() + "'" +
             "}";
     }
 }

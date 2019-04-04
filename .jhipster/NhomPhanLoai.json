@@ -16,37 +16,9 @@
             ]
         },
         {
-            "fieldName": "userName",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "createTime",
-            "fieldType": "ZonedDateTime",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "updateTime",
-            "fieldType": "ZonedDateTime",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
             "fieldName": "status",
             "fieldType": "Status",
             "fieldValues": "PUBLISH,UNPUBLISH,DELETED",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "program",
-            "fieldType": "String",
             "fieldValidateRules": [
                 "required"
             ]
@@ -55,23 +27,23 @@
     "relationships": [
         {
             "relationshipType": "one-to-many",
-            "relationshipName": "doituong",
             "otherEntityName": "doiTuong",
-            "otherEntityRelationshipName": "nhomphanloai"
+            "otherEntityRelationshipName": "nhomphanloai",
+            "relationshipName": "doituong"
         },
         {
             "relationshipType": "many-to-one",
-            "relationshipName": "donvi",
-            "otherEntityName": "donVi",
-            "otherEntityField": "id",
-            "otherEntityRelationshipName": "nhomphanloai"
+            "otherEntityName": "donViTinh",
+            "otherEntityRelationshipName": "nhomphanloai",
+            "relationshipName": "donvitinh",
+            "otherEntityField": "id"
         }
     ],
     "changelogDate": "20190329044950",
     "entityTableName": "nhom_phan_loai",
     "dto": "mapstruct",
     "pagination": "pagination",
-    "service": "serviceImpl",
+    "service": "serviceClass",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
     "clientRootFolder": "",

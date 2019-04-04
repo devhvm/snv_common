@@ -8,14 +8,14 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity NhomPhanLoai and its DTO NhomPhanLoaiDTO.
  */
-@Mapper(componentModel = "spring", uses = {DonViMapper.class})
+@Mapper(componentModel = "spring", uses = {DonViTinhMapper.class})
 public interface NhomPhanLoaiMapper extends EntityMapper<NhomPhanLoaiDTO, NhomPhanLoai> {
 
-    @Mapping(source = "donvi.id", target = "donviId")
+    @Mapping(source = "donvitinh.id", target = "donvitinhId")
     NhomPhanLoaiDTO toDto(NhomPhanLoai nhomPhanLoai);
 
     @Mapping(target = "doituongs", ignore = true)
-    @Mapping(source = "donviId", target = "donvi")
+    @Mapping(source = "donvitinhId", target = "donvitinh")
     NhomPhanLoai toEntity(NhomPhanLoaiDTO nhomPhanLoaiDTO);
 
     default NhomPhanLoai fromId(Long id) {

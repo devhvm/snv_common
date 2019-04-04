@@ -83,6 +83,7 @@ public class DonViServiceImpl implements DonViService {
      */
     @Override
     public void delete(Long id) {
-        log.debug("Request to delete DonVi : {}", id);        donViRepository.deleteById(id);
+        log.debug("Request to delete DonVi : {}", id);
+        donViRepository.deleteById(id);
     }
 }
