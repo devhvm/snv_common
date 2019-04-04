@@ -1,0 +1,48 @@
+{
+    "name": "NhomDanhMuc",
+    "fields": [
+        {
+            "fieldName": "nhomDanhMucCode",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Status",
+            "fieldValues": "PUBLISH,UNPUBLISH,DELETED",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "danhMuc",
+            "otherEntityRelationshipName": "nhomdanhmuc",
+            "relationshipName": "danhmuc"
+        }
+    ],
+    "changelogDate": "20190404153957",
+    "entityTableName": "nhom_danh_muc",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "gateway",
+        "common"
+    ],
+    "microserviceName": "common"
+}

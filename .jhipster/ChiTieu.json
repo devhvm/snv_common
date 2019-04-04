@@ -1,0 +1,49 @@
+{
+    "name": "ChiTieu",
+    "fields": [
+        {
+            "fieldName": "chiTieuCode",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Status",
+            "fieldValues": "PUBLISH,UNPUBLISH,DELETED",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "nhomChiTieu",
+            "otherEntityRelationshipName": "chitieu",
+            "relationshipName": "nhomchitieu",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190404153956",
+    "entityTableName": "chi_tieu",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "gateway",
+        "common"
+    ],
+    "microserviceName": "common"
+}
