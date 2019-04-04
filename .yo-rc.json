@@ -44,5 +44,8 @@
     "DonViTinh",
     "NhomNoiDung",
     "NoiDung"
-  ]
+  ],
+  "generator-jhipster-entity-audit": {
+    "auditFramework": "custom"
+  }
 }

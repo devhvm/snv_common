@@ -8,7 +8,7 @@ import com.manager.common.domain.enumeration.Status;
 /**
  * A DTO for the DonVi entity.
  */
-public class DonViDTO implements Serializable {
+public class DonViDTO extends AbstractAuditingDTO implements Serializable {
 
     private Long id;
 

@@ -45,5 +45,6 @@
         "gateway",
         "common"
     ],
-    "microserviceName": "common"
+    "microserviceName": "common",
+    "enableEntityAudit": true
 }

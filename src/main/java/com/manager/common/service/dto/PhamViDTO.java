@@ -8,7 +8,7 @@ import com.manager.common.domain.enumeration.Status;
 /**
  * A DTO for the PhamVi entity.
  */
-public class PhamViDTO implements Serializable {
+public class PhamViDTO extends AbstractAuditingDTO implements Serializable {
 
     private Long id;
 
