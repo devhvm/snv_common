@@ -19,7 +19,7 @@ import com.manager.common.domain.enumeration.Status;
 @Entity
 @Table(name = "danh_muc")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class DanhMuc extends AbstractAuditingEntity implements Serializable {
+public class DanhMuc implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
