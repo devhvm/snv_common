@@ -36,7 +36,7 @@
             "otherEntityName": "donViTinh",
             "otherEntityRelationshipName": "nhomphanloai",
             "relationshipName": "donvitinh",
-            "otherEntityField": "id"
+            "otherEntityField": "donViTinhCode"
         }
     ],
     "changelogDate": "20190404153959",

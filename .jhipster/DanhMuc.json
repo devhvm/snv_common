@@ -30,7 +30,7 @@
             "otherEntityName": "nhomDanhMuc",
             "otherEntityRelationshipName": "danhmuc",
             "relationshipName": "nhomdanhmuc",
-            "otherEntityField": "id"
+            "otherEntityField": "nhomDanhMucCode"
         }
     ],
     "changelogDate": "20190404153958",

@@ -23,6 +23,8 @@ public class NhomPhanLoaiDTO implements Serializable {
 
     private Long donvitinhId;
 
+    private String donvitinhDonViTinhCode;
+
     public Long getId() {
         return id;
     }
@@ -63,6 +65,14 @@ public class NhomPhanLoaiDTO implements Serializable {
         this.donvitinhId = donViTinhId;
     }
 
+    public String getDonvitinhDonViTinhCode() {
+        return donvitinhDonViTinhCode;
+    }
+
+    public void setDonvitinhDonViTinhCode(String donViTinhDonViTinhCode) {
+        this.donvitinhDonViTinhCode = donViTinhDonViTinhCode;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -92,6 +102,7 @@ public class NhomPhanLoaiDTO implements Serializable {
             ", name='" + getName() + "'" +
             ", status='" + getStatus() + "'" +
             ", donvitinh=" + getDonvitinhId() +
+            ", donvitinh='" + getDonvitinhDonViTinhCode() + "'" +
             "}";
     }
 }

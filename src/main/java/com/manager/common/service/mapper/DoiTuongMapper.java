@@ -12,6 +12,7 @@ import org.mapstruct.*;
 public interface DoiTuongMapper extends EntityMapper<DoiTuongDTO, DoiTuong> {
 
     @Mapping(source = "nhomphanloai.id", target = "nhomphanloaiId")
+    @Mapping(source = "nhomphanloai.nhomPhanLoaiCode", target = "nhomphanloaiNhomPhanLoaiCode")
     DoiTuongDTO toDto(DoiTuong doiTuong);
 
     @Mapping(source = "nhomphanloaiId", target = "nhomphanloai")

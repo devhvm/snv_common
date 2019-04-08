@@ -12,6 +12,7 @@ import org.mapstruct.*;
 public interface DanhMucMapper extends EntityMapper<DanhMucDTO, DanhMuc> {
 
     @Mapping(source = "nhomdanhmuc.id", target = "nhomdanhmucId")
+    @Mapping(source = "nhomdanhmuc.nhomDanhMucCode", target = "nhomdanhmucNhomDanhMucCode")
     DanhMucDTO toDto(DanhMuc danhMuc);
 
     @Mapping(source = "nhomdanhmucId", target = "nhomdanhmuc")

@@ -20,6 +20,8 @@ public class NoiDungDTO implements Serializable {
 
     private Long nhomnoidungId;
 
+    private String nhomnoidungNhomNoiDungCode;
+
     public Long getId() {
         return id;
     }
@@ -52,6 +54,14 @@ public class NoiDungDTO implements Serializable {
         this.nhomnoidungId = nhomNoiDungId;
     }
 
+    public String getNhomnoidungNhomNoiDungCode() {
+        return nhomnoidungNhomNoiDungCode;
+    }
+
+    public void setNhomnoidungNhomNoiDungCode(String nhomNoiDungNhomNoiDungCode) {
+        this.nhomnoidungNhomNoiDungCode = nhomNoiDungNhomNoiDungCode;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -80,6 +90,7 @@ public class NoiDungDTO implements Serializable {
             ", noiDungCode='" + getNoiDungCode() + "'" +
             ", status='" + getStatus() + "'" +
             ", nhomnoidung=" + getNhomnoidungId() +
+            ", nhomnoidung='" + getNhomnoidungNhomNoiDungCode() + "'" +
             "}";
     }
 }

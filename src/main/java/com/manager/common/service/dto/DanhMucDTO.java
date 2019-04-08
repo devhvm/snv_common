@@ -23,6 +23,8 @@ public class DanhMucDTO implements Serializable {
 
     private Long nhomdanhmucId;
 
+    private String nhomdanhmucNhomDanhMucCode;
+
     public Long getId() {
         return id;
     }
@@ -63,6 +65,14 @@ public class DanhMucDTO implements Serializable {
         this.nhomdanhmucId = nhomDanhMucId;
     }
 
+    public String getNhomdanhmucNhomDanhMucCode() {
+        return nhomdanhmucNhomDanhMucCode;
+    }
+
+    public void setNhomdanhmucNhomDanhMucCode(String nhomDanhMucNhomDanhMucCode) {
+        this.nhomdanhmucNhomDanhMucCode = nhomDanhMucNhomDanhMucCode;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -92,6 +102,7 @@ public class DanhMucDTO implements Serializable {
             ", name='" + getName() + "'" +
             ", status='" + getStatus() + "'" +
             ", nhomdanhmuc=" + getNhomdanhmucId() +
+            ", nhomdanhmuc='" + getNhomdanhmucNhomDanhMucCode() + "'" +
             "}";
     }
 }

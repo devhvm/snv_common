@@ -30,7 +30,7 @@
             "otherEntityName": "nhomPhanLoai",
             "otherEntityRelationshipName": "doituong",
             "relationshipName": "nhomphanloai",
-            "otherEntityField": "id"
+            "otherEntityField": "nhomPhanLoaiCode"
         }
     ],
     "changelogDate": "20190404154000",

@@ -12,6 +12,7 @@ import org.mapstruct.*;
 public interface NoiDungMapper extends EntityMapper<NoiDungDTO, NoiDung> {
 
     @Mapping(source = "nhomnoidung.id", target = "nhomnoidungId")
+    @Mapping(source = "nhomnoidung.nhomNoiDungCode", target = "nhomnoidungNhomNoiDungCode")
     NoiDungDTO toDto(NoiDung noiDung);
 
     @Mapping(source = "nhomnoidungId", target = "nhomnoidung")

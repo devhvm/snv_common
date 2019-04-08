@@ -23,7 +23,7 @@
             "otherEntityName": "nhomNoiDung",
             "otherEntityRelationshipName": "noidung",
             "relationshipName": "nhomnoidung",
-            "otherEntityField": "id"
+            "otherEntityField": "nhomNoiDungCode"
         }
     ],
     "changelogDate": "20190404154003",

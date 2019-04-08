@@ -23,6 +23,8 @@ public class ChiTieuDTO implements Serializable {
 
     private Long nhomchitieuId;
 
+    private String nhomchitieuNhomChiTieuCode;
+
     public Long getId() {
         return id;
     }
@@ -63,6 +65,14 @@ public class ChiTieuDTO implements Serializable {
         this.nhomchitieuId = nhomChiTieuId;
     }
 
+    public String getNhomchitieuNhomChiTieuCode() {
+        return nhomchitieuNhomChiTieuCode;
+    }
+
+    public void setNhomchitieuNhomChiTieuCode(String nhomChiTieuNhomChiTieuCode) {
+        this.nhomchitieuNhomChiTieuCode = nhomChiTieuNhomChiTieuCode;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -92,6 +102,7 @@ public class ChiTieuDTO implements Serializable {
             ", name='" + getName() + "'" +
             ", status='" + getStatus() + "'" +
             ", nhomchitieu=" + getNhomchitieuId() +
+            ", nhomchitieu='" + getNhomchitieuNhomChiTieuCode() + "'" +
             "}";
     }
 }

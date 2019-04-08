@@ -12,6 +12,7 @@ import org.mapstruct.*;
 public interface ChiTieuMapper extends EntityMapper<ChiTieuDTO, ChiTieu> {
 
     @Mapping(source = "nhomchitieu.id", target = "nhomchitieuId")
+    @Mapping(source = "nhomchitieu.nhomChiTieuCode", target = "nhomchitieuNhomChiTieuCode")
     ChiTieuDTO toDto(ChiTieu chiTieu);
 
     @Mapping(source = "nhomchitieuId", target = "nhomchitieu")

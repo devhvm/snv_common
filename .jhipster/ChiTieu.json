@@ -30,7 +30,7 @@
             "otherEntityName": "nhomChiTieu",
             "otherEntityRelationshipName": "chitieu",
             "relationshipName": "nhomchitieu",
-            "otherEntityField": "id"
+            "otherEntityField": "nhomChiTieuCode"
         }
     ],
     "changelogDate": "20190404153956",
