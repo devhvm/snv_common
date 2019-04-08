@@ -7,7 +7,7 @@ import com.manager.common.domain.enumeration.Status;
 /**
  * A DTO for the NhomPhanLoai entity.
  */
-public class NhomPhanLoaiDTO implements Serializable {
+public class NhomPhanLoaiDTO extends AbstractAuditingDTO implements Serializable {
 
     private Long id;
 
