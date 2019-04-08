@@ -21,7 +21,7 @@ import com.manager.common.domain.enumeration.Status;
 @Entity
 @Table(name = "nhom_noi_dung")
 @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-public class NhomNoiDung extends AbstractAuditingEntity implements Serializable {
+public class NhomNoiDung implements Serializable {
 
     private static final long serialVersionUID = 1L;
     
