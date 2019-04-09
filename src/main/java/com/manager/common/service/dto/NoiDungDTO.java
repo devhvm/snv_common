@@ -7,7 +7,7 @@ import com.manager.common.domain.enumeration.Status;
 /**
  * A DTO for the NoiDung entity.
  */
-public class NoiDungDTO implements Serializable {
+public class NoiDungDTO extends AbstractAuditingDTO implements Serializable {
 
     private Long id;
 
