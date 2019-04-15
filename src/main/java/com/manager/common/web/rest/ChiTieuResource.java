@@ -104,6 +104,19 @@ public class ChiTieuResource {
         Optional<ChiTieuDTO> chiTieuDTO = chiTieuService.findOne(id);
         return ResponseUtil.wrapOrNotFound(chiTieuDTO);
     }
+    
+    /**
+     * GET  /chi-tieus/:id : get the "id" chiTieu.
+     *
+     * @param id the id of the chiTieuDTO to retrieve
+     * @return the ResponseEntity with status 200 (OK) and with body the chiTieuDTO, or with status 404 (Not Found)
+     */
+    @GetMapping("/chi-tieus/{code}")
+    public ResponseEntity<ChiTieuDTO> getChiTieu(@PathVariable String code) {
+        log.debug("REST request to get ChiTieu : {}", code);
+        Optional<ChiTieuDTO> chiTieuDTO = null;
+        return ResponseUtil.wrapOrNotFound(chiTieuDTO);
+    }
 
     /**
      * DELETE  /chi-tieus/:id : delete the "id" chiTieu.

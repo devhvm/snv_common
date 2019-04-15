@@ -87,6 +87,10 @@ spring:
         locator:
             discovery:
                 enabled: true
+    activemq:
+            broker-url: tcp://vtools.xyz:61616
+            user: admin
+            password: password            
 
 server:
     port: 15051
