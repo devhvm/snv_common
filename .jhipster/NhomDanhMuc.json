@@ -28,8 +28,15 @@
         {
             "relationshipType": "one-to-many",
             "otherEntityName": "danhMuc",
-            "otherEntityRelationshipName": "nhomdanhmuc",
-            "relationshipName": "danhmuc"
+            "otherEntityRelationshipName": "nhomDanhMuc",
+            "relationshipName": "danhMuc"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "tieuChiBaoCao",
+            "otherEntityRelationshipName": "nhomDanhMuc",
+            "relationshipName": "tieuChiBaoCao",
+            "otherEntityField": "id"
         }
     ],
     "changelogDate": "20190404153957",
@@ -39,9 +46,8 @@
     "service": "serviceClass",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
-    "clientRootFolder": "",
+    "clientRootFolder": "common",
     "applications": [
-        "gateway",
         "common"
     ],
     "microserviceName": "common",

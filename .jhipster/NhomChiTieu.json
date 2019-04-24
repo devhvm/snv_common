@@ -28,8 +28,8 @@
         {
             "relationshipType": "one-to-many",
             "otherEntityName": "chiTieu",
-            "otherEntityRelationshipName": "nhomchitieu",
-            "relationshipName": "chitieu"
+            "otherEntityRelationshipName": "nhomChiTieu",
+            "relationshipName": "chiTieu"
         }
     ],
     "changelogDate": "20190404153955",
@@ -39,9 +39,8 @@
     "service": "serviceClass",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
-    "clientRootFolder": "",
+    "clientRootFolder": "common",
     "applications": [
-        "gateway",
         "common"
     ],
     "microserviceName": "common",

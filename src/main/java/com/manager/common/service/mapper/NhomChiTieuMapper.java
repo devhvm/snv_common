@@ -12,7 +12,7 @@ import org.mapstruct.*;
 public interface NhomChiTieuMapper extends EntityMapper<NhomChiTieuDTO, NhomChiTieu> {
 
 
-    @Mapping(target = "chitieus", ignore = true)
+    @Mapping(target = "chiTieus", ignore = true)
     NhomChiTieu toEntity(NhomChiTieuDTO nhomChiTieuDTO);
 
     default NhomChiTieu fromId(Long id) {

@@ -1,0 +1,51 @@
+{
+    "name": "MaDinhDanhDonVi",
+    "fields": [
+        {
+            "fieldName": "maDinhDanhCode",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "parentCode",
+            "fieldType": "String"
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "level",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "coQuanChuTri",
+            "otherEntityRelationshipName": "maDinhDanhDonVi",
+            "relationshipName": "coQuanChuTri"
+        }
+    ],
+    "changelogDate": "20190424171424",
+    "entityTableName": "ma_dinh_danh_don_vi",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "common",
+    "applications": [
+        "common"
+    ],
+    "microserviceName": "common",
+    "enableEntityAudit": true
+}

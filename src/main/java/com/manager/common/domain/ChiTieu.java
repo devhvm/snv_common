@@ -1,6 +1,7 @@
 package com.manager.common.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
@@ -9,6 +10,8 @@ import javax.persistence.*;
 import javax.validation.constraints.*;
 
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
 
 import com.manager.common.domain.enumeration.Status;
@@ -40,9 +43,12 @@ public class ChiTieu extends AbstractAuditingEntity implements Serializable {
     @Column(name = "status", nullable = false)
     private Status status;
 
+    @OneToMany(mappedBy = "chiTieu")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<TieuChi> tieuChis = new HashSet<>();
     @ManyToOne
-    @JsonIgnoreProperties("chitieus")
-    private NhomChiTieu nhomchitieu;
+    @JsonIgnoreProperties("chiTieus")
+    private NhomChiTieu nhomChiTieu;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -92,17 +98,42 @@ public class ChiTieu extends AbstractAuditingEntity implements Serializable {
         this.status = status;
     }
 
-    public NhomChiTieu getNhomchitieu() {
-        return nhomchitieu;
+    public Set<TieuChi> getTieuChis() {
+        return tieuChis;
     }
 
-    public ChiTieu nhomchitieu(NhomChiTieu nhomChiTieu) {
-        this.nhomchitieu = nhomChiTieu;
+    public ChiTieu tieuChis(Set<TieuChi> tieuChis) {
+        this.tieuChis = tieuChis;
         return this;
     }
 
-    public void setNhomchitieu(NhomChiTieu nhomChiTieu) {
-        this.nhomchitieu = nhomChiTieu;
+    public ChiTieu addTieuChi(TieuChi tieuChi) {
+        this.tieuChis.add(tieuChi);
+        tieuChi.setChiTieu(this);
+        return this;
+    }
+
+    public ChiTieu removeTieuChi(TieuChi tieuChi) {
+        this.tieuChis.remove(tieuChi);
+        tieuChi.setChiTieu(null);
+        return this;
+    }
+
+    public void setTieuChis(Set<TieuChi> tieuChis) {
+        this.tieuChis = tieuChis;
+    }
+
+    public NhomChiTieu getNhomChiTieu() {
+        return nhomChiTieu;
+    }
+
+    public ChiTieu nhomChiTieu(NhomChiTieu nhomChiTieu) {
+        this.nhomChiTieu = nhomChiTieu;
+        return this;
+    }
+
+    public void setNhomChiTieu(NhomChiTieu nhomChiTieu) {
+        this.nhomChiTieu = nhomChiTieu;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

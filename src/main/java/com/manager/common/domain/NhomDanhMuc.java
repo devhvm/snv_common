@@ -2,6 +2,7 @@ package com.manager.common.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
@@ -42,9 +43,13 @@ public class NhomDanhMuc extends AbstractAuditingEntity implements Serializable 
     @Column(name = "status", nullable = false)
     private Status status;
 
-    @OneToMany(mappedBy = "nhomdanhmuc")
+    @OneToMany(mappedBy = "nhomDanhMuc")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<DanhMuc> danhmucs = new HashSet<>();
+    private Set<DanhMuc> danhMucs = new HashSet<>();
+    @ManyToOne
+    @JsonIgnoreProperties("nhomDanhMucs")
+    private TieuChiBaoCao tieuChiBaoCao;
+
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -93,29 +98,42 @@ public class NhomDanhMuc extends AbstractAuditingEntity implements Serializable 
         this.status = status;
     }
 
-    public Set<DanhMuc> getDanhmucs() {
-        return danhmucs;
+    public Set<DanhMuc> getDanhMucs() {
+        return danhMucs;
     }
 
-    public NhomDanhMuc danhmucs(Set<DanhMuc> danhMucs) {
-        this.danhmucs = danhMucs;
+    public NhomDanhMuc danhMucs(Set<DanhMuc> danhMucs) {
+        this.danhMucs = danhMucs;
         return this;
     }
 
-    public NhomDanhMuc addDanhmuc(DanhMuc danhMuc) {
-        this.danhmucs.add(danhMuc);
-        danhMuc.setNhomdanhmuc(this);
+    public NhomDanhMuc addDanhMuc(DanhMuc danhMuc) {
+        this.danhMucs.add(danhMuc);
+        danhMuc.setNhomDanhMuc(this);
         return this;
     }
 
-    public NhomDanhMuc removeDanhmuc(DanhMuc danhMuc) {
-        this.danhmucs.remove(danhMuc);
-        danhMuc.setNhomdanhmuc(null);
+    public NhomDanhMuc removeDanhMuc(DanhMuc danhMuc) {
+        this.danhMucs.remove(danhMuc);
+        danhMuc.setNhomDanhMuc(null);
         return this;
     }
 
-    public void setDanhmucs(Set<DanhMuc> danhMucs) {
-        this.danhmucs = danhMucs;
+    public void setDanhMucs(Set<DanhMuc> danhMucs) {
+        this.danhMucs = danhMucs;
+    }
+
+    public TieuChiBaoCao getTieuChiBaoCao() {
+        return tieuChiBaoCao;
+    }
+
+    public NhomDanhMuc tieuChiBaoCao(TieuChiBaoCao tieuChiBaoCao) {
+        this.tieuChiBaoCao = tieuChiBaoCao;
+        return this;
+    }
+
+    public void setTieuChiBaoCao(TieuChiBaoCao tieuChiBaoCao) {
+        this.tieuChiBaoCao = tieuChiBaoCao;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

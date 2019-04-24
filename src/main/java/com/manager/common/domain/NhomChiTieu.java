@@ -42,9 +42,9 @@ public class NhomChiTieu extends AbstractAuditingEntity implements Serializable 
     @Column(name = "status", nullable = false)
     private Status status;
 
-    @OneToMany(mappedBy = "nhomchitieu")
+    @OneToMany(mappedBy = "nhomChiTieu")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<ChiTieu> chitieus = new HashSet<>();
+    private Set<ChiTieu> chiTieus = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -93,29 +93,29 @@ public class NhomChiTieu extends AbstractAuditingEntity implements Serializable 
         this.status = status;
     }
 
-    public Set<ChiTieu> getChitieus() {
-        return chitieus;
+    public Set<ChiTieu> getChiTieus() {
+        return chiTieus;
     }
 
-    public NhomChiTieu chitieus(Set<ChiTieu> chiTieus) {
-        this.chitieus = chiTieus;
+    public NhomChiTieu chiTieus(Set<ChiTieu> chiTieus) {
+        this.chiTieus = chiTieus;
         return this;
     }
 
-    public NhomChiTieu addChitieu(ChiTieu chiTieu) {
-        this.chitieus.add(chiTieu);
-        chiTieu.setNhomchitieu(this);
+    public NhomChiTieu addChiTieu(ChiTieu chiTieu) {
+        this.chiTieus.add(chiTieu);
+        chiTieu.setNhomChiTieu(this);
         return this;
     }
 
-    public NhomChiTieu removeChitieu(ChiTieu chiTieu) {
-        this.chitieus.remove(chiTieu);
-        chiTieu.setNhomchitieu(null);
+    public NhomChiTieu removeChiTieu(ChiTieu chiTieu) {
+        this.chiTieus.remove(chiTieu);
+        chiTieu.setNhomChiTieu(null);
         return this;
     }
 
-    public void setChitieus(Set<ChiTieu> chiTieus) {
-        this.chitieus = chiTieus;
+    public void setChiTieus(Set<ChiTieu> chiTieus) {
+        this.chiTieus = chiTieus;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

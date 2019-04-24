@@ -21,6 +21,8 @@ public class NhomDanhMucDTO extends AbstractAuditingDTO implements Serializable 
     private Status status;
 
 
+    private Long tieuChiBaoCaoId;
+
     public Long getId() {
         return id;
     }
@@ -53,6 +55,14 @@ public class NhomDanhMucDTO extends AbstractAuditingDTO implements Serializable 
         this.status = status;
     }
 
+    public Long getTieuChiBaoCaoId() {
+        return tieuChiBaoCaoId;
+    }
+
+    public void setTieuChiBaoCaoId(Long tieuChiBaoCaoId) {
+        this.tieuChiBaoCaoId = tieuChiBaoCaoId;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -81,6 +91,7 @@ public class NhomDanhMucDTO extends AbstractAuditingDTO implements Serializable 
             ", nhomDanhMucCode='" + getNhomDanhMucCode() + "'" +
             ", name='" + getName() + "'" +
             ", status='" + getStatus() + "'" +
+            ", tieuChiBaoCao=" + getTieuChiBaoCaoId() +
             "}";
     }
 }

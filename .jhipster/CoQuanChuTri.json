@@ -1,0 +1,48 @@
+{
+    "name": "CoQuanChuTri",
+    "fields": [
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Status",
+            "fieldValues": "PUBLISH,UNPUBLISH,DELETED",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "tieuChi",
+            "otherEntityRelationshipName": "coQuanChuTri",
+            "relationshipName": "tieuChi"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "maDinhDanhDonVi",
+            "otherEntityRelationshipName": "coQuanChuTri",
+            "relationshipName": "maDinhDanhDonVi",
+            "otherEntityField": "name"
+        }
+    ],
+    "changelogDate": "20190424171423",
+    "entityTableName": "co_quan_chu_tri",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "common",
+    "applications": [
+        "common"
+    ],
+    "microserviceName": "common",
+    "enableEntityAudit": true
+}
