@@ -11,11 +11,12 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {NhomChiTieuMapper.class})
 public interface ChiTieuMapper extends EntityMapper<ChiTieuDTO, ChiTieu> {
 
-    @Mapping(source = "nhomchitieu.id", target = "nhomchitieuId")
-    @Mapping(source = "nhomchitieu.nhomChiTieuCode", target = "nhomchitieuNhomChiTieuCode")
+    @Mapping(source = "nhomChiTieu.id", target = "nhomChiTieuId")
+    @Mapping(source = "nhomChiTieu.name", target = "nhomChiTieuName")
     ChiTieuDTO toDto(ChiTieu chiTieu);
 
-    @Mapping(source = "nhomchitieuId", target = "nhomchitieu")
+    @Mapping(target = "tieuChis", ignore = true)
+    @Mapping(source = "nhomChiTieuId", target = "nhomChiTieu")
     ChiTieu toEntity(ChiTieuDTO chiTieuDTO);
 
     default ChiTieu fromId(Long id) {

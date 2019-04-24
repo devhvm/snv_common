@@ -26,11 +26,17 @@
     ],
     "relationships": [
         {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "tieuChi",
+            "otherEntityRelationshipName": "chiTieu",
+            "relationshipName": "tieuChi"
+        },
+        {
             "relationshipType": "many-to-one",
             "otherEntityName": "nhomChiTieu",
-            "otherEntityRelationshipName": "chitieu",
-            "relationshipName": "nhomchitieu",
-            "otherEntityField": "nhomChiTieuCode"
+            "otherEntityRelationshipName": "chiTieu",
+            "relationshipName": "nhomChiTieu",
+            "otherEntityField": "name"
         }
     ],
     "changelogDate": "20190404153956",
@@ -40,9 +46,8 @@
     "service": "serviceClass",
     "jpaMetamodelFiltering": false,
     "fluentMethods": true,
-    "clientRootFolder": "",
+    "clientRootFolder": "common",
     "applications": [
-        "gateway",
         "common"
     ],
     "microserviceName": "common",

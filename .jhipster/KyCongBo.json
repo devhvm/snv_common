@@ -1,0 +1,48 @@
+{
+    "name": "KyCongBo",
+    "fields": [
+        {
+            "fieldName": "kyCongBoCode",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
+            "fieldName": "status",
+            "fieldType": "Status",
+            "fieldValues": "PUBLISH,UNPUBLISH,DELETED",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "tieuChi",
+            "otherEntityRelationshipName": "kyCongBo",
+            "relationshipName": "tieuChi"
+        }
+    ],
+    "changelogDate": "20190424171422",
+    "entityTableName": "ky_cong_bo",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "common",
+    "applications": [
+        "common"
+    ],
+    "microserviceName": "common",
+    "enableEntityAudit": true
+}

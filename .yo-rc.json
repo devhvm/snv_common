@@ -1,7 +1,7 @@
 {
   "generator-jhipster": {
     "databaseType": "sql",
-    "devDatabaseType": "h2Disk",
+    "devDatabaseType": "mysql",
     "enableHibernateCache": true,
     "enableSwaggerCodegen": false,
     "enableTranslation": true,
@@ -39,11 +39,11 @@
     "ChiTieu",
     "NhomDanhMuc",
     "DanhMuc",
-    "NhomPhanLoai",
-    "DoiTuong",
-    "DonViTinh",
-    "NhomNoiDung",
-    "NoiDung"
+    "TieuChi",
+    "TieuChiBaoCao",
+    "KyCongBo",
+    "CoQuanChuTri",
+    "MaDinhDanhDonVi"
   ],
   "generator-jhipster-entity-audit": {
     "auditFramework": "custom"

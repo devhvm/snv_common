@@ -1,0 +1,55 @@
+{
+    "name": "TieuChi",
+    "fields": [
+        {
+            "fieldName": "status",
+            "fieldType": "Status",
+            "fieldValues": "PUBLISH,UNPUBLISH,DELETED",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "tieuChiBaoCao",
+            "otherEntityRelationshipName": "tieuChi",
+            "relationshipName": "tieuChiBaoCao"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "kyCongBo",
+            "otherEntityRelationshipName": "tieuChi",
+            "relationshipName": "kyCongBo",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "coQuanChuTri",
+            "otherEntityRelationshipName": "tieuChi",
+            "relationshipName": "coQuanChuTri",
+            "otherEntityField": "id"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "chiTieu",
+            "otherEntityRelationshipName": "tieuChi",
+            "relationshipName": "chiTieu",
+            "otherEntityField": "id"
+        }
+    ],
+    "changelogDate": "20190424171420",
+    "entityTableName": "tieu_chi",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "common",
+    "applications": [
+        "common"
+    ],
+    "microserviceName": "common",
+    "enableEntityAudit": true
+}

@@ -34,9 +34,9 @@ spring:
             enabled: false
     datasource:
         type: com.zaxxer.hikari.HikariDataSource
-        url: jdbc:mysql://localhost:3306/common?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
-        username: root
-        password:
+        url: jdbc:mysql://localhost:3306/snv_common?useUnicode=true&characterEncoding=utf8&useSSL=false&useLegacyDatetimeCode=false&serverTimezone=UTC
+        username: hvm
+        password: hvm!@#456
         hikari:
             poolName: Hikari
             auto-commit: false
@@ -77,10 +77,6 @@ spring:
         locator:
             discovery:
                 enabled: true
-    activemq:
-            broker-url: tcp://vtools.xyz:61616
-            user: admin
-            password: password            
 
 # ===================================================================
 # To enable TLS in production, generate a certificate using:

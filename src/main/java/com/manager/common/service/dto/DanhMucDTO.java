@@ -21,9 +21,9 @@ public class DanhMucDTO extends AbstractAuditingDTO implements Serializable {
     private Status status;
 
 
-    private Long nhomdanhmucId;
+    private Long nhomDanhMucId;
 
-    private String nhomdanhmucNhomDanhMucCode;
+    private String nhomDanhMucName;
 
     public Long getId() {
         return id;
@@ -57,20 +57,20 @@ public class DanhMucDTO extends AbstractAuditingDTO implements Serializable {
         this.status = status;
     }
 
-    public Long getNhomdanhmucId() {
-        return nhomdanhmucId;
+    public Long getNhomDanhMucId() {
+        return nhomDanhMucId;
     }
 
-    public void setNhomdanhmucId(Long nhomDanhMucId) {
-        this.nhomdanhmucId = nhomDanhMucId;
+    public void setNhomDanhMucId(Long nhomDanhMucId) {
+        this.nhomDanhMucId = nhomDanhMucId;
     }
 
-    public String getNhomdanhmucNhomDanhMucCode() {
-        return nhomdanhmucNhomDanhMucCode;
+    public String getNhomDanhMucName() {
+        return nhomDanhMucName;
     }
 
-    public void setNhomdanhmucNhomDanhMucCode(String nhomDanhMucNhomDanhMucCode) {
-        this.nhomdanhmucNhomDanhMucCode = nhomDanhMucNhomDanhMucCode;
+    public void setNhomDanhMucName(String nhomDanhMucName) {
+        this.nhomDanhMucName = nhomDanhMucName;
     }
 
     @Override
@@ -101,8 +101,8 @@ public class DanhMucDTO extends AbstractAuditingDTO implements Serializable {
             ", danhMucCode='" + getDanhMucCode() + "'" +
             ", name='" + getName() + "'" +
             ", status='" + getStatus() + "'" +
-            ", nhomdanhmuc=" + getNhomdanhmucId() +
-            ", nhomdanhmuc='" + getNhomdanhmucNhomDanhMucCode() + "'" +
+            ", nhomDanhMuc=" + getNhomDanhMucId() +
+            ", nhomDanhMuc='" + getNhomDanhMucName() + "'" +
             "}";
     }
 }

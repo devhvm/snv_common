@@ -21,9 +21,9 @@ public class ChiTieuDTO extends AbstractAuditingDTO implements Serializable {
     private Status status;
 
 
-    private Long nhomchitieuId;
+    private Long nhomChiTieuId;
 
-    private String nhomchitieuNhomChiTieuCode;
+    private String nhomChiTieuName;
 
     public Long getId() {
         return id;
@@ -57,20 +57,20 @@ public class ChiTieuDTO extends AbstractAuditingDTO implements Serializable {
         this.status = status;
     }
 
-    public Long getNhomchitieuId() {
-        return nhomchitieuId;
+    public Long getNhomChiTieuId() {
+        return nhomChiTieuId;
     }
 
-    public void setNhomchitieuId(Long nhomChiTieuId) {
-        this.nhomchitieuId = nhomChiTieuId;
+    public void setNhomChiTieuId(Long nhomChiTieuId) {
+        this.nhomChiTieuId = nhomChiTieuId;
     }
 
-    public String getNhomchitieuNhomChiTieuCode() {
-        return nhomchitieuNhomChiTieuCode;
+    public String getNhomChiTieuName() {
+        return nhomChiTieuName;
     }
 
-    public void setNhomchitieuNhomChiTieuCode(String nhomChiTieuNhomChiTieuCode) {
-        this.nhomchitieuNhomChiTieuCode = nhomChiTieuNhomChiTieuCode;
+    public void setNhomChiTieuName(String nhomChiTieuName) {
+        this.nhomChiTieuName = nhomChiTieuName;
     }
 
     @Override
@@ -101,8 +101,8 @@ public class ChiTieuDTO extends AbstractAuditingDTO implements Serializable {
             ", chiTieuCode='" + getChiTieuCode() + "'" +
             ", name='" + getName() + "'" +
             ", status='" + getStatus() + "'" +
-            ", nhomchitieu=" + getNhomchitieuId() +
-            ", nhomchitieu='" + getNhomchitieuNhomChiTieuCode() + "'" +
+            ", nhomChiTieu=" + getNhomChiTieuId() +
+            ", nhomChiTieu='" + getNhomChiTieuName() + "'" +
             "}";
     }
 }

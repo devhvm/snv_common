@@ -41,8 +41,8 @@ public class DanhMuc extends AbstractAuditingEntity implements Serializable {
     private Status status;
 
     @ManyToOne
-    @JsonIgnoreProperties("danhmucs")
-    private NhomDanhMuc nhomdanhmuc;
+    @JsonIgnoreProperties("danhMucs")
+    private NhomDanhMuc nhomDanhMuc;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -92,17 +92,17 @@ public class DanhMuc extends AbstractAuditingEntity implements Serializable {
         this.status = status;
     }
 
-    public NhomDanhMuc getNhomdanhmuc() {
-        return nhomdanhmuc;
+    public NhomDanhMuc getNhomDanhMuc() {
+        return nhomDanhMuc;
     }
 
-    public DanhMuc nhomdanhmuc(NhomDanhMuc nhomDanhMuc) {
-        this.nhomdanhmuc = nhomDanhMuc;
+    public DanhMuc nhomDanhMuc(NhomDanhMuc nhomDanhMuc) {
+        this.nhomDanhMuc = nhomDanhMuc;
         return this;
     }
 
-    public void setNhomdanhmuc(NhomDanhMuc nhomDanhMuc) {
-        this.nhomdanhmuc = nhomDanhMuc;
+    public void setNhomDanhMuc(NhomDanhMuc nhomDanhMuc) {
+        this.nhomDanhMuc = nhomDanhMuc;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

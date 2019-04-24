@@ -11,11 +11,11 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {NhomDanhMucMapper.class})
 public interface DanhMucMapper extends EntityMapper<DanhMucDTO, DanhMuc> {
 
-    @Mapping(source = "nhomdanhmuc.id", target = "nhomdanhmucId")
-    @Mapping(source = "nhomdanhmuc.nhomDanhMucCode", target = "nhomdanhmucNhomDanhMucCode")
+    @Mapping(source = "nhomDanhMuc.id", target = "nhomDanhMucId")
+    @Mapping(source = "nhomDanhMuc.name", target = "nhomDanhMucName")
     DanhMucDTO toDto(DanhMuc danhMuc);
 
-    @Mapping(source = "nhomdanhmucId", target = "nhomdanhmuc")
+    @Mapping(source = "nhomDanhMucId", target = "nhomDanhMuc")
     DanhMuc toEntity(DanhMucDTO danhMucDTO);
 
     default DanhMuc fromId(Long id) {
