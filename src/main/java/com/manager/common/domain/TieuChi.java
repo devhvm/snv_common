@@ -1,17 +1,20 @@
 package com.manager.common.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.manager.common.domain.enumeration.Status;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
+
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Objects;
 import java.util.Set;
+import java.util.Objects;
+
+import com.manager.common.domain.enumeration.Status;
 
 /**
  * A TieuChi.
@@ -22,7 +25,7 @@ import java.util.Set;
 public class TieuChi extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -31,6 +34,12 @@ public class TieuChi extends AbstractAuditingEntity implements Serializable {
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private Status status;
+
+    @Column(name = "tieu_chi_code")
+    private String tieuChiCode;
+
+    @Column(name = "name")
+    private String name;
 
     @OneToMany(mappedBy = "tieuChi")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
@@ -67,6 +76,32 @@ public class TieuChi extends AbstractAuditingEntity implements Serializable {
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public String getTieuChiCode() {
+        return tieuChiCode;
+    }
+
+    public TieuChi tieuChiCode(String tieuChiCode) {
+        this.tieuChiCode = tieuChiCode;
+        return this;
+    }
+
+    public void setTieuChiCode(String tieuChiCode) {
+        this.tieuChiCode = tieuChiCode;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public TieuChi name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public void setName(String name) {
+        this.name = name;
     }
 
     public Set<TieuChiBaoCao> getTieuChiBaoCaos() {
@@ -159,6 +194,8 @@ public class TieuChi extends AbstractAuditingEntity implements Serializable {
         return "TieuChi{" +
             "id=" + getId() +
             ", status='" + getStatus() + "'" +
+            ", tieuChiCode='" + getTieuChiCode() + "'" +
+            ", name='" + getName() + "'" +
             "}";
     }
 }

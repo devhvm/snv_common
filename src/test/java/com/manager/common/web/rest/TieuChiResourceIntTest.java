@@ -1,13 +1,14 @@
 package com.manager.common.web.rest;
 
 import com.manager.common.CommonApp;
+
 import com.manager.common.domain.TieuChi;
-import com.manager.common.domain.enumeration.Status;
 import com.manager.common.repository.TieuChiRepository;
 import com.manager.common.service.TieuChiService;
 import com.manager.common.service.dto.TieuChiDTO;
 import com.manager.common.service.mapper.TieuChiMapper;
 import com.manager.common.web.rest.errors.ExceptionTranslator;
+
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,11 +27,14 @@ import org.springframework.validation.Validator;
 import javax.persistence.EntityManager;
 import java.util.List;
 
+
 import static com.manager.common.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
+
+import com.manager.common.domain.enumeration.Status;
 /**
  * Test class for the TieuChiResource REST controller.
  *
@@ -42,6 +46,12 @@ public class TieuChiResourceIntTest {
 
     private static final Status DEFAULT_STATUS = Status.PUBLISH;
     private static final Status UPDATED_STATUS = Status.UNPUBLISH;
+
+    private static final String DEFAULT_TIEU_CHI_CODE = "AAAAAAAAAA";
+    private static final String UPDATED_TIEU_CHI_CODE = "BBBBBBBBBB";
+
+    private static final String DEFAULT_NAME = "AAAAAAAAAA";
+    private static final String UPDATED_NAME = "BBBBBBBBBB";
 
     @Autowired
     private TieuChiRepository tieuChiRepository;
@@ -91,7 +101,9 @@ public class TieuChiResourceIntTest {
      */
     public static TieuChi createEntity(EntityManager em) {
         TieuChi tieuChi = new TieuChi()
-            .status(DEFAULT_STATUS);
+            .status(DEFAULT_STATUS)
+            .tieuChiCode(DEFAULT_TIEU_CHI_CODE)
+            .name(DEFAULT_NAME);
         return tieuChi;
     }
 
@@ -117,6 +129,8 @@ public class TieuChiResourceIntTest {
         assertThat(tieuChiList).hasSize(databaseSizeBeforeCreate + 1);
         TieuChi testTieuChi = tieuChiList.get(tieuChiList.size() - 1);
         assertThat(testTieuChi.getStatus()).isEqualTo(DEFAULT_STATUS);
+        assertThat(testTieuChi.getTieuChiCode()).isEqualTo(DEFAULT_TIEU_CHI_CODE);
+        assertThat(testTieuChi.getName()).isEqualTo(DEFAULT_NAME);
     }
 
     @Test
@@ -169,9 +183,11 @@ public class TieuChiResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(tieuChi.getId().intValue())))
-            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
+            .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())))
+            .andExpect(jsonPath("$.[*].tieuChiCode").value(hasItem(DEFAULT_TIEU_CHI_CODE.toString())))
+            .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())));
     }
-
+    
     @Test
     @Transactional
     public void getTieuChi() throws Exception {
@@ -183,7 +199,9 @@ public class TieuChiResourceIntTest {
             .andExpect(status().isOk())
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(tieuChi.getId().intValue()))
-            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()));
+            .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()))
+            .andExpect(jsonPath("$.tieuChiCode").value(DEFAULT_TIEU_CHI_CODE.toString()))
+            .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()));
     }
 
     @Test
@@ -207,7 +225,9 @@ public class TieuChiResourceIntTest {
         // Disconnect from session so that the updates on updatedTieuChi are not directly saved in db
         em.detach(updatedTieuChi);
         updatedTieuChi
-            .status(UPDATED_STATUS);
+            .status(UPDATED_STATUS)
+            .tieuChiCode(UPDATED_TIEU_CHI_CODE)
+            .name(UPDATED_NAME);
         TieuChiDTO tieuChiDTO = tieuChiMapper.toDto(updatedTieuChi);
 
         restTieuChiMockMvc.perform(put("/api/tieu-chis")
@@ -220,6 +240,8 @@ public class TieuChiResourceIntTest {
         assertThat(tieuChiList).hasSize(databaseSizeBeforeUpdate);
         TieuChi testTieuChi = tieuChiList.get(tieuChiList.size() - 1);
         assertThat(testTieuChi.getStatus()).isEqualTo(UPDATED_STATUS);
+        assertThat(testTieuChi.getTieuChiCode()).isEqualTo(UPDATED_TIEU_CHI_CODE);
+        assertThat(testTieuChi.getName()).isEqualTo(UPDATED_NAME);
     }
 
     @Test
