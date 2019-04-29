@@ -20,7 +20,7 @@
     <include file="config/liquibase/changelog/20190424171422_added_entity_KyCongBo.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190424171424_added_entity_MaDinhDanhDonVi.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190427100423_added_entity_CoQuanChuTri.xml" relativeToChangelogFile="false"/>
-    <include file="config/liquibase/changelog/20190429151634_added_entity_EntityAuditEvent.xml" relativeToChangelogFile="false"/>
+    <include file="config/liquibase/changelog/20190424171824_added_entity_EntityAuditEvent.xml" relativeToChangelogFile="false"/>
     <include file="config/liquibase/changelog/20190429130255_init_data.xml" relativeToChangelogFile="false"/>
     <!-- jhipster-needle-liquibase-add-changelog - JHipster will add liquibase changelogs here -->
     <include file="config/liquibase/changelog/20190404153956_added_entity_constraints_ChiTieu.xml" relativeToChangelogFile="false"/>
