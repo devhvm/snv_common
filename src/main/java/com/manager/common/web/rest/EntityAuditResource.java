@@ -1,9 +1,10 @@
 package com.manager.common.web.rest;
 
+import com.codahale.metrics.annotation.Timed;
 import com.manager.common.domain.EntityAuditEvent;
 import com.manager.common.repository.EntityAuditEventRepository;
-import com.manager.common.web.rest.util.PaginationUtil;
 import com.manager.common.security.AuthoritiesConstants;
+import com.manager.common.web.rest.util.PaginationUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
@@ -13,16 +14,15 @@ import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.security.access.annotation.Secured;
-import com.codahale.metrics.annotation.Timed;
 
+import javax.transaction.Transactional;
 import java.net.URISyntaxException;
 import java.util.List;
-import javax.transaction.Transactional;
 
 /**
  * REST controller for getting the audit events for entity

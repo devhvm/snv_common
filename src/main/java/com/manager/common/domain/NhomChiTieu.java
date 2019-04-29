@@ -1,19 +1,16 @@
 package com.manager.common.domain;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.manager.common.domain.enumeration.Status;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
-
-import com.manager.common.domain.enumeration.Status;
+import java.util.Set;
 
 /**
  * A NhomChiTieu.
@@ -24,7 +21,7 @@ import com.manager.common.domain.enumeration.Status;
 public class NhomChiTieu extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

@@ -1,20 +1,15 @@
 package com.manager.common.domain;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.manager.common.domain.enumeration.Status;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
-
-import com.manager.common.domain.enumeration.Status;
 
 /**
  * A TieuChiBaoCao.
@@ -25,7 +20,7 @@ import com.manager.common.domain.enumeration.Status;
 public class TieuChiBaoCao extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,9 +30,10 @@ public class TieuChiBaoCao extends AbstractAuditingEntity implements Serializabl
     @Column(name = "status", nullable = false)
     private Status status;
 
-    @OneToMany(mappedBy = "tieuChiBaoCao")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<NhomDanhMuc> nhomDanhMucs = new HashSet<>();
+    @ManyToOne
+    @JsonIgnoreProperties("tieuChiBaoCaos")
+    private NhomDanhMuc nhomDanhMuc;
+
     @ManyToOne
     @JsonIgnoreProperties("tieuChiBaoCaos")
     private TieuChi tieuChi;
@@ -64,29 +60,17 @@ public class TieuChiBaoCao extends AbstractAuditingEntity implements Serializabl
         this.status = status;
     }
 
-    public Set<NhomDanhMuc> getNhomDanhMucs() {
-        return nhomDanhMucs;
+    public NhomDanhMuc getNhomDanhMuc() {
+        return nhomDanhMuc;
     }
 
-    public TieuChiBaoCao nhomDanhMucs(Set<NhomDanhMuc> nhomDanhMucs) {
-        this.nhomDanhMucs = nhomDanhMucs;
+    public TieuChiBaoCao nhomDanhMuc(NhomDanhMuc nhomDanhMuc) {
+        this.nhomDanhMuc = nhomDanhMuc;
         return this;
     }
 
-    public TieuChiBaoCao addNhomDanhMuc(NhomDanhMuc nhomDanhMuc) {
-        this.nhomDanhMucs.add(nhomDanhMuc);
-        nhomDanhMuc.setTieuChiBaoCao(this);
-        return this;
-    }
-
-    public TieuChiBaoCao removeNhomDanhMuc(NhomDanhMuc nhomDanhMuc) {
-        this.nhomDanhMucs.remove(nhomDanhMuc);
-        nhomDanhMuc.setTieuChiBaoCao(null);
-        return this;
-    }
-
-    public void setNhomDanhMucs(Set<NhomDanhMuc> nhomDanhMucs) {
-        this.nhomDanhMucs = nhomDanhMucs;
+    public void setNhomDanhMuc(NhomDanhMuc nhomDanhMuc) {
+        this.nhomDanhMuc = nhomDanhMuc;
     }
 
     public TieuChi getTieuChi() {

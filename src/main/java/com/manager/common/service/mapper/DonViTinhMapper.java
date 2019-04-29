@@ -1,9 +1,9 @@
 package com.manager.common.service.mapper;
 
-import com.manager.common.domain.*;
+import com.manager.common.domain.DonViTinh;
 import com.manager.common.service.dto.DonViTinhDTO;
-
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 /**
  * Mapper for the entity DonViTinh and its DTO DonViTinhDTO.
@@ -12,7 +12,7 @@ import org.mapstruct.*;
 public interface DonViTinhMapper extends EntityMapper<DonViTinhDTO, DonViTinh> {
 
 
-    @Mapping(target = "nhomphanloais", ignore = true)
+    @Mapping(target = "nhomPhanLoais", ignore = true)
     DonViTinh toEntity(DonViTinhDTO donViTinhDTO);
 
     default DonViTinh fromId(Long id) {

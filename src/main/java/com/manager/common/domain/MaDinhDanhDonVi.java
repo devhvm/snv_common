@@ -1,16 +1,12 @@
 package com.manager.common.domain;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
 
 /**
@@ -22,7 +18,7 @@ import java.util.Objects;
 public class MaDinhDanhDonVi extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -42,10 +38,7 @@ public class MaDinhDanhDonVi extends AbstractAuditingEntity implements Serializa
     @Column(name = "jhi_level", nullable = false)
     private String level;
 
-    @OneToMany(mappedBy = "maDinhDanhDonVi")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<CoQuanChuTri> coQuanChuTris = new HashSet<>();
-    // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
+
     public Long getId() {
         return id;
     }
@@ -106,31 +99,7 @@ public class MaDinhDanhDonVi extends AbstractAuditingEntity implements Serializa
         this.level = level;
     }
 
-    public Set<CoQuanChuTri> getCoQuanChuTris() {
-        return coQuanChuTris;
-    }
-
-    public MaDinhDanhDonVi coQuanChuTris(Set<CoQuanChuTri> coQuanChuTris) {
-        this.coQuanChuTris = coQuanChuTris;
-        return this;
-    }
-
-    public MaDinhDanhDonVi addCoQuanChuTri(CoQuanChuTri coQuanChuTri) {
-        this.coQuanChuTris.add(coQuanChuTri);
-        coQuanChuTri.setMaDinhDanhDonVi(this);
-        return this;
-    }
-
-    public MaDinhDanhDonVi removeCoQuanChuTri(CoQuanChuTri coQuanChuTri) {
-        this.coQuanChuTris.remove(coQuanChuTri);
-        coQuanChuTri.setMaDinhDanhDonVi(null);
-        return this;
-    }
-
-    public void setCoQuanChuTris(Set<CoQuanChuTri> coQuanChuTris) {
-        this.coQuanChuTris = coQuanChuTris;
-    }
-    // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
+  // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
     @Override
     public boolean equals(Object o) {

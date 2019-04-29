@@ -1,8 +1,10 @@
 package com.manager.common.service.dto;
-import javax.validation.constraints.*;
+
+import com.manager.common.domain.enumeration.Status;
+
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
-import com.manager.common.domain.enumeration.Status;
 
 /**
  * A DTO for the NoiDung entity.
@@ -18,9 +20,9 @@ public class NoiDungDTO extends AbstractAuditingDTO implements Serializable {
     private Status status;
 
 
-    private Long nhomnoidungId;
+    private Long noiDungId;
 
-    private String nhomnoidungNhomNoiDungCode;
+    private String noiDungChiTieuCode;
 
     public Long getId() {
         return id;
@@ -46,20 +48,20 @@ public class NoiDungDTO extends AbstractAuditingDTO implements Serializable {
         this.status = status;
     }
 
-    public Long getNhomnoidungId() {
-        return nhomnoidungId;
+    public Long getNoiDungId() {
+        return noiDungId;
     }
 
-    public void setNhomnoidungId(Long nhomNoiDungId) {
-        this.nhomnoidungId = nhomNoiDungId;
+    public void setNoiDungId(Long chiTieuId) {
+        this.noiDungId = chiTieuId;
     }
 
-    public String getNhomnoidungNhomNoiDungCode() {
-        return nhomnoidungNhomNoiDungCode;
+    public String getNoiDungChiTieuCode() {
+        return noiDungChiTieuCode;
     }
 
-    public void setNhomnoidungNhomNoiDungCode(String nhomNoiDungNhomNoiDungCode) {
-        this.nhomnoidungNhomNoiDungCode = nhomNoiDungNhomNoiDungCode;
+    public void setNoiDungChiTieuCode(String chiTieuChiTieuCode) {
+        this.noiDungChiTieuCode = chiTieuChiTieuCode;
     }
 
     @Override
@@ -89,8 +91,8 @@ public class NoiDungDTO extends AbstractAuditingDTO implements Serializable {
             "id=" + getId() +
             ", noiDungCode='" + getNoiDungCode() + "'" +
             ", status='" + getStatus() + "'" +
-            ", nhomnoidung=" + getNhomnoidungId() +
-            ", nhomnoidung='" + getNhomnoidungNhomNoiDungCode() + "'" +
+            ", noiDung=" + getNoiDungId() +
+            ", noiDung='" + getNoiDungChiTieuCode() + "'" +
             "}";
     }
 }

@@ -1,8 +1,8 @@
-import { Injectable } from '@angular/core';
-import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
-import { Observable } from 'rxjs';
+import {Injectable} from '@angular/core';
+import {HttpClient, HttpParams, HttpResponse} from '@angular/common/http';
+import {Observable} from 'rxjs';
 
-import { EntityAuditEvent } from './entity-audit-event.model';
+import {EntityAuditEvent} from './entity-audit-event.model';
 
 @Injectable()
 export class EntityAuditService {

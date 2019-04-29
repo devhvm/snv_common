@@ -1,20 +1,6 @@
 {
-    "name": "NhomNoiDung",
+    "name": "NoiDungDauRa",
     "fields": [
-        {
-            "fieldName": "nhomNoiDungCode",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
-        {
-            "fieldName": "name",
-            "fieldType": "String",
-            "fieldValidateRules": [
-                "required"
-            ]
-        },
         {
             "fieldName": "status",
             "fieldType": "Status",
@@ -26,14 +12,20 @@
     ],
     "relationships": [
         {
-            "relationshipType": "one-to-many",
+            "relationshipType": "many-to-one",
             "otherEntityName": "noiDung",
-            "otherEntityRelationshipName": "nhomnoidung",
-            "relationshipName": "noidung"
+            "otherEntityRelationshipName": "noiDungDauRa",
+            "relationshipName": "noiDung"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "nhomDanhMuc",
+            "otherEntityRelationshipName": "noiDungDauRa",
+            "relationshipName": "nhomDanhMuc"
         }
     ],
     "changelogDate": "20190404154002",
-    "entityTableName": "nhom_noi_dung",
+    "entityTableName": "noi_dung_dau_Ra",
     "dto": "mapstruct",
     "pagination": "pagination",
     "service": "serviceClass",

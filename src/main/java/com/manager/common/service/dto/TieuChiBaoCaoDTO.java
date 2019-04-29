@@ -1,8 +1,10 @@
 package com.manager.common.service.dto;
-import javax.validation.constraints.*;
+
+import com.manager.common.domain.enumeration.Status;
+
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
-import com.manager.common.domain.enumeration.Status;
 
 /**
  * A DTO for the TieuChiBaoCao entity.
@@ -14,6 +16,8 @@ public class TieuChiBaoCaoDTO extends AbstractAuditingDTO implements Serializabl
     @NotNull
     private Status status;
 
+
+    private Long nhomDanhMucId;
 
     private Long tieuChiId;
 
@@ -31,6 +35,14 @@ public class TieuChiBaoCaoDTO extends AbstractAuditingDTO implements Serializabl
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    public Long getNhomDanhMucId() {
+        return nhomDanhMucId;
+    }
+
+    public void setNhomDanhMucId(Long nhomDanhMucId) {
+        this.nhomDanhMucId = nhomDanhMucId;
     }
 
     public Long getTieuChiId() {
@@ -67,6 +79,7 @@ public class TieuChiBaoCaoDTO extends AbstractAuditingDTO implements Serializabl
         return "TieuChiBaoCaoDTO{" +
             "id=" + getId() +
             ", status='" + getStatus() + "'" +
+            ", nhomDanhMuc=" + getNhomDanhMucId() +
             ", tieuChi=" + getTieuChiId() +
             "}";
     }

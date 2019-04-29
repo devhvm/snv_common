@@ -1,9 +1,9 @@
 package com.manager.common.service.mapper;
 
-import com.manager.common.domain.*;
+import com.manager.common.domain.DoiTuong;
 import com.manager.common.service.dto.DoiTuongDTO;
-
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 /**
  * Mapper for the entity DoiTuong and its DTO DoiTuongDTO.
@@ -11,11 +11,11 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {NhomPhanLoaiMapper.class})
 public interface DoiTuongMapper extends EntityMapper<DoiTuongDTO, DoiTuong> {
 
-    @Mapping(source = "nhomphanloai.id", target = "nhomphanloaiId")
-    @Mapping(source = "nhomphanloai.nhomPhanLoaiCode", target = "nhomphanloaiNhomPhanLoaiCode")
+    @Mapping(source = "nhomPhanLoai.id", target = "nhomPhanLoaiId")
+    @Mapping(source = "nhomPhanLoai.nhomPhanLoaiCode", target = "nhomPhanLoaiNhomPhanLoaiCode")
     DoiTuongDTO toDto(DoiTuong doiTuong);
 
-    @Mapping(source = "nhomphanloaiId", target = "nhomphanloai")
+    @Mapping(source = "nhomPhanLoaiId", target = "nhomPhanLoai")
     DoiTuong toEntity(DoiTuongDTO doiTuongDTO);
 
     default DoiTuong fromId(Long id) {

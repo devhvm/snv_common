@@ -1,8 +1,10 @@
 package com.manager.common.service.dto;
-import javax.validation.constraints.*;
+
+import com.manager.common.domain.enumeration.Status;
+
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
-import com.manager.common.domain.enumeration.Status;
 
 /**
  * A DTO for the TieuChi entity.

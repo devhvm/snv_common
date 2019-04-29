@@ -2,16 +2,14 @@ package com.manager.common.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.manager.common.domain.enumeration.Status;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
-
-import com.manager.common.domain.enumeration.Status;
 
 /**
  * A DanhMuc.
@@ -22,7 +20,7 @@ import com.manager.common.domain.enumeration.Status;
 public class DanhMuc extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;

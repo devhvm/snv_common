@@ -20,10 +20,10 @@
     "relationships": [
         {
             "relationshipType": "many-to-one",
-            "otherEntityName": "nhomNoiDung",
-            "otherEntityRelationshipName": "noidung",
-            "relationshipName": "nhomnoidung",
-            "otherEntityField": "nhomNoiDungCode"
+            "otherEntityName": "chiTieu",
+            "otherEntityRelationshipName": "noiDung",
+            "relationshipName": "noiDung",
+            "otherEntityField": "chiTieuCode"
         }
     ],
     "changelogDate": "20190404154003",

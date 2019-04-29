@@ -1,14 +1,13 @@
 package com.manager.common.web.rest;
 
 import com.manager.common.CommonApp;
-
 import com.manager.common.domain.NhomDanhMuc;
+import com.manager.common.domain.enumeration.Status;
 import com.manager.common.repository.NhomDanhMucRepository;
 import com.manager.common.service.NhomDanhMucService;
 import com.manager.common.service.dto.NhomDanhMucDTO;
 import com.manager.common.service.mapper.NhomDanhMucMapper;
 import com.manager.common.web.rest.errors.ExceptionTranslator;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,14 +26,11 @@ import org.springframework.validation.Validator;
 import javax.persistence.EntityManager;
 import java.util.List;
 
-
 import static com.manager.common.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-import com.manager.common.domain.enumeration.Status;
 /**
  * Test class for the NhomDanhMucResource REST controller.
  *
@@ -225,7 +221,7 @@ public class NhomDanhMucResourceIntTest {
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
     }
-    
+
     @Test
     @Transactional
     public void getNhomDanhMuc() throws Exception {

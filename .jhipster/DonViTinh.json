@@ -28,8 +28,8 @@
         {
             "relationshipType": "one-to-many",
             "otherEntityName": "nhomPhanLoai",
-            "otherEntityRelationshipName": "donvitinh",
-            "relationshipName": "nhomphanloai"
+            "otherEntityRelationshipName": "donViTinh",
+            "relationshipName": "nhomPhanLoai"
         }
     ],
     "changelogDate": "20190404154001",

@@ -9,6 +9,13 @@
             ]
         },
         {
+            "fieldName": "maDinhDanhCode",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
             "fieldName": "status",
             "fieldType": "Status",
             "fieldValues": "PUBLISH,UNPUBLISH,DELETED",
@@ -17,22 +24,8 @@
             ]
         }
     ],
-    "relationships": [
-        {
-            "relationshipType": "one-to-many",
-            "otherEntityName": "tieuChi",
-            "otherEntityRelationshipName": "coQuanChuTri",
-            "relationshipName": "tieuChi"
-        },
-        {
-            "relationshipType": "many-to-one",
-            "otherEntityName": "maDinhDanhDonVi",
-            "otherEntityRelationshipName": "coQuanChuTri",
-            "relationshipName": "maDinhDanhDonVi",
-            "otherEntityField": "name"
-        }
-    ],
-    "changelogDate": "20190424171423",
+    "relationships": [],
+    "changelogDate": "20190427100423",
     "entityTableName": "co_quan_chu_tri",
     "dto": "mapstruct",
     "pagination": "pagination",

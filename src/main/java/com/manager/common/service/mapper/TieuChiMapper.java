@@ -1,9 +1,9 @@
 package com.manager.common.service.mapper;
 
-import com.manager.common.domain.*;
+import com.manager.common.domain.TieuChi;
 import com.manager.common.service.dto.TieuChiDTO;
-
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 /**
  * Mapper for the entity TieuChi and its DTO TieuChiDTO.

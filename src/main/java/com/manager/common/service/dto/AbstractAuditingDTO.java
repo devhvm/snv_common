@@ -1,8 +1,9 @@
 package com.manager.common.service.dto;
 
+import org.springframework.data.annotation.ReadOnlyProperty;
+
 import java.io.Serializable;
 import java.time.Instant;
-import org.springframework.data.annotation.ReadOnlyProperty;
 
 /**
  * Base abstract class for DTO which will hold definitions for created, last modified by and created,

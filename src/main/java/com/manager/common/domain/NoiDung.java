@@ -2,16 +2,14 @@ package com.manager.common.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.manager.common.domain.enumeration.Status;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
-
-import com.manager.common.domain.enumeration.Status;
 
 /**
  * A NoiDung.
@@ -22,7 +20,7 @@ import com.manager.common.domain.enumeration.Status;
 public class NoiDung extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -37,8 +35,8 @@ public class NoiDung extends AbstractAuditingEntity implements Serializable {
     private Status status;
 
     @ManyToOne
-    @JsonIgnoreProperties("noidungs")
-    private NhomNoiDung nhomnoidung;
+    @JsonIgnoreProperties("noiDungs")
+    private ChiTieu noiDung;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -75,17 +73,17 @@ public class NoiDung extends AbstractAuditingEntity implements Serializable {
         this.status = status;
     }
 
-    public NhomNoiDung getNhomnoidung() {
-        return nhomnoidung;
+    public ChiTieu getNoiDung() {
+        return noiDung;
     }
 
-    public NoiDung nhomnoidung(NhomNoiDung nhomNoiDung) {
-        this.nhomnoidung = nhomNoiDung;
+    public NoiDung noiDung(ChiTieu chiTieu) {
+        this.noiDung = chiTieu;
         return this;
     }
 
-    public void setNhomnoidung(NhomNoiDung nhomNoiDung) {
-        this.nhomnoidung = nhomNoiDung;
+    public void setNoiDung(ChiTieu chiTieu) {
+        this.noiDung = chiTieu;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

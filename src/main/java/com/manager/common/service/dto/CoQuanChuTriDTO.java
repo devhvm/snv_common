@@ -1,8 +1,10 @@
 package com.manager.common.service.dto;
-import javax.validation.constraints.*;
+
+import com.manager.common.domain.enumeration.Status;
+
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
-import com.manager.common.domain.enumeration.Status;
 
 /**
  * A DTO for the CoQuanChuTri entity.
@@ -15,12 +17,11 @@ public class CoQuanChuTriDTO extends AbstractAuditingDTO implements Serializable
     private String name;
 
     @NotNull
+    private String maDinhDanhCode;
+
+    @NotNull
     private Status status;
 
-
-    private Long maDinhDanhDonViId;
-
-    private String maDinhDanhDonViName;
 
     public Long getId() {
         return id;
@@ -38,28 +39,20 @@ public class CoQuanChuTriDTO extends AbstractAuditingDTO implements Serializable
         this.name = name;
     }
 
+    public String getMaDinhDanhCode() {
+        return maDinhDanhCode;
+    }
+
+    public void setMaDinhDanhCode(String maDinhDanhCode) {
+        this.maDinhDanhCode = maDinhDanhCode;
+    }
+
     public Status getStatus() {
         return status;
     }
 
     public void setStatus(Status status) {
         this.status = status;
-    }
-
-    public Long getMaDinhDanhDonViId() {
-        return maDinhDanhDonViId;
-    }
-
-    public void setMaDinhDanhDonViId(Long maDinhDanhDonViId) {
-        this.maDinhDanhDonViId = maDinhDanhDonViId;
-    }
-
-    public String getMaDinhDanhDonViName() {
-        return maDinhDanhDonViName;
-    }
-
-    public void setMaDinhDanhDonViName(String maDinhDanhDonViName) {
-        this.maDinhDanhDonViName = maDinhDanhDonViName;
     }
 
     @Override
@@ -88,9 +81,8 @@ public class CoQuanChuTriDTO extends AbstractAuditingDTO implements Serializable
         return "CoQuanChuTriDTO{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
+            ", maDinhDanhCode='" + getMaDinhDanhCode() + "'" +
             ", status='" + getStatus() + "'" +
-            ", maDinhDanhDonVi=" + getMaDinhDanhDonViId() +
-            ", maDinhDanhDonVi='" + getMaDinhDanhDonViName() + "'" +
             "}";
     }
 }

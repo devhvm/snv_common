@@ -1,9 +1,9 @@
 package com.manager.common.service.mapper;
 
-import com.manager.common.domain.*;
+import com.manager.common.domain.NhomChiTieu;
 import com.manager.common.service.dto.NhomChiTieuDTO;
-
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 /**
  * Mapper for the entity NhomChiTieu and its DTO NhomChiTieuDTO.

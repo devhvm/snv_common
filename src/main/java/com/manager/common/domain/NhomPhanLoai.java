@@ -1,20 +1,17 @@
 package com.manager.common.domain;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.manager.common.domain.enumeration.Status;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
-
-import com.manager.common.domain.enumeration.Status;
+import java.util.Set;
 
 /**
  * A NhomPhanLoai.
@@ -25,7 +22,7 @@ import com.manager.common.domain.enumeration.Status;
 public class NhomPhanLoai extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -43,12 +40,12 @@ public class NhomPhanLoai extends AbstractAuditingEntity implements Serializable
     @Column(name = "status", nullable = false)
     private Status status;
 
-    @OneToMany(mappedBy = "nhomphanloai")
+    @OneToMany(mappedBy = "nhomPhanLoai")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<DoiTuong> doituongs = new HashSet<>();
+    private Set<DoiTuong> doiTuongs = new HashSet<>();
     @ManyToOne
-    @JsonIgnoreProperties("nhomphanloais")
-    private DonViTinh donvitinh;
+    @JsonIgnoreProperties("nhomPhanLoais")
+    private DonViTinh donViTinh;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -98,42 +95,42 @@ public class NhomPhanLoai extends AbstractAuditingEntity implements Serializable
         this.status = status;
     }
 
-    public Set<DoiTuong> getDoituongs() {
-        return doituongs;
+    public Set<DoiTuong> getDoiTuongs() {
+        return doiTuongs;
     }
 
-    public NhomPhanLoai doituongs(Set<DoiTuong> doiTuongs) {
-        this.doituongs = doiTuongs;
+    public NhomPhanLoai doiTuongs(Set<DoiTuong> doiTuongs) {
+        this.doiTuongs = doiTuongs;
         return this;
     }
 
-    public NhomPhanLoai addDoituong(DoiTuong doiTuong) {
-        this.doituongs.add(doiTuong);
-        doiTuong.setNhomphanloai(this);
+    public NhomPhanLoai addDoiTuong(DoiTuong doiTuong) {
+        this.doiTuongs.add(doiTuong);
+        doiTuong.setNhomPhanLoai(this);
         return this;
     }
 
-    public NhomPhanLoai removeDoituong(DoiTuong doiTuong) {
-        this.doituongs.remove(doiTuong);
-        doiTuong.setNhomphanloai(null);
+    public NhomPhanLoai removeDoiTuong(DoiTuong doiTuong) {
+        this.doiTuongs.remove(doiTuong);
+        doiTuong.setNhomPhanLoai(null);
         return this;
     }
 
-    public void setDoituongs(Set<DoiTuong> doiTuongs) {
-        this.doituongs = doiTuongs;
+    public void setDoiTuongs(Set<DoiTuong> doiTuongs) {
+        this.doiTuongs = doiTuongs;
     }
 
-    public DonViTinh getDonvitinh() {
-        return donvitinh;
+    public DonViTinh getDonViTinh() {
+        return donViTinh;
     }
 
-    public NhomPhanLoai donvitinh(DonViTinh donViTinh) {
-        this.donvitinh = donViTinh;
+    public NhomPhanLoai donViTinh(DonViTinh donViTinh) {
+        this.donViTinh = donViTinh;
         return this;
     }
 
-    public void setDonvitinh(DonViTinh donViTinh) {
-        this.donvitinh = donViTinh;
+    public void setDonViTinh(DonViTinh donViTinh) {
+        this.donViTinh = donViTinh;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

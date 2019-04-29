@@ -1,8 +1,10 @@
 package com.manager.common.service.dto;
-import javax.validation.constraints.*;
+
+import com.manager.common.domain.enumeration.Status;
+
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
-import com.manager.common.domain.enumeration.Status;
 
 /**
  * A DTO for the NhomPhanLoai entity.
@@ -21,9 +23,9 @@ public class NhomPhanLoaiDTO extends AbstractAuditingDTO implements Serializable
     private Status status;
 
 
-    private Long donvitinhId;
+    private Long donViTinhId;
 
-    private String donvitinhDonViTinhCode;
+    private String donViTinhDonViTinhCode;
 
     public Long getId() {
         return id;
@@ -57,20 +59,20 @@ public class NhomPhanLoaiDTO extends AbstractAuditingDTO implements Serializable
         this.status = status;
     }
 
-    public Long getDonvitinhId() {
-        return donvitinhId;
+    public Long getDonViTinhId() {
+        return donViTinhId;
     }
 
-    public void setDonvitinhId(Long donViTinhId) {
-        this.donvitinhId = donViTinhId;
+    public void setDonViTinhId(Long donViTinhId) {
+        this.donViTinhId = donViTinhId;
     }
 
-    public String getDonvitinhDonViTinhCode() {
-        return donvitinhDonViTinhCode;
+    public String getDonViTinhDonViTinhCode() {
+        return donViTinhDonViTinhCode;
     }
 
-    public void setDonvitinhDonViTinhCode(String donViTinhDonViTinhCode) {
-        this.donvitinhDonViTinhCode = donViTinhDonViTinhCode;
+    public void setDonViTinhDonViTinhCode(String donViTinhDonViTinhCode) {
+        this.donViTinhDonViTinhCode = donViTinhDonViTinhCode;
     }
 
     @Override
@@ -101,8 +103,8 @@ public class NhomPhanLoaiDTO extends AbstractAuditingDTO implements Serializable
             ", nhomPhanLoaiCode='" + getNhomPhanLoaiCode() + "'" +
             ", name='" + getName() + "'" +
             ", status='" + getStatus() + "'" +
-            ", donvitinh=" + getDonvitinhId() +
-            ", donvitinh='" + getDonvitinhDonViTinhCode() + "'" +
+            ", donViTinh=" + getDonViTinhId() +
+            ", donViTinh='" + getDonViTinhDonViTinhCode() + "'" +
             "}";
     }
 }
