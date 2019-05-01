@@ -1,21 +1,22 @@
 package com.manager.common.service.mapper;
 
-import com.manager.common.domain.NoiDung;
+import com.manager.common.domain.*;
 import com.manager.common.service.dto.NoiDungDTO;
-import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
+
+import org.mapstruct.*;
 
 /**
  * Mapper for the entity NoiDung and its DTO NoiDungDTO.
  */
-@Mapper(componentModel = "spring", uses = {ChiTieuMapper.class})
+@Mapper(componentModel = "spring", uses = {TieuChiMapper.class})
 public interface NoiDungMapper extends EntityMapper<NoiDungDTO, NoiDung> {
 
-    @Mapping(source = "noiDung.id", target = "noiDungId")
-    @Mapping(source = "noiDung.chiTieuCode", target = "noiDungChiTieuCode")
+    @Mapping(source = "tieuChi.id", target = "tieuChiId")
     NoiDungDTO toDto(NoiDung noiDung);
 
-    @Mapping(source = "noiDungId", target = "noiDung")
+    @Mapping(source = "tieuChiId", target = "tieuChi")
+    @Mapping(target = "noiDungDauVaos", ignore = true)
+    @Mapping(target = "noiDungDauRas", ignore = true)
     NoiDung toEntity(NoiDungDTO noiDungDTO);
 
     default NoiDung fromId(Long id) {

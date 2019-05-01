@@ -1,5 +1,6 @@
 package com.manager.common.web.rest;
 import com.manager.common.service.TieuChiService;
+import com.manager.common.service.dto.TieuChiDetailDTO;
 import com.manager.common.web.rest.errors.BadRequestAlertException;
 import com.manager.common.web.rest.util.HeaderUtil;
 import com.manager.common.web.rest.util.PaginationUtil;
@@ -90,6 +91,19 @@ public class TieuChiResource {
         Page<TieuChiDTO> page = tieuChiService.findAll(pageable);
         HttpHeaders headers = PaginationUtil.generatePaginationHttpHeaders(page, "/api/tieu-chis");
         return ResponseEntity.ok().headers(headers).body(page.getContent());
+    }
+
+    /**
+     * GET  /tieu-chis : get all the tieuChis.
+     *
+     * @param id the pagination information
+     * @return the ResponseEntity with status 200 (OK) and the list of tieuChis in body
+     */
+    @GetMapping("/tieu-chis/co_quan_chu_tri")
+    public ResponseEntity<List<TieuChiDetailDTO>> getTieuChisByCoQuanChuTriID(@RequestParam("id") Long id) {
+        log.debug("REST request to get a page of TieuChis");
+        List<TieuChiDetailDTO> page = tieuChiService.findByCoQuanChuTriId(id);
+        return ResponseEntity.ok().body(page);
     }
 
     /**

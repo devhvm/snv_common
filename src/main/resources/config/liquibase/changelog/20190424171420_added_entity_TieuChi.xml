@@ -26,14 +26,6 @@
                 <constraints nullable="false" />
             </column>
 
-            <column name="tieu_chi_code" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
-            <column name="name" type="varchar(255)">
-                <constraints nullable="true" />
-            </column>
-
             <column name="ky_cong_bo_id" type="bigint">
                 <constraints nullable="true" />
             </column>
@@ -52,7 +44,7 @@
     </changeSet>
     
     <!-- Added the entity audit columns -->
-    <changeSet id="20190429163002-audit-1" author="jhipster-entity-audit">
+    <changeSet id="20190424171420-audit-1" author="jhipster-entity-audit">
         <addColumn tableName="tieu_chi">
             <column name="created_by" type="varchar(50)">
                 <constraints nullable="false"/>

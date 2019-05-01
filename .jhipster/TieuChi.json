@@ -4,9 +4,9 @@
     "relationships": [
         {
             "relationshipType": "one-to-many",
-            "otherEntityName": "tieuChiBaoCao",
+            "otherEntityName": "noiDung",
             "otherEntityRelationshipName": "tieuChi",
-            "relationshipName": "tieuChiBaoCao",
+            "relationshipName": "noiDung",
             "otherEntityRelationshipNameUndefined": false
         },
         {
@@ -42,16 +42,6 @@
             "fieldValidateRules": [
                 "required"
             ]
-        },
-        {
-            "fieldName": "tieuChiCode",
-            "fieldType": "String",
-            "fieldValidateRules": []
-        },
-        {
-            "fieldName": "name",
-            "fieldType": "String",
-            "fieldValidateRules": []
         }
     ],
     "changelogDate": "20190424171420",

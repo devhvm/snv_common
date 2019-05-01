@@ -1,13 +1,17 @@
 package com.manager.common.service.dto;
-import javax.validation.constraints.*;
-import java.io.Serializable;
-import java.util.Objects;
+
 import com.manager.common.domain.enumeration.Status;
+
+import javax.validation.constraints.NotNull;
+import java.io.Serializable;
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Objects;
 
 /**
  * A DTO for the TieuChi entity.
  */
-public class TieuChiDTO extends AbstractAuditingDTO implements Serializable {
+public class TieuChiDetailDTO extends AbstractAuditingDTO implements Serializable {
 
     private Long id;
 
@@ -20,6 +24,8 @@ public class TieuChiDTO extends AbstractAuditingDTO implements Serializable {
     private Long coQuanChuTriId;
 
     private Long chiTieuId;
+
+    private List<NoiDungDetailDTO> noiDungs = new ArrayList();
 
     public Long getId() {
         return id;
@@ -61,6 +67,14 @@ public class TieuChiDTO extends AbstractAuditingDTO implements Serializable {
         this.chiTieuId = chiTieuId;
     }
 
+    public List<NoiDungDetailDTO> getNoiDungs() {
+        return noiDungs;
+    }
+
+    public void setNoiDungs(List<NoiDungDetailDTO> noiDungs) {
+        this.noiDungs = noiDungs;
+    }
+
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -70,7 +84,7 @@ public class TieuChiDTO extends AbstractAuditingDTO implements Serializable {
             return false;
         }
 
-        TieuChiDTO tieuChiDTO = (TieuChiDTO) o;
+        TieuChiDetailDTO tieuChiDTO = (TieuChiDetailDTO) o;
         if (tieuChiDTO.getId() == null || getId() == null) {
             return false;
         }
@@ -84,12 +98,13 @@ public class TieuChiDTO extends AbstractAuditingDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "TieuChiDTO{" +
-            "id=" + getId() +
-            ", status='" + getStatus() + "'" +
-            ", kyCongBo=" + getKyCongBoId() +
-            ", coQuanChuTri=" + getCoQuanChuTriId() +
-            ", chiTieu=" + getChiTieuId() +
-            "}";
+        return "TieuChiDetailDTO{" +
+            "id=" + id +
+            ", status=" + status +
+            ", kyCongBoId=" + kyCongBoId +
+            ", coQuanChuTriId=" + coQuanChuTriId +
+            ", chiTieuId=" + chiTieuId +
+            ", noiDungs=" + noiDungs +
+            '}';
     }
 }

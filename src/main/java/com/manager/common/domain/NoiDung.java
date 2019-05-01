@@ -1,15 +1,20 @@
 package com.manager.common.domain;
 
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
-import com.manager.common.domain.enumeration.Status;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.NotNull;
+import javax.validation.constraints.*;
+
 import java.io.Serializable;
+import java.util.HashSet;
+import java.util.Set;
 import java.util.Objects;
+
+import com.manager.common.domain.enumeration.Status;
 
 /**
  * A NoiDung.
@@ -20,7 +25,7 @@ import java.util.Objects;
 public class NoiDung extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
-
+    
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -30,14 +35,24 @@ public class NoiDung extends AbstractAuditingEntity implements Serializable {
     private String noiDungCode;
 
     @NotNull
+    @Column(name = "name", nullable = false)
+    private String name;
+
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private Status status;
 
     @ManyToOne
     @JsonIgnoreProperties("noiDungs")
-    private ChiTieu noiDung;
+    private TieuChi tieuChi;
 
+    @OneToMany(mappedBy = "noiDung")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<NoiDungDauVao> noiDungDauVaos = new HashSet<>();
+    @OneToMany(mappedBy = "noiDung")
+    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
+    private Set<NoiDungDauRa> noiDungDauRas = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -60,6 +75,19 @@ public class NoiDung extends AbstractAuditingEntity implements Serializable {
         this.noiDungCode = noiDungCode;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public NoiDung name(String name) {
+        this.name = name;
+        return this;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Status getStatus() {
         return status;
     }
@@ -73,17 +101,67 @@ public class NoiDung extends AbstractAuditingEntity implements Serializable {
         this.status = status;
     }
 
-    public ChiTieu getNoiDung() {
-        return noiDung;
+    public TieuChi getTieuChi() {
+        return tieuChi;
     }
 
-    public NoiDung noiDung(ChiTieu chiTieu) {
-        this.noiDung = chiTieu;
+    public NoiDung tieuChi(TieuChi tieuChi) {
+        this.tieuChi = tieuChi;
         return this;
     }
 
-    public void setNoiDung(ChiTieu chiTieu) {
-        this.noiDung = chiTieu;
+    public void setTieuChi(TieuChi tieuChi) {
+        this.tieuChi = tieuChi;
+    }
+
+    public Set<NoiDungDauVao> getNoiDungDauVaos() {
+        return noiDungDauVaos;
+    }
+
+    public NoiDung noiDungDauVaos(Set<NoiDungDauVao> noiDungDauVaos) {
+        this.noiDungDauVaos = noiDungDauVaos;
+        return this;
+    }
+
+    public NoiDung addNoiDungDauVao(NoiDungDauVao noiDungDauVao) {
+        this.noiDungDauVaos.add(noiDungDauVao);
+        noiDungDauVao.setNoiDung(this);
+        return this;
+    }
+
+    public NoiDung removeNoiDungDauVao(NoiDungDauVao noiDungDauVao) {
+        this.noiDungDauVaos.remove(noiDungDauVao);
+        noiDungDauVao.setNoiDung(null);
+        return this;
+    }
+
+    public void setNoiDungDauVaos(Set<NoiDungDauVao> noiDungDauVaos) {
+        this.noiDungDauVaos = noiDungDauVaos;
+    }
+
+    public Set<NoiDungDauRa> getNoiDungDauRas() {
+        return noiDungDauRas;
+    }
+
+    public NoiDung noiDungDauRas(Set<NoiDungDauRa> noiDungDauRas) {
+        this.noiDungDauRas = noiDungDauRas;
+        return this;
+    }
+
+    public NoiDung addNoiDungDauRa(NoiDungDauRa noiDungDauRa) {
+        this.noiDungDauRas.add(noiDungDauRa);
+        noiDungDauRa.setNoiDung(this);
+        return this;
+    }
+
+    public NoiDung removeNoiDungDauRa(NoiDungDauRa noiDungDauRa) {
+        this.noiDungDauRas.remove(noiDungDauRa);
+        noiDungDauRa.setNoiDung(null);
+        return this;
+    }
+
+    public void setNoiDungDauRas(Set<NoiDungDauRa> noiDungDauRas) {
+        this.noiDungDauRas = noiDungDauRas;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -112,6 +190,7 @@ public class NoiDung extends AbstractAuditingEntity implements Serializable {
         return "NoiDung{" +
             "id=" + getId() +
             ", noiDungCode='" + getNoiDungCode() + "'" +
+            ", name='" + getName() + "'" +
             ", status='" + getStatus() + "'" +
             "}";
     }

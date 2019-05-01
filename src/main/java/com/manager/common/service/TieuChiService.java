@@ -1,8 +1,12 @@
 package com.manager.common.service;
 
+import com.manager.common.domain.CoQuanChuTri;
 import com.manager.common.domain.TieuChi;
+import com.manager.common.domain.enumeration.Status;
 import com.manager.common.repository.TieuChiRepository;
 import com.manager.common.service.dto.TieuChiDTO;
+import com.manager.common.service.dto.TieuChiDetailDTO;
+import com.manager.common.service.mapper.TieuChiDetailMapper;
 import com.manager.common.service.mapper.TieuChiMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -12,7 +16,9 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
+import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 /**
  * Service Implementation for managing TieuChi.
@@ -27,9 +33,12 @@ public class TieuChiService {
 
     private final TieuChiMapper tieuChiMapper;
 
-    public TieuChiService(TieuChiRepository tieuChiRepository, TieuChiMapper tieuChiMapper) {
+    private final TieuChiDetailMapper tieuChiDetailMapper;
+
+    public TieuChiService(TieuChiRepository tieuChiRepository, TieuChiMapper tieuChiMapper, TieuChiDetailMapper tieuChiDetailMapper) {
         this.tieuChiRepository = tieuChiRepository;
         this.tieuChiMapper = tieuChiMapper;
+        this.tieuChiDetailMapper = tieuChiDetailMapper;
     }
 
     /**
@@ -81,4 +90,20 @@ public class TieuChiService {
         log.debug("Request to delete TieuChi : {}", id);
         tieuChiRepository.deleteById(id);
     }
+
+
+
+    /**
+     * Get all the tieuChis.
+     *
+     * @param id the pagination information
+     * @return the list of entities
+     */
+    @Transactional(readOnly = true)
+    public List<TieuChiDetailDTO> findByCoQuanChuTriId(Long id) {
+        log.debug("Request to get all TieuChis");
+        return tieuChiRepository.findAllByCoQuanChuTriId(id).stream()
+            .map(tieuChiDetailMapper::toDto).collect(Collectors.toList());
+    }
+
 }

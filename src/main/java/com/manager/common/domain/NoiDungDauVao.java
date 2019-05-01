@@ -35,7 +35,7 @@ public class NoiDungDauVao extends AbstractAuditingEntity implements Serializabl
     private NoiDung noiDung;
 
     @ManyToOne
-    @JsonIgnoreProperties("noiDungDauRas")
+    @JsonIgnoreProperties("noiDungDauVaos")
     private NhomDanhMuc nhomDanhMuc;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
