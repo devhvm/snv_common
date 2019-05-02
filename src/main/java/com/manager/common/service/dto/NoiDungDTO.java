@@ -15,12 +15,13 @@ public class NoiDungDTO extends AbstractAuditingDTO implements Serializable {
     private String noiDungCode;
 
     @NotNull
+    private String name;
+
+    @NotNull
     private Status status;
 
 
-    private Long nhomnoidungId;
-
-    private String nhomnoidungNhomNoiDungCode;
+    private Long tieuChiId;
 
     public Long getId() {
         return id;
@@ -38,6 +39,14 @@ public class NoiDungDTO extends AbstractAuditingDTO implements Serializable {
         this.noiDungCode = noiDungCode;
     }
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
     public Status getStatus() {
         return status;
     }
@@ -46,20 +55,12 @@ public class NoiDungDTO extends AbstractAuditingDTO implements Serializable {
         this.status = status;
     }
 
-    public Long getNhomnoidungId() {
-        return nhomnoidungId;
+    public Long getTieuChiId() {
+        return tieuChiId;
     }
 
-    public void setNhomnoidungId(Long nhomNoiDungId) {
-        this.nhomnoidungId = nhomNoiDungId;
-    }
-
-    public String getNhomnoidungNhomNoiDungCode() {
-        return nhomnoidungNhomNoiDungCode;
-    }
-
-    public void setNhomnoidungNhomNoiDungCode(String nhomNoiDungNhomNoiDungCode) {
-        this.nhomnoidungNhomNoiDungCode = nhomNoiDungNhomNoiDungCode;
+    public void setTieuChiId(Long tieuChiId) {
+        this.tieuChiId = tieuChiId;
     }
 
     @Override
@@ -88,9 +89,9 @@ public class NoiDungDTO extends AbstractAuditingDTO implements Serializable {
         return "NoiDungDTO{" +
             "id=" + getId() +
             ", noiDungCode='" + getNoiDungCode() + "'" +
+            ", name='" + getName() + "'" +
             ", status='" + getStatus() + "'" +
-            ", nhomnoidung=" + getNhomnoidungId() +
-            ", nhomnoidung='" + getNhomnoidungNhomNoiDungCode() + "'" +
+            ", tieuChi=" + getTieuChiId() +
             "}";
     }
 }

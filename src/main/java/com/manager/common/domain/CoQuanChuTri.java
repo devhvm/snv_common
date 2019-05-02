@@ -1,20 +1,14 @@
 package com.manager.common.domain;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.manager.common.domain.enumeration.Status;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
-import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
-
-import com.manager.common.domain.enumeration.Status;
 
 /**
  * A CoQuanChuTri.
@@ -25,7 +19,7 @@ import com.manager.common.domain.enumeration.Status;
 public class CoQuanChuTri extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,16 +29,13 @@ public class CoQuanChuTri extends AbstractAuditingEntity implements Serializable
     private String name;
 
     @NotNull
+    @Column(name = "ma_dinh_danh_code", nullable = false)
+    private String maDinhDanhCode;
+
+    @NotNull
     @Enumerated(EnumType.STRING)
     @Column(name = "status", nullable = false)
     private Status status;
-
-    @OneToMany(mappedBy = "coQuanChuTri")
-    @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<TieuChi> tieuChis = new HashSet<>();
-    @ManyToOne
-    @JsonIgnoreProperties("coQuanChuTris")
-    private MaDinhDanhDonVi maDinhDanhDonVi;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -68,6 +59,19 @@ public class CoQuanChuTri extends AbstractAuditingEntity implements Serializable
         this.name = name;
     }
 
+    public String getMaDinhDanhCode() {
+        return maDinhDanhCode;
+    }
+
+    public CoQuanChuTri maDinhDanhCode(String maDinhDanhCode) {
+        this.maDinhDanhCode = maDinhDanhCode;
+        return this;
+    }
+
+    public void setMaDinhDanhCode(String maDinhDanhCode) {
+        this.maDinhDanhCode = maDinhDanhCode;
+    }
+
     public Status getStatus() {
         return status;
     }
@@ -79,44 +83,6 @@ public class CoQuanChuTri extends AbstractAuditingEntity implements Serializable
 
     public void setStatus(Status status) {
         this.status = status;
-    }
-
-    public Set<TieuChi> getTieuChis() {
-        return tieuChis;
-    }
-
-    public CoQuanChuTri tieuChis(Set<TieuChi> tieuChis) {
-        this.tieuChis = tieuChis;
-        return this;
-    }
-
-    public CoQuanChuTri addTieuChi(TieuChi tieuChi) {
-        this.tieuChis.add(tieuChi);
-        tieuChi.setCoQuanChuTri(this);
-        return this;
-    }
-
-    public CoQuanChuTri removeTieuChi(TieuChi tieuChi) {
-        this.tieuChis.remove(tieuChi);
-        tieuChi.setCoQuanChuTri(null);
-        return this;
-    }
-
-    public void setTieuChis(Set<TieuChi> tieuChis) {
-        this.tieuChis = tieuChis;
-    }
-
-    public MaDinhDanhDonVi getMaDinhDanhDonVi() {
-        return maDinhDanhDonVi;
-    }
-
-    public CoQuanChuTri maDinhDanhDonVi(MaDinhDanhDonVi maDinhDanhDonVi) {
-        this.maDinhDanhDonVi = maDinhDanhDonVi;
-        return this;
-    }
-
-    public void setMaDinhDanhDonVi(MaDinhDanhDonVi maDinhDanhDonVi) {
-        this.maDinhDanhDonVi = maDinhDanhDonVi;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 
@@ -145,6 +111,7 @@ public class CoQuanChuTri extends AbstractAuditingEntity implements Serializable
         return "CoQuanChuTri{" +
             "id=" + getId() +
             ", name='" + getName() + "'" +
+            ", maDinhDanhCode='" + getMaDinhDanhCode() + "'" +
             ", status='" + getStatus() + "'" +
             "}";
     }

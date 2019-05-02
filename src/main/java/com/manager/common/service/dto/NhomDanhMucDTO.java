@@ -1,8 +1,10 @@
 package com.manager.common.service.dto;
-import javax.validation.constraints.*;
+
+import com.manager.common.domain.enumeration.Status;
+
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
-import com.manager.common.domain.enumeration.Status;
 
 /**
  * A DTO for the NhomDanhMuc entity.
@@ -20,8 +22,6 @@ public class NhomDanhMucDTO extends AbstractAuditingDTO implements Serializable 
     @NotNull
     private Status status;
 
-
-    private Long tieuChiBaoCaoId;
 
     public Long getId() {
         return id;
@@ -55,14 +55,6 @@ public class NhomDanhMucDTO extends AbstractAuditingDTO implements Serializable 
         this.status = status;
     }
 
-    public Long getTieuChiBaoCaoId() {
-        return tieuChiBaoCaoId;
-    }
-
-    public void setTieuChiBaoCaoId(Long tieuChiBaoCaoId) {
-        this.tieuChiBaoCaoId = tieuChiBaoCaoId;
-    }
-
     @Override
     public boolean equals(Object o) {
         if (this == o) {
@@ -91,7 +83,6 @@ public class NhomDanhMucDTO extends AbstractAuditingDTO implements Serializable 
             ", nhomDanhMucCode='" + getNhomDanhMucCode() + "'" +
             ", name='" + getName() + "'" +
             ", status='" + getStatus() + "'" +
-            ", tieuChiBaoCao=" + getTieuChiBaoCaoId() +
             "}";
     }
 }

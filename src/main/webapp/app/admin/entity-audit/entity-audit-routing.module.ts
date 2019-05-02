@@ -1,7 +1,7 @@
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import {NgModule} from '@angular/core';
+import {RouterModule, Routes} from '@angular/router';
 
-import { EntityAuditComponent } from './entity-audit.component';
+import {EntityAuditComponent} from './entity-audit.component';
 
 const routes: Routes = [
     {

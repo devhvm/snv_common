@@ -1,0 +1,114 @@
+<?xml version="1.0" encoding="utf-8"?>
+<databaseChangeLog
+    xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+    xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <property name="now" value="now()" dbms="mysql,h2"/>
+    <property name="now" value="current_timestamp" dbms="postgresql"/>
+    <property name="now" value="sysdate" dbms="oracle"/>
+    <property name="now" value="GETDATE()" dbms="mssql"/>
+
+    <property name="autoIncrement" value="true" dbms="mysql,h2,postgresql,oracle,mssql"/>
+
+    <property name="floatType" value="float4" dbms="postgresql, h2"/>
+    <property name="floatType" value="float" dbms="mysql, oracle, mssql"/>
+
+
+    <changeSet id="20190404153955-csv" author="jhipster">
+        <loadData encoding="UTF-8"
+                  file="/config/liquibase/20190405/nhomchitieu.csv"
+                  separator=";"
+                  tableName="nhom_chi_tieu"/>
+
+    </changeSet>
+
+    <changeSet id="20190404153956-csv" author="jhipster">
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/20190405/chitieu.csv"
+                  separator=";"
+                  tableName="chi_tieu"/>
+
+    </changeSet>
+
+    <changeSet id="20190404153957-csv" author="jhipster">
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/20190405/nhomdanhmuc.csv"
+                  separator=";"
+                  tableName="nhom_danh_muc"/>
+    </changeSet>
+
+    <changeSet id="20190405153957-csv" author="jhipster">
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/20190405/danhmuc.csv"
+                  separator=";"
+                  tableName="danh_muc"/>
+    </changeSet>
+
+    <changeSet id="20190404153958-csv" author="jhipster">
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/20190405/donvitinh.csv"
+                  separator=";"
+                  tableName="don_vi_tinh"/>
+
+    </changeSet>
+
+    <changeSet id="20190404153959-csv" author="jhipster">
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/20190405/nhomphanloai.csv"
+                  separator=";"
+                  tableName="nhom_phan_loai"/>
+
+    </changeSet>
+
+    <changeSet id="20190404154000-csv" author="jhipster">
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/20190405/doituong.csv"
+                  separator=";"
+                  tableName="doi_tuong"/>
+
+    </changeSet>
+    <changeSet id="20190404154001-csv" author="jhipster">
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/20190405/madinhdanhdonvi.csv"
+                  separator=";"
+                  tableName="ma_dinh_danh_don_vi"/>
+
+    </changeSet>
+    <changeSet id="20190404154002-csv" author="jhipster">
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/20190405/coquanchutri.csv"
+                  separator=";"
+                  tableName="co_quan_chu_tri"/>
+    </changeSet>
+    <changeSet id="20190404154003-csv" author="jhipster">
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/20190405/kycongbo.csv"
+                  separator=";"
+                  tableName="ky_cong_bo"/>
+    </changeSet>
+    <changeSet id="20190404154004-csv" author="jhipster">
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/20190405/tieuchi.csv"
+                  separator=";"
+                  tableName="tieu_chi"/>
+    </changeSet>
+    <changeSet id="20190404154005-csv" author="jhipster">
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/20190405/noidung.csv"
+                  separator=";"
+                  tableName="noi_dung"/>
+    </changeSet>
+    <changeSet id="20190404154006-csv" author="jhipster">
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/20190405/noidungdauvao.csv"
+                  separator=";"
+                  tableName="noi_dung_dau_vao"/>
+    </changeSet>
+    <changeSet id="20190404154007-csv" author="jhipster">
+        <loadData encoding="UTF-8"
+                  file="config/liquibase/20190405/noidungdaura.csv"
+                  separator=";"
+                  tableName="noi_dung_dau_ra"/>
+    </changeSet>
+</databaseChangeLog>

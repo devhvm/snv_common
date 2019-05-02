@@ -28,14 +28,14 @@
         {
             "relationshipType": "one-to-many",
             "otherEntityName": "doiTuong",
-            "otherEntityRelationshipName": "nhomphanloai",
-            "relationshipName": "doituong"
+            "otherEntityRelationshipName": "nhomPhanLoai",
+            "relationshipName": "doiTuong"
         },
         {
             "relationshipType": "many-to-one",
             "otherEntityName": "donViTinh",
-            "otherEntityRelationshipName": "nhomphanloai",
-            "relationshipName": "donvitinh",
+            "otherEntityRelationshipName": "nhomPhanLoai",
+            "relationshipName": "donViTinh",
             "otherEntityField": "donViTinhCode"
         }
     ],

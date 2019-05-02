@@ -1,9 +1,9 @@
 package com.manager.common.service.mapper;
 
-import com.manager.common.domain.*;
+import com.manager.common.domain.NhomPhanLoai;
 import com.manager.common.service.dto.NhomPhanLoaiDTO;
-
-import org.mapstruct.*;
+import org.mapstruct.Mapper;
+import org.mapstruct.Mapping;
 
 /**
  * Mapper for the entity NhomPhanLoai and its DTO NhomPhanLoaiDTO.
@@ -11,12 +11,12 @@ import org.mapstruct.*;
 @Mapper(componentModel = "spring", uses = {DonViTinhMapper.class})
 public interface NhomPhanLoaiMapper extends EntityMapper<NhomPhanLoaiDTO, NhomPhanLoai> {
 
-    @Mapping(source = "donvitinh.id", target = "donvitinhId")
-    @Mapping(source = "donvitinh.donViTinhCode", target = "donvitinhDonViTinhCode")
+    @Mapping(source = "donViTinh.id", target = "donViTinhId")
+    @Mapping(source = "donViTinh.donViTinhCode", target = "donViTinhDonViTinhCode")
     NhomPhanLoaiDTO toDto(NhomPhanLoai nhomPhanLoai);
 
-    @Mapping(target = "doituongs", ignore = true)
-    @Mapping(source = "donvitinhId", target = "donvitinh")
+    @Mapping(target = "doiTuongs", ignore = true)
+    @Mapping(source = "donViTinhId", target = "donViTinh")
     NhomPhanLoai toEntity(NhomPhanLoaiDTO nhomPhanLoaiDTO);
 
     default NhomPhanLoai fromId(Long id) {

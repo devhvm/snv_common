@@ -29,7 +29,7 @@
             "relationshipType": "many-to-one",
             "otherEntityName": "nhomPhanLoai",
             "otherEntityRelationshipName": "doituong",
-            "relationshipName": "nhomphanloai",
+            "relationshipName": "nhomPhanLoai",
             "otherEntityField": "nhomPhanLoaiCode"
         }
     ],

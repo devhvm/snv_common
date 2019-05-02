@@ -1,8 +1,10 @@
 package com.manager.common.service.dto;
-import javax.validation.constraints.*;
+
+import com.manager.common.domain.enumeration.Status;
+
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
-import com.manager.common.domain.enumeration.Status;
 
 /**
  * A DTO for the DoiTuong entity.
@@ -21,9 +23,9 @@ public class DoiTuongDTO extends AbstractAuditingDTO implements Serializable {
     private Status status;
 
 
-    private Long nhomphanloaiId;
+    private Long nhomPhanLoaiId;
 
-    private String nhomphanloaiNhomPhanLoaiCode;
+    private String nhomPhanLoaiNhomPhanLoaiCode;
 
     public Long getId() {
         return id;
@@ -57,20 +59,20 @@ public class DoiTuongDTO extends AbstractAuditingDTO implements Serializable {
         this.status = status;
     }
 
-    public Long getNhomphanloaiId() {
-        return nhomphanloaiId;
+    public Long getNhomPhanLoaiId() {
+        return nhomPhanLoaiId;
     }
 
-    public void setNhomphanloaiId(Long nhomPhanLoaiId) {
-        this.nhomphanloaiId = nhomPhanLoaiId;
+    public void setNhomPhanLoaiId(Long nhomPhanLoaiId) {
+        this.nhomPhanLoaiId = nhomPhanLoaiId;
     }
 
-    public String getNhomphanloaiNhomPhanLoaiCode() {
-        return nhomphanloaiNhomPhanLoaiCode;
+    public String getNhomPhanLoaiNhomPhanLoaiCode() {
+        return nhomPhanLoaiNhomPhanLoaiCode;
     }
 
-    public void setNhomphanloaiNhomPhanLoaiCode(String nhomPhanLoaiNhomPhanLoaiCode) {
-        this.nhomphanloaiNhomPhanLoaiCode = nhomPhanLoaiNhomPhanLoaiCode;
+    public void setNhomPhanLoaiNhomPhanLoaiCode(String nhomPhanLoaiNhomPhanLoaiCode) {
+        this.nhomPhanLoaiNhomPhanLoaiCode = nhomPhanLoaiNhomPhanLoaiCode;
     }
 
     @Override
@@ -101,8 +103,8 @@ public class DoiTuongDTO extends AbstractAuditingDTO implements Serializable {
             ", doiTuongCode='" + getDoiTuongCode() + "'" +
             ", name='" + getName() + "'" +
             ", status='" + getStatus() + "'" +
-            ", nhomphanloai=" + getNhomphanloaiId() +
-            ", nhomphanloai='" + getNhomphanloaiNhomPhanLoaiCode() + "'" +
+            ", nhomPhanLoai=" + getNhomPhanLoaiId() +
+            ", nhomPhanLoai='" + getNhomPhanLoaiNhomPhanLoaiCode() + "'" +
             "}";
     }
 }

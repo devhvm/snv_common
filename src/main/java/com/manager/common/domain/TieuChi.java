@@ -25,7 +25,7 @@ import com.manager.common.domain.enumeration.Status;
 public class TieuChi extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -35,9 +35,13 @@ public class TieuChi extends AbstractAuditingEntity implements Serializable {
     @Column(name = "status", nullable = false)
     private Status status;
 
+
+    @Column(name = "co_quan_chu_tri_id", nullable = false, insertable= false, updatable=false)
+    private Long coQuanChuTriId;
+
     @OneToMany(mappedBy = "tieuChi")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<TieuChiBaoCao> tieuChiBaoCaos = new HashSet<>();
+    private Set<NoiDung> noiDungs = new HashSet<>();
     @ManyToOne
     @JsonIgnoreProperties("tieuChis")
     private KyCongBo kyCongBo;
@@ -72,29 +76,29 @@ public class TieuChi extends AbstractAuditingEntity implements Serializable {
         this.status = status;
     }
 
-    public Set<TieuChiBaoCao> getTieuChiBaoCaos() {
-        return tieuChiBaoCaos;
+    public Set<NoiDung> getNoiDungs() {
+        return noiDungs;
     }
 
-    public TieuChi tieuChiBaoCaos(Set<TieuChiBaoCao> tieuChiBaoCaos) {
-        this.tieuChiBaoCaos = tieuChiBaoCaos;
+    public TieuChi noiDungs(Set<NoiDung> noiDungs) {
+        this.noiDungs = noiDungs;
         return this;
     }
 
-    public TieuChi addTieuChiBaoCao(TieuChiBaoCao tieuChiBaoCao) {
-        this.tieuChiBaoCaos.add(tieuChiBaoCao);
-        tieuChiBaoCao.setTieuChi(this);
+    public TieuChi addNoiDung(NoiDung noiDung) {
+        this.noiDungs.add(noiDung);
+        noiDung.setTieuChi(this);
         return this;
     }
 
-    public TieuChi removeTieuChiBaoCao(TieuChiBaoCao tieuChiBaoCao) {
-        this.tieuChiBaoCaos.remove(tieuChiBaoCao);
-        tieuChiBaoCao.setTieuChi(null);
+    public TieuChi removeNoiDung(NoiDung noiDung) {
+        this.noiDungs.remove(noiDung);
+        noiDung.setTieuChi(null);
         return this;
     }
 
-    public void setTieuChiBaoCaos(Set<TieuChiBaoCao> tieuChiBaoCaos) {
-        this.tieuChiBaoCaos = tieuChiBaoCaos;
+    public void setNoiDungs(Set<NoiDung> noiDungs) {
+        this.noiDungs = noiDungs;
     }
 
     public KyCongBo getKyCongBo() {

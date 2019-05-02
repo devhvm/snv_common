@@ -1,9 +1,8 @@
 package com.manager.common.config;
 
-import com.manager.common.security.*;
-import com.manager.common.security.jwt.*;
-
-import org.springframework.context.annotation.Bean;
+import com.manager.common.security.AuthoritiesConstants;
+import com.manager.common.security.jwt.JWTConfigurer;
+import com.manager.common.security.jwt.TokenProvider;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.http.HttpMethod;

@@ -1,0 +1,41 @@
+{
+    "name": "NoiDungDauRa",
+    "fields": [
+        {
+            "fieldName": "status",
+            "fieldType": "Status",
+            "fieldValues": "PUBLISH,UNPUBLISH,DELETED",
+            "fieldValidateRules": [
+                "required"
+            ]
+        }
+    ],
+    "relationships": [
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "noiDung",
+            "otherEntityRelationshipName": "noiDungDauRa",
+            "relationshipName": "noiDung"
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "nhomDanhMuc",
+            "otherEntityRelationshipName": "noiDungDauRa",
+            "relationshipName": "nhomDanhMuc"
+        }
+    ],
+    "changelogDate": "20190404154002",
+    "entityTableName": "noi_dung_dau_Ra",
+    "dto": "mapstruct",
+    "pagination": "pagination",
+    "service": "serviceClass",
+    "jpaMetamodelFiltering": false,
+    "fluentMethods": true,
+    "clientRootFolder": "",
+    "applications": [
+        "gateway",
+        "common"
+    ],
+    "microserviceName": "common",
+    "enableEntityAudit": true
+}

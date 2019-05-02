@@ -30,13 +30,6 @@
             "otherEntityName": "danhMuc",
             "otherEntityRelationshipName": "nhomDanhMuc",
             "relationshipName": "danhMuc"
-        },
-        {
-            "relationshipType": "many-to-one",
-            "otherEntityName": "tieuChiBaoCao",
-            "otherEntityRelationshipName": "nhomDanhMuc",
-            "relationshipName": "tieuChiBaoCao",
-            "otherEntityField": "id"
         }
     ],
     "changelogDate": "20190404153957",

@@ -2,16 +2,14 @@ package com.manager.common.domain;
 
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.manager.common.domain.enumeration.Status;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
-
-import com.manager.common.domain.enumeration.Status;
 
 /**
  * A DoiTuong.
@@ -22,7 +20,7 @@ import com.manager.common.domain.enumeration.Status;
 public class DoiTuong extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -42,7 +40,7 @@ public class DoiTuong extends AbstractAuditingEntity implements Serializable {
 
     @ManyToOne
     @JsonIgnoreProperties("doituongs")
-    private NhomPhanLoai nhomphanloai;
+    private NhomPhanLoai nhomPhanLoai;
 
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
@@ -92,17 +90,17 @@ public class DoiTuong extends AbstractAuditingEntity implements Serializable {
         this.status = status;
     }
 
-    public NhomPhanLoai getNhomphanloai() {
-        return nhomphanloai;
+    public NhomPhanLoai getNhomPhanLoai() {
+        return nhomPhanLoai;
     }
 
-    public DoiTuong nhomphanloai(NhomPhanLoai nhomPhanLoai) {
-        this.nhomphanloai = nhomPhanLoai;
+    public DoiTuong nhomPhanLoai(NhomPhanLoai nhomPhanLoai) {
+        this.nhomPhanLoai = nhomPhanLoai;
         return this;
     }
 
-    public void setNhomphanloai(NhomPhanLoai nhomPhanLoai) {
-        this.nhomphanloai = nhomPhanLoai;
+    public void setNhomPhanLoai(NhomPhanLoai nhomPhanLoai) {
+        this.nhomPhanLoai = nhomPhanLoai;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

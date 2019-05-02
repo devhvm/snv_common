@@ -1,5 +1,39 @@
 {
-    "name": "TieuChi",
+    "fluentMethods": true,
+    "clientRootFolder": "common",
+    "relationships": [
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "noiDung",
+            "otherEntityRelationshipName": "tieuChi",
+            "relationshipName": "noiDung",
+            "otherEntityRelationshipNameUndefined": false
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "kyCongBo",
+            "otherEntityRelationshipName": "tieuChi",
+            "relationshipName": "kyCongBo",
+            "otherEntityField": "id",
+            "otherEntityRelationshipNameUndefined": false
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "coQuanChuTri",
+            "otherEntityRelationshipName": "tieuChi",
+            "relationshipName": "coQuanChuTri",
+            "otherEntityField": "id",
+            "otherEntityRelationshipNameUndefined": false
+        },
+        {
+            "relationshipType": "many-to-one",
+            "otherEntityName": "chiTieu",
+            "otherEntityRelationshipName": "tieuChi",
+            "relationshipName": "chiTieu",
+            "otherEntityField": "id",
+            "otherEntityRelationshipNameUndefined": false
+        }
+    ],
     "fields": [
         {
             "fieldName": "status",
@@ -10,46 +44,14 @@
             ]
         }
     ],
-    "relationships": [
-        {
-            "relationshipType": "one-to-many",
-            "otherEntityName": "tieuChiBaoCao",
-            "otherEntityRelationshipName": "tieuChi",
-            "relationshipName": "tieuChiBaoCao"
-        },
-        {
-            "relationshipType": "many-to-one",
-            "otherEntityName": "kyCongBo",
-            "otherEntityRelationshipName": "tieuChi",
-            "relationshipName": "kyCongBo",
-            "otherEntityField": "id"
-        },
-        {
-            "relationshipType": "many-to-one",
-            "otherEntityName": "coQuanChuTri",
-            "otherEntityRelationshipName": "tieuChi",
-            "relationshipName": "coQuanChuTri",
-            "otherEntityField": "id"
-        },
-        {
-            "relationshipType": "many-to-one",
-            "otherEntityName": "chiTieu",
-            "otherEntityRelationshipName": "tieuChi",
-            "relationshipName": "chiTieu",
-            "otherEntityField": "id"
-        }
-    ],
     "changelogDate": "20190424171420",
-    "entityTableName": "tieu_chi",
     "dto": "mapstruct",
-    "pagination": "pagination",
+    "searchEngine": false,
     "service": "serviceClass",
+    "entityTableName": "tieu_chi",
+    "databaseType": "sql",
     "jpaMetamodelFiltering": false,
-    "fluentMethods": true,
-    "clientRootFolder": "common",
-    "applications": [
-        "common"
-    ],
+    "pagination": "pagination",
     "microserviceName": "common",
     "enableEntityAudit": true
 }

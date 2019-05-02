@@ -1,14 +1,13 @@
 package com.manager.common.web.rest;
 
 import com.manager.common.CommonApp;
-
 import com.manager.common.domain.CoQuanChuTri;
+import com.manager.common.domain.enumeration.Status;
 import com.manager.common.repository.CoQuanChuTriRepository;
 import com.manager.common.service.CoQuanChuTriService;
 import com.manager.common.service.dto.CoQuanChuTriDTO;
 import com.manager.common.service.mapper.CoQuanChuTriMapper;
 import com.manager.common.web.rest.errors.ExceptionTranslator;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -27,14 +26,11 @@ import org.springframework.validation.Validator;
 import javax.persistence.EntityManager;
 import java.util.List;
 
-
 import static com.manager.common.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.hamcrest.Matchers.hasItem;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
-
-import com.manager.common.domain.enumeration.Status;
 /**
  * Test class for the CoQuanChuTriResource REST controller.
  *
@@ -46,6 +42,9 @@ public class CoQuanChuTriResourceIntTest {
 
     private static final String DEFAULT_NAME = "AAAAAAAAAA";
     private static final String UPDATED_NAME = "BBBBBBBBBB";
+
+    private static final String DEFAULT_MA_DINH_DANH_CODE = "AAAAAAAAAA";
+    private static final String UPDATED_MA_DINH_DANH_CODE = "BBBBBBBBBB";
 
     private static final Status DEFAULT_STATUS = Status.PUBLISH;
     private static final Status UPDATED_STATUS = Status.UNPUBLISH;
@@ -99,6 +98,7 @@ public class CoQuanChuTriResourceIntTest {
     public static CoQuanChuTri createEntity(EntityManager em) {
         CoQuanChuTri coQuanChuTri = new CoQuanChuTri()
             .name(DEFAULT_NAME)
+            .maDinhDanhCode(DEFAULT_MA_DINH_DANH_CODE)
             .status(DEFAULT_STATUS);
         return coQuanChuTri;
     }
@@ -125,6 +125,7 @@ public class CoQuanChuTriResourceIntTest {
         assertThat(coQuanChuTriList).hasSize(databaseSizeBeforeCreate + 1);
         CoQuanChuTri testCoQuanChuTri = coQuanChuTriList.get(coQuanChuTriList.size() - 1);
         assertThat(testCoQuanChuTri.getName()).isEqualTo(DEFAULT_NAME);
+        assertThat(testCoQuanChuTri.getMaDinhDanhCode()).isEqualTo(DEFAULT_MA_DINH_DANH_CODE);
         assertThat(testCoQuanChuTri.getStatus()).isEqualTo(DEFAULT_STATUS);
     }
 
@@ -169,6 +170,25 @@ public class CoQuanChuTriResourceIntTest {
 
     @Test
     @Transactional
+    public void checkMaDinhDanhCodeIsRequired() throws Exception {
+        int databaseSizeBeforeTest = coQuanChuTriRepository.findAll().size();
+        // set the field null
+        coQuanChuTri.setMaDinhDanhCode(null);
+
+        // Create the CoQuanChuTri, which fails.
+        CoQuanChuTriDTO coQuanChuTriDTO = coQuanChuTriMapper.toDto(coQuanChuTri);
+
+        restCoQuanChuTriMockMvc.perform(post("/api/co-quan-chu-tris")
+            .contentType(TestUtil.APPLICATION_JSON_UTF8)
+            .content(TestUtil.convertObjectToJsonBytes(coQuanChuTriDTO)))
+            .andExpect(status().isBadRequest());
+
+        List<CoQuanChuTri> coQuanChuTriList = coQuanChuTriRepository.findAll();
+        assertThat(coQuanChuTriList).hasSize(databaseSizeBeforeTest);
+    }
+
+    @Test
+    @Transactional
     public void checkStatusIsRequired() throws Exception {
         int databaseSizeBeforeTest = coQuanChuTriRepository.findAll().size();
         // set the field null
@@ -198,9 +218,10 @@ public class CoQuanChuTriResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.[*].id").value(hasItem(coQuanChuTri.getId().intValue())))
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
+            .andExpect(jsonPath("$.[*].maDinhDanhCode").value(hasItem(DEFAULT_MA_DINH_DANH_CODE.toString())))
             .andExpect(jsonPath("$.[*].status").value(hasItem(DEFAULT_STATUS.toString())));
     }
-    
+
     @Test
     @Transactional
     public void getCoQuanChuTri() throws Exception {
@@ -213,6 +234,7 @@ public class CoQuanChuTriResourceIntTest {
             .andExpect(content().contentType(MediaType.APPLICATION_JSON_UTF8_VALUE))
             .andExpect(jsonPath("$.id").value(coQuanChuTri.getId().intValue()))
             .andExpect(jsonPath("$.name").value(DEFAULT_NAME.toString()))
+            .andExpect(jsonPath("$.maDinhDanhCode").value(DEFAULT_MA_DINH_DANH_CODE.toString()))
             .andExpect(jsonPath("$.status").value(DEFAULT_STATUS.toString()));
     }
 
@@ -238,6 +260,7 @@ public class CoQuanChuTriResourceIntTest {
         em.detach(updatedCoQuanChuTri);
         updatedCoQuanChuTri
             .name(UPDATED_NAME)
+            .maDinhDanhCode(UPDATED_MA_DINH_DANH_CODE)
             .status(UPDATED_STATUS);
         CoQuanChuTriDTO coQuanChuTriDTO = coQuanChuTriMapper.toDto(updatedCoQuanChuTri);
 
@@ -251,6 +274,7 @@ public class CoQuanChuTriResourceIntTest {
         assertThat(coQuanChuTriList).hasSize(databaseSizeBeforeUpdate);
         CoQuanChuTri testCoQuanChuTri = coQuanChuTriList.get(coQuanChuTriList.size() - 1);
         assertThat(testCoQuanChuTri.getName()).isEqualTo(UPDATED_NAME);
+        assertThat(testCoQuanChuTri.getMaDinhDanhCode()).isEqualTo(UPDATED_MA_DINH_DANH_CODE);
         assertThat(testCoQuanChuTri.getStatus()).isEqualTo(UPDATED_STATUS);
     }
 

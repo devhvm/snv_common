@@ -9,6 +9,13 @@
             ]
         },
         {
+            "fieldName": "name",
+            "fieldType": "String",
+            "fieldValidateRules": [
+                "required"
+            ]
+        },
+        {
             "fieldName": "status",
             "fieldType": "Status",
             "fieldValues": "PUBLISH,UNPUBLISH,DELETED",
@@ -20,10 +27,21 @@
     "relationships": [
         {
             "relationshipType": "many-to-one",
-            "otherEntityName": "nhomNoiDung",
-            "otherEntityRelationshipName": "noidung",
-            "relationshipName": "nhomnoidung",
-            "otherEntityField": "nhomNoiDungCode"
+            "otherEntityName": "tieuChi",
+            "otherEntityRelationshipName": "noiDung",
+            "relationshipName": "tieuChi"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "noiDungDauVao",
+            "otherEntityRelationshipName": "noiDung",
+            "relationshipName": "noiDungDauVao"
+        },
+        {
+            "relationshipType": "one-to-many",
+            "otherEntityName": "noiDungDauRa",
+            "otherEntityRelationshipName": "noiDung",
+            "relationshipName": "noiDungDauRa"
         }
     ],
     "changelogDate": "20190404154003",

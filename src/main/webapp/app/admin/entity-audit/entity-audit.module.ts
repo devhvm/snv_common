@@ -1,12 +1,12 @@
-import { NgModule, CUSTOM_ELEMENTS_SCHEMA } from '@angular/core';
-import { CommonModule } from '@angular/common';
-import { DiffMatchPatchModule } from 'ng-diff-match-patch';
+import {CUSTOM_ELEMENTS_SCHEMA, NgModule} from '@angular/core';
+import {CommonModule} from '@angular/common';
+import {DiffMatchPatchModule} from 'ng-diff-match-patch';
 
-import { CommonSharedModule } from '../../shared';
-import { EntityAuditRoutingModule } from './entity-audit-routing.module';
-import { EntityAuditComponent } from './entity-audit.component';
-import { EntityAuditModalComponent } from './entity-audit-modal.component';
-import { EntityAuditService } from './entity-audit.service';
+import {CommonSharedModule} from '../../shared';
+import {EntityAuditRoutingModule} from './entity-audit-routing.module';
+import {EntityAuditComponent} from './entity-audit.component';
+import {EntityAuditModalComponent} from './entity-audit-modal.component';
+import {EntityAuditService} from './entity-audit.service';
 
 @NgModule({
     imports: [

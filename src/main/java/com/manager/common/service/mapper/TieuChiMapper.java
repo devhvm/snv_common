@@ -16,7 +16,7 @@ public interface TieuChiMapper extends EntityMapper<TieuChiDTO, TieuChi> {
     @Mapping(source = "chiTieu.id", target = "chiTieuId")
     TieuChiDTO toDto(TieuChi tieuChi);
 
-    @Mapping(target = "tieuChiBaoCaos", ignore = true)
+    @Mapping(target = "noiDungs", ignore = true)
     @Mapping(source = "kyCongBoId", target = "kyCongBo")
     @Mapping(source = "coQuanChuTriId", target = "coQuanChuTri")
     @Mapping(source = "chiTieuId", target = "chiTieu")

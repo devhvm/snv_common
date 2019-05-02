@@ -1,20 +1,16 @@
 package com.manager.common.domain;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
-import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+import com.manager.common.domain.enumeration.Status;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
-
-import com.manager.common.domain.enumeration.Status;
+import java.util.Set;
 
 /**
  * A NhomDanhMuc.
@@ -25,7 +21,7 @@ import com.manager.common.domain.enumeration.Status;
 public class NhomDanhMuc extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -46,10 +42,6 @@ public class NhomDanhMuc extends AbstractAuditingEntity implements Serializable 
     @OneToMany(mappedBy = "nhomDanhMuc")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
     private Set<DanhMuc> danhMucs = new HashSet<>();
-    @ManyToOne
-    @JsonIgnoreProperties("nhomDanhMucs")
-    private TieuChiBaoCao tieuChiBaoCao;
-
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -121,19 +113,6 @@ public class NhomDanhMuc extends AbstractAuditingEntity implements Serializable 
 
     public void setDanhMucs(Set<DanhMuc> danhMucs) {
         this.danhMucs = danhMucs;
-    }
-
-    public TieuChiBaoCao getTieuChiBaoCao() {
-        return tieuChiBaoCao;
-    }
-
-    public NhomDanhMuc tieuChiBaoCao(TieuChiBaoCao tieuChiBaoCao) {
-        this.tieuChiBaoCao = tieuChiBaoCao;
-        return this;
-    }
-
-    public void setTieuChiBaoCao(TieuChiBaoCao tieuChiBaoCao) {
-        this.tieuChiBaoCao = tieuChiBaoCao;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

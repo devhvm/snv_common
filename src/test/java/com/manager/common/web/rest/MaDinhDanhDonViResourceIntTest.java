@@ -1,14 +1,12 @@
 package com.manager.common.web.rest;
 
 import com.manager.common.CommonApp;
-
 import com.manager.common.domain.MaDinhDanhDonVi;
 import com.manager.common.repository.MaDinhDanhDonViRepository;
 import com.manager.common.service.MaDinhDanhDonViService;
 import com.manager.common.service.dto.MaDinhDanhDonViDTO;
 import com.manager.common.service.mapper.MaDinhDanhDonViMapper;
 import com.manager.common.web.rest.errors.ExceptionTranslator;
-
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -26,7 +24,6 @@ import org.springframework.validation.Validator;
 
 import javax.persistence.EntityManager;
 import java.util.List;
-
 
 import static com.manager.common.web.rest.TestUtil.createFormattingConversionService;
 import static org.assertj.core.api.Assertions.assertThat;
@@ -230,7 +227,7 @@ public class MaDinhDanhDonViResourceIntTest {
             .andExpect(jsonPath("$.[*].name").value(hasItem(DEFAULT_NAME.toString())))
             .andExpect(jsonPath("$.[*].level").value(hasItem(DEFAULT_LEVEL.toString())));
     }
-    
+
     @Test
     @Transactional
     public void getMaDinhDanhDonVi() throws Exception {

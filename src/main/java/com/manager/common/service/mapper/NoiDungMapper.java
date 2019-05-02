@@ -8,14 +8,15 @@ import org.mapstruct.*;
 /**
  * Mapper for the entity NoiDung and its DTO NoiDungDTO.
  */
-@Mapper(componentModel = "spring", uses = {NhomNoiDungMapper.class})
+@Mapper(componentModel = "spring", uses = {TieuChiMapper.class})
 public interface NoiDungMapper extends EntityMapper<NoiDungDTO, NoiDung> {
 
-    @Mapping(source = "nhomnoidung.id", target = "nhomnoidungId")
-    @Mapping(source = "nhomnoidung.nhomNoiDungCode", target = "nhomnoidungNhomNoiDungCode")
+    @Mapping(source = "tieuChi.id", target = "tieuChiId")
     NoiDungDTO toDto(NoiDung noiDung);
 
-    @Mapping(source = "nhomnoidungId", target = "nhomnoidung")
+    @Mapping(source = "tieuChiId", target = "tieuChi")
+    @Mapping(target = "noiDungDauVaos", ignore = true)
+    @Mapping(target = "noiDungDauRas", ignore = true)
     NoiDung toEntity(NoiDungDTO noiDungDTO);
 
     default NoiDung fromId(Long id) {

@@ -1,10 +1,10 @@
-import { Component, OnInit } from '@angular/core';
-import { NgbModal } from '@ng-bootstrap/ng-bootstrap';
-import { JhiAlertService } from 'ng-jhipster';
+import {Component, OnInit} from '@angular/core';
+import {NgbModal} from '@ng-bootstrap/ng-bootstrap';
+import {JhiAlertService} from 'ng-jhipster';
 
-import { EntityAuditService } from './entity-audit.service';
-import { EntityAuditEvent } from './entity-audit-event.model';
-import { EntityAuditModalComponent } from './entity-audit-modal.component';
+import {EntityAuditService} from './entity-audit.service';
+import {EntityAuditEvent} from './entity-audit-event.model';
+import {EntityAuditModalComponent} from './entity-audit-modal.component';
 
 @Component({
     selector: 'jhi-entity-audit',

@@ -1,19 +1,16 @@
 package com.manager.common.domain;
 
 
-import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.manager.common.domain.enumeration.Status;
 import org.hibernate.annotations.Cache;
 import org.hibernate.annotations.CacheConcurrencyStrategy;
 
 import javax.persistence.*;
-import javax.validation.constraints.*;
-
+import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.HashSet;
-import java.util.Set;
 import java.util.Objects;
-
-import com.manager.common.domain.enumeration.Status;
+import java.util.Set;
 
 /**
  * A DonViTinh.
@@ -24,7 +21,7 @@ import com.manager.common.domain.enumeration.Status;
 public class DonViTinh extends AbstractAuditingEntity implements Serializable {
 
     private static final long serialVersionUID = 1L;
-    
+
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -42,9 +39,9 @@ public class DonViTinh extends AbstractAuditingEntity implements Serializable {
     @Column(name = "status", nullable = false)
     private Status status;
 
-    @OneToMany(mappedBy = "donvitinh")
+    @OneToMany(mappedBy = "donViTinh")
     @Cache(usage = CacheConcurrencyStrategy.NONSTRICT_READ_WRITE)
-    private Set<NhomPhanLoai> nhomphanloais = new HashSet<>();
+    private Set<NhomPhanLoai> nhomPhanLoais = new HashSet<>();
     // jhipster-needle-entity-add-field - JHipster will add fields here, do not remove
     public Long getId() {
         return id;
@@ -93,29 +90,29 @@ public class DonViTinh extends AbstractAuditingEntity implements Serializable {
         this.status = status;
     }
 
-    public Set<NhomPhanLoai> getNhomphanloais() {
-        return nhomphanloais;
+    public Set<NhomPhanLoai> getNhomPhanLoais() {
+        return nhomPhanLoais;
     }
 
-    public DonViTinh nhomphanloais(Set<NhomPhanLoai> nhomPhanLoais) {
-        this.nhomphanloais = nhomPhanLoais;
+    public DonViTinh nhomPhanLoais(Set<NhomPhanLoai> nhomPhanLoais) {
+        this.nhomPhanLoais = nhomPhanLoais;
         return this;
     }
 
-    public DonViTinh addNhomphanloai(NhomPhanLoai nhomPhanLoai) {
-        this.nhomphanloais.add(nhomPhanLoai);
-        nhomPhanLoai.setDonvitinh(this);
+    public DonViTinh addNhomPhanLoai(NhomPhanLoai nhomPhanLoai) {
+        this.nhomPhanLoais.add(nhomPhanLoai);
+        nhomPhanLoai.setDonViTinh(this);
         return this;
     }
 
-    public DonViTinh removeNhomphanloai(NhomPhanLoai nhomPhanLoai) {
-        this.nhomphanloais.remove(nhomPhanLoai);
-        nhomPhanLoai.setDonvitinh(null);
+    public DonViTinh removeNhomPhanLoai(NhomPhanLoai nhomPhanLoai) {
+        this.nhomPhanLoais.remove(nhomPhanLoai);
+        nhomPhanLoai.setDonViTinh(null);
         return this;
     }
 
-    public void setNhomphanloais(Set<NhomPhanLoai> nhomPhanLoais) {
-        this.nhomphanloais = nhomPhanLoais;
+    public void setNhomPhanLoais(Set<NhomPhanLoai> nhomPhanLoais) {
+        this.nhomPhanLoais = nhomPhanLoais;
     }
     // jhipster-needle-entity-add-getters-setters - JHipster will add getters and setters here, do not remove
 

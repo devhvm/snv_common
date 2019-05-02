@@ -1,9 +1,9 @@
 package com.manager.common.web.rest;
 
-import com.manager.common.CommonApp;
-import com.manager.common.web.rest.vm.LoggerVM;
 import ch.qos.logback.classic.AsyncAppender;
 import ch.qos.logback.classic.LoggerContext;
+import com.manager.common.CommonApp;
+import com.manager.common.web.rest.vm.LoggerVM;
 import org.junit.Before;
 import org.junit.Test;
 import org.junit.runner.RunWith;
