@@ -1,6 +1,6 @@
 package com.manager.common.web.rest;
 import com.manager.common.service.TieuChiService;
-import com.manager.common.service.dto.TieuChiDetailDTO;
+import com.manager.common.service.dto.coquanchutri.TieuChiDetailDTO;
 import com.manager.common.web.rest.errors.BadRequestAlertException;
 import com.manager.common.web.rest.util.HeaderUtil;
 import com.manager.common.web.rest.util.PaginationUtil;
@@ -11,7 +11,6 @@ import org.slf4j.LoggerFactory;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.Pageable;
 import org.springframework.http.HttpHeaders;
-import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
