@@ -1,8 +1,9 @@
-package com.manager.common.service.mapper;
+package com.manager.common.service.mapper.mauphathanh;
 
 import com.manager.common.domain.NoiDung;
-import com.manager.common.service.dto.NoiDungDTO;
-import com.manager.common.service.dto.NoiDungDetailDTO;
+import com.manager.common.service.dto.coquanchutri.NoiDungDetailDTO;
+import com.manager.common.service.mapper.EntityMapper;
+import com.manager.common.service.mapper.TieuChiMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

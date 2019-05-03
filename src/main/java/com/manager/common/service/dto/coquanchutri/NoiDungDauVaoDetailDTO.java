@@ -1,8 +1,5 @@
-package com.manager.common.service.dto;
+package com.manager.common.service.dto.coquanchutri;
 
-import com.manager.common.domain.enumeration.Status;
-
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,7 +8,7 @@ import java.util.Objects;
 /**
  * A DTO for the NoiDungDauRa entity.
  */
-public class NoiDungDauRaDetailDTO implements Serializable {
+public class NoiDungDauVaoDetailDTO implements Serializable {
 
     private String nhomDanhMucCode;
 
@@ -52,11 +49,11 @@ public class NoiDungDauRaDetailDTO implements Serializable {
             return false;
         }
 
-        NoiDungDauRaDetailDTO noiDungDauRaDTO = (NoiDungDauRaDetailDTO) o;
-        if (noiDungDauRaDTO.getNhomDanhMucCode() == null || getNhomDanhMucCode() == null) {
+        NoiDungDauVaoDetailDTO noiDungDauVaoDTO = (NoiDungDauVaoDetailDTO) o;
+        if (noiDungDauVaoDTO.getNhomDanhMucCode() == null || getNhomDanhMucCode() == null) {
             return false;
         }
-        return Objects.equals(getNhomDanhMucCode(), noiDungDauRaDTO.getNhomDanhMucCode());
+        return Objects.equals(getNhomDanhMucCode(), noiDungDauVaoDTO.getNhomDanhMucCode());
     }
 
     @Override
@@ -66,7 +63,7 @@ public class NoiDungDauRaDetailDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "NoiDungDauRaDetailDTO{" +
+        return "NoiDungDauVaoDetailDTO{" +
             "nhomDanhMucCode='" + nhomDanhMucCode + '\'' +
             ", nhomDanhMucName='" + nhomDanhMucName + '\'' +
             ", danhMucs=" + danhMucs +

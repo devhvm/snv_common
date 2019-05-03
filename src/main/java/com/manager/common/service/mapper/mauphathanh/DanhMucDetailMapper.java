@@ -1,8 +1,8 @@
-package com.manager.common.service.mapper;
+package com.manager.common.service.mapper.mauphathanh;
 
 import com.manager.common.domain.DanhMuc;
-import com.manager.common.service.dto.DanhMucDTO;
-import com.manager.common.service.dto.DanhMucDetailDTO;
+import com.manager.common.service.dto.coquanchutri.DanhMucDetailDTO;
+import com.manager.common.service.mapper.EntityMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

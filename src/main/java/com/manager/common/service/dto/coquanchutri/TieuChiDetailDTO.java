@@ -1,9 +1,5 @@
-package com.manager.common.service.dto;
+package com.manager.common.service.dto.coquanchutri;
 
-import com.manager.common.domain.CoQuanChuTri;
-import com.manager.common.domain.enumeration.Status;
-
-import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;

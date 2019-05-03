@@ -1,8 +1,8 @@
-package com.manager.common.service.mapper;
+package com.manager.common.service.mapper.mauphathanh;
 
 import com.manager.common.domain.CoQuanChuTri;
-import com.manager.common.service.dto.CoQuanChuTriDTO;
-import com.manager.common.service.dto.CoQuanChuTriDetailDTO;
+import com.manager.common.service.dto.coquanchutri.CoQuanChuTriDetailDTO;
+import com.manager.common.service.mapper.EntityMapper;
 import org.mapstruct.Mapper;
 
 /**

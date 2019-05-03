@@ -1,28 +1,29 @@
-package com.manager.common.service.dto;
+package com.manager.common.service.dto.loaibaocao;
 
 import com.manager.common.domain.enumeration.Status;
+import com.manager.common.service.dto.AbstractAuditingDTO;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
 
 /**
- * A DTO for the ChiTieu entity.
+ * A DTO for the DoiTuong entity.
  */
-public class ChiTieuDetailDTO implements Serializable {
+public class DoiTuongDetailDTO implements Serializable {
 
     @NotNull
-    private String chiTieuCode;
+    private String doiTuongCode;
 
     @NotNull
     private String name;
 
-    public String getChiTieuCode() {
-        return chiTieuCode;
+    public String getDoiTuongCode() {
+        return doiTuongCode;
     }
 
-    public void setChiTieuCode(String chiTieuCode) {
-        this.chiTieuCode = chiTieuCode;
+    public void setDoiTuongCode(String doiTuongCode) {
+        this.doiTuongCode = doiTuongCode;
     }
 
     public String getName() {
@@ -42,22 +43,22 @@ public class ChiTieuDetailDTO implements Serializable {
             return false;
         }
 
-        ChiTieuDetailDTO chiTieuDTO = (ChiTieuDetailDTO) o;
-        if (chiTieuDTO.getChiTieuCode() == null || getChiTieuCode() == null) {
+        DoiTuongDetailDTO doiTuongDTO = (DoiTuongDetailDTO) o;
+        if (doiTuongDTO.getDoiTuongCode() == null || getDoiTuongCode() == null) {
             return false;
         }
-        return Objects.equals(getChiTieuCode(), chiTieuDTO.getChiTieuCode());
+        return Objects.equals(getDoiTuongCode(), doiTuongDTO.getDoiTuongCode());
     }
 
     @Override
     public int hashCode() {
-        return Objects.hashCode(getChiTieuCode());
+        return Objects.hashCode(getDoiTuongCode());
     }
 
     @Override
     public String toString() {
-        return "ChiTieuDTO{" +
-            ", chiTieuCode='" + getChiTieuCode() + "'" +
+        return "DoiTuongDTO{" +
+            ", doiTuongCode='" + getDoiTuongCode() + "'" +
             ", name='" + getName() + "'" +
             "}";
     }

@@ -1,8 +1,8 @@
-package com.manager.common.service.mapper;
+package com.manager.common.service.mapper.mauphathanh;
 
 import com.manager.common.domain.TieuChi;
-import com.manager.common.service.dto.TieuChiDTO;
-import com.manager.common.service.dto.TieuChiDetailDTO;
+import com.manager.common.service.dto.coquanchutri.TieuChiDetailDTO;
+import com.manager.common.service.mapper.EntityMapper;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 

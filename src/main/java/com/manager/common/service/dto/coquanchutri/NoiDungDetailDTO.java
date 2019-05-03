@@ -1,4 +1,4 @@
-package com.manager.common.service.dto;
+package com.manager.common.service.dto.coquanchutri;
 
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;

@@ -1,12 +1,10 @@
 package com.manager.common.service;
 
-import com.manager.common.domain.CoQuanChuTri;
 import com.manager.common.domain.TieuChi;
-import com.manager.common.domain.enumeration.Status;
 import com.manager.common.repository.TieuChiRepository;
 import com.manager.common.service.dto.TieuChiDTO;
-import com.manager.common.service.dto.TieuChiDetailDTO;
-import com.manager.common.service.mapper.TieuChiDetailMapper;
+import com.manager.common.service.dto.coquanchutri.TieuChiDetailDTO;
+import com.manager.common.service.mapper.mauphathanh.TieuChiDetailMapper;
 import com.manager.common.service.mapper.TieuChiMapper;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;

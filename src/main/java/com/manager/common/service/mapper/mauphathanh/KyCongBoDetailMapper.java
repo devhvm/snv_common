@@ -1,10 +1,9 @@
-package com.manager.common.service.mapper;
+package com.manager.common.service.mapper.mauphathanh;
 
 import com.manager.common.domain.KyCongBo;
-import com.manager.common.service.dto.KyCongBoDTO;
-import com.manager.common.service.dto.KyCongBoDetailDTO;
+import com.manager.common.service.dto.coquanchutri.KyCongBoDetailDTO;
+import com.manager.common.service.mapper.EntityMapper;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 /**
  * Mapper for the entity KyCongBo and its DTO KyCongBoDTO.

@@ -1,10 +1,10 @@
-package com.manager.common.service.mapper;
+package com.manager.common.service.mapper.mauphathanh;
 
 import com.manager.common.domain.ChiTieu;
-import com.manager.common.service.dto.ChiTieuDTO;
-import com.manager.common.service.dto.ChiTieuDetailDTO;
+import com.manager.common.service.dto.coquanchutri.ChiTieuDetailDTO;
+import com.manager.common.service.mapper.EntityMapper;
+import com.manager.common.service.mapper.NhomChiTieuMapper;
 import org.mapstruct.Mapper;
-import org.mapstruct.Mapping;
 
 /**
  * Mapper for the entity ChiTieu and its DTO ChiTieuDTO.

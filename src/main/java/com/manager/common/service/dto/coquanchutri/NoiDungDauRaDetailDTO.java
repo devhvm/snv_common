@@ -1,4 +1,4 @@
-package com.manager.common.service.dto;
+package com.manager.common.service.dto.coquanchutri;
 
 import java.io.Serializable;
 import java.util.ArrayList;
@@ -8,7 +8,7 @@ import java.util.Objects;
 /**
  * A DTO for the NoiDungDauRa entity.
  */
-public class NoiDungDauVaoDetailDTO implements Serializable {
+public class NoiDungDauRaDetailDTO implements Serializable {
 
     private String nhomDanhMucCode;
 
@@ -49,11 +49,11 @@ public class NoiDungDauVaoDetailDTO implements Serializable {
             return false;
         }
 
-        NoiDungDauVaoDetailDTO noiDungDauVaoDTO = (NoiDungDauVaoDetailDTO) o;
-        if (noiDungDauVaoDTO.getNhomDanhMucCode() == null || getNhomDanhMucCode() == null) {
+        NoiDungDauRaDetailDTO noiDungDauRaDTO = (NoiDungDauRaDetailDTO) o;
+        if (noiDungDauRaDTO.getNhomDanhMucCode() == null || getNhomDanhMucCode() == null) {
             return false;
         }
-        return Objects.equals(getNhomDanhMucCode(), noiDungDauVaoDTO.getNhomDanhMucCode());
+        return Objects.equals(getNhomDanhMucCode(), noiDungDauRaDTO.getNhomDanhMucCode());
     }
 
     @Override
@@ -63,7 +63,7 @@ public class NoiDungDauVaoDetailDTO implements Serializable {
 
     @Override
     public String toString() {
-        return "NoiDungDauVaoDetailDTO{" +
+        return "NoiDungDauRaDetailDTO{" +
             "nhomDanhMucCode='" + nhomDanhMucCode + '\'' +
             ", nhomDanhMucName='" + nhomDanhMucName + '\'' +
             ", danhMucs=" + danhMucs +
