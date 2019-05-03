@@ -1,5 +1,6 @@
 package com.manager.common.service.dto;
 
+import com.manager.common.domain.CoQuanChuTri;
 import com.manager.common.domain.enumeration.Status;
 
 import javax.validation.constraints.NotNull;
@@ -11,19 +12,15 @@ import java.util.Objects;
 /**
  * A DTO for the TieuChi entity.
  */
-public class TieuChiDetailDTO extends AbstractAuditingDTO implements Serializable {
+public class TieuChiDetailDTO implements Serializable {
 
     private Long id;
 
-    @NotNull
-    private Status status;
+    private KyCongBoDetailDTO kyCongBo;
 
+    private CoQuanChuTriDetailDTO coQuanChuTri;
 
-    private Long kyCongBoId;
-
-    private Long coQuanChuTriId;
-
-    private Long chiTieuId;
+    private ChiTieuDetailDTO chiTieu;
 
     private List<NoiDungDetailDTO> noiDungs = new ArrayList();
 
@@ -35,36 +32,28 @@ public class TieuChiDetailDTO extends AbstractAuditingDTO implements Serializabl
         this.id = id;
     }
 
-    public Status getStatus() {
-        return status;
+    public KyCongBoDetailDTO getKyCongBo() {
+        return kyCongBo;
     }
 
-    public void setStatus(Status status) {
-        this.status = status;
+    public void setKyCongBo(KyCongBoDetailDTO kyCongBo) {
+        this.kyCongBo = kyCongBo;
     }
 
-    public Long getKyCongBoId() {
-        return kyCongBoId;
+    public ChiTieuDetailDTO getChiTieu() {
+        return chiTieu;
     }
 
-    public void setKyCongBoId(Long kyCongBoId) {
-        this.kyCongBoId = kyCongBoId;
+    public void setChiTieu(ChiTieuDetailDTO chiTieu) {
+        this.chiTieu = chiTieu;
     }
 
-    public Long getCoQuanChuTriId() {
-        return coQuanChuTriId;
+    public CoQuanChuTriDetailDTO getCoQuanChuTri() {
+        return coQuanChuTri;
     }
 
-    public void setCoQuanChuTriId(Long coQuanChuTriId) {
-        this.coQuanChuTriId = coQuanChuTriId;
-    }
-
-    public Long getChiTieuId() {
-        return chiTieuId;
-    }
-
-    public void setChiTieuId(Long chiTieuId) {
-        this.chiTieuId = chiTieuId;
+    public void setCoQuanChuTri(CoQuanChuTriDetailDTO coQuanChuTri) {
+        this.coQuanChuTri = coQuanChuTri;
     }
 
     public List<NoiDungDetailDTO> getNoiDungs() {
@@ -100,10 +89,9 @@ public class TieuChiDetailDTO extends AbstractAuditingDTO implements Serializabl
     public String toString() {
         return "TieuChiDetailDTO{" +
             "id=" + id +
-            ", status=" + status +
-            ", kyCongBoId=" + kyCongBoId +
-            ", coQuanChuTriId=" + coQuanChuTriId +
-            ", chiTieuId=" + chiTieuId +
+            ", kyCongBo=" + kyCongBo +
+            ", coQuanChuTri=" + coQuanChuTri +
+            ", chiTieu=" + chiTieu +
             ", noiDungs=" + noiDungs +
             '}';
     }
